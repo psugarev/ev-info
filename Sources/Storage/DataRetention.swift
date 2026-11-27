@@ -52,6 +52,7 @@ enum DataRetention {
         try context.delete(model: BatterySnapshot.self)
         try context.delete(model: DiagnosticReport.self)
         try context.delete(model: TripRecord.self)
+        try context.delete(model: ChargingSession.self)
         try context.save()
     }
 

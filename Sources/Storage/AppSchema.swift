@@ -19,9 +19,22 @@ enum SchemaV1: VersionedSchema {
     }
 }
 
+/// Adds charging sessions (issue #7). The store keeps V1 data: the migration
+/// stage is lightweight because only a new model is added, no existing model or
+/// attribute changes.
+enum SchemaV2: VersionedSchema {
+    static let versionIdentifier = Schema.Version(2, 0, 0)
+
+    static var models: [any PersistentModel.Type] {
+        SchemaV1.models + [ChargingSession.self]
+    }
+}
+
 enum AppMigrationPlan: SchemaMigrationPlan {
-    static var schemas: [any VersionedSchema.Type] { [SchemaV1.self] }
-    static var stages: [MigrationStage] { [] }
+    static var schemas: [any VersionedSchema.Type] { [SchemaV1.self, SchemaV2.self] }
+    static var stages: [MigrationStage] {
+        [.lightweight(fromVersion: SchemaV1.self, toVersion: SchemaV2.self)]
+    }
 }
 
 // MARK: - Persistence controller
@@ -38,7 +51,7 @@ struct PersistenceController {
     var isPersistent: Bool { failureReason == nil }
 
     static func make() -> PersistenceController {
-        let schema = Schema(versionedSchema: SchemaV1.self)
+        let schema = Schema(versionedSchema: SchemaV2.self)
         let configuration = ModelConfiguration("IoniqDrive", schema: schema, isStoredInMemoryOnly: false)
         do {
             let container = try ModelContainer(
@@ -58,7 +71,7 @@ struct PersistenceController {
 
     /// In-memory container with the current schema (fallback and tests).
     static func makeInMemoryContainer() -> ModelContainer {
-        let schema = Schema(versionedSchema: SchemaV1.self)
+        let schema = Schema(versionedSchema: SchemaV2.self)
         let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
         do {
             return try ModelContainer(

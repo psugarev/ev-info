@@ -28,9 +28,12 @@ SOURCES = ROOT / "Sources"
 
 CALL_STARTS = re.compile(
     r"(?:AppLocalization\.(?:string|format)|LocalizedStringKey|\b(?:Text|Button|Section|Picker|"
-    r"Toggle|Label|LabeledContent|navigationTitle|confirmationDialog|ContentUnavailableView|"
-    r"CardLabel\(text:))\s*\(\s*"
+    r"Toggle|Label|LabeledContent|navigationTitle|confirmationDialog|ContentUnavailableView))\s*\(\s*"
 )
+
+# CardLabel(text: "…") takes the key inside its own call, so it needs its own
+# pattern rather than the generic "call followed by a literal" scan.
+CARD_LABEL_CALL = re.compile(r'CardLabel\(\s*text:\s*"((?:[^"\\]|\\.)*)"')
 
 # Keys that are intentionally identical in both languages (units, symbols).
 ALLOWED_UNTRANSLATED = {
@@ -145,6 +148,8 @@ def main() -> None:
     used: set[str] = set()
     for path in SOURCES.rglob("*.swift"):
         text = path.read_text(encoding="utf-8")
+        for m in CARD_LABEL_CALL.finditer(text):
+            used.add(unescape(m.group(1)))
         for m in CALL_STARTS.finditer(text):
             start = m.end()
             if start >= len(text) or text[start] != '"':

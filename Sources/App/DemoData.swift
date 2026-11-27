@@ -17,6 +17,9 @@ enum DemoData {
     /// Same idea for the demo trips used by Costs and Trip detail screenshots.
     static let seededTripsKey = "demoTripsSeeded"
 
+    /// And for the demo charging sessions on the Charging/Costs screens.
+    static let seededChargingKey = "demoChargingSessionsSeeded"
+
     // MARK: History
 
     /// Seeds 24 h of battery snapshots when the store has none.
@@ -167,6 +170,100 @@ enum DemoData {
         trip.endPlace = to
         trip.summary = TripSummaryGenerator.summary(for: trip)
         return trip
+    }
+
+    // MARK: Charging sessions
+
+    /// Seeds a few charging sessions so Charging and Costs show real history in
+    /// demo mode (and can be screenshotted).
+    static func seedChargingSessions(container: ModelContainer) {
+        Task.detached(priority: .utility) {
+            let context = ModelContext(container)
+            let existing = (try? context.fetchCount(FetchDescriptor<ChargingSession>())) ?? 0
+            guard existing == 0 else { return }
+
+            let now = Date.now
+            let hour = 3_600.0
+            let yesterdayEvening = Calendar.current.date(bySettingHour: 22, minute: 10, second: 0, of: now.addingTimeInterval(-1 * 24 * hour)) ?? now
+            let morning = Calendar.current.date(bySettingHour: 6, minute: 40, second: 0, of: now) ?? now
+
+            let sessions = [
+                demoSession(
+                    start: yesterdayEvening,
+                    end: morning,
+                    energyKWh: 42.6,
+                    peakKW: 7.4,
+                    startSOC: 24,
+                    endSOC: 80,
+                    costEUR: 4.41,
+                    isDC: false
+                ),
+                demoSession(
+                    start: now.addingTimeInterval(-3 * 24 * hour),
+                    end: now.addingTimeInterval(-3 * 24 * hour + 2_100),
+                    energyKWh: 51.2,
+                    peakKW: 118,
+                    startSOC: 12,
+                    endSOC: 80,
+                    costEUR: 7.92,
+                    isDC: true
+                ),
+                demoSession(
+                    start: now.addingTimeInterval(-5 * 24 * hour),
+                    end: now.addingTimeInterval(-5 * 24 * hour + 6_600),
+                    energyKWh: 12.4,
+                    peakKW: 10.8,
+                    startSOC: 62,
+                    endSOC: 80,
+                    costEUR: 1.92,
+                    isDC: false
+                )
+            ]
+            for session in sessions {
+                context.insert(session)
+            }
+            do {
+                try context.save()
+                UserDefaults.standard.set(true, forKey: seededChargingKey)
+            } catch {
+                AppLog.storage.error("Demo charging sessions save failed: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    /// Removes the demo charging sessions, but only if demo mode created them.
+    static func removeSeededChargingSessions(container: ModelContainer) {
+        guard UserDefaults.standard.bool(forKey: seededChargingKey) else { return }
+        Task.detached(priority: .utility) {
+            let context = ModelContext(container)
+            do {
+                try context.delete(model: ChargingSession.self)
+                try context.save()
+                UserDefaults.standard.set(false, forKey: seededChargingKey)
+            } catch {
+                AppLog.storage.error("Demo charging sessions removal failed: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    private static func demoSession(
+        start: Date,
+        end: Date,
+        energyKWh: Double,
+        peakKW: Double,
+        startSOC: Double,
+        endSOC: Double,
+        costEUR: Double,
+        isDC: Bool
+    ) -> ChargingSession {
+        let session = ChargingSession(startDate: start, startSOCPercent: startSOC, isDC: isDC)
+        session.endDate = end
+        session.energyKWh = energyKWh
+        session.peakPowerKW = peakKW
+        session.endSOCPercent = endSOC
+        session.costEUR = costEUR
+        session.priceEURPerKWh = energyKWh > 0 ? costEUR / energyKWh : nil
+        return session
     }
 
     static func historySample(at date: Date, hours: Double) -> TelemetrySample {

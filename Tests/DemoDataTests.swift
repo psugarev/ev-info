@@ -17,7 +17,8 @@ final class DemoDataTests: XCTestCase {
             RawOBDFrame.self,
             TelemetryLogRecord.self,
             BatterySnapshot.self,
-            DiagnosticReport.self
+            DiagnosticReport.self,
+            ChargingSession.self
         ])
         let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
         return try ModelContainer(for: schema, configurations: [configuration])
@@ -43,6 +44,21 @@ final class DemoDataTests: XCTestCase {
         XCTAssertFalse(trips[0].summary?.isEmpty ?? true)
         XCTAssertGreaterThan(trips[0].costEUR ?? 0, 0)
         XCTAssertGreaterThan(trips[0].energyKWh ?? 0, 0)
+    }
+
+    func testSeedChargingSessionsInsertsThreeSessions() async throws {
+        let container = try container()
+        DemoData.seedChargingSessions(container: container)
+        for _ in 0..<50 {
+            if try container.mainContext.fetchCount(FetchDescriptor<ChargingSession>()) >= 3 { break }
+            try await Task.sleep(nanoseconds: 100_000_000)
+        }
+        let sessions = try container.mainContext.fetch(
+            FetchDescriptor<ChargingSession>(sortBy: [SortDescriptor(\.startDate, order: .reverse)])
+        )
+        XCTAssertEqual(sessions.count, 3)
+        XCTAssertTrue(sessions.contains { $0.isDC })
+        XCTAssertTrue(sessions.allSatisfy { $0.costEUR > 0 && $0.energyKWh > 0 && $0.endDate != nil })
     }
 
     func testSeedTripsDoesNotDuplicateExistingTrips() async throws {

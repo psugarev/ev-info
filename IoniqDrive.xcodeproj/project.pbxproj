@@ -26,9 +26,12 @@
 		3F40720B5FEE77F0DA9947FF /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C1BE12EEE6A52F95D378908E /* InfoPlist.xcstrings */; };
 		3F69C030D2E110DE6DDF63AB /* OBDSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDC7F8488F9F07B6725D45 /* OBDSession.swift */; };
 		466CF231594E3335D893D128 /* CellVoltageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CE5EC051EF1ADA385D726 /* CellVoltageView.swift */; };
+		4AE19B64209C415541B8AE97 /* ChargingSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072B027816CC19343085034A /* ChargingSessionTests.swift */; };
 		511DA8A23D531530530E851D /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D522EACCF7F82681594DA0B /* LogsView.swift */; };
 		556F0D5C2DBEE349D1BEE864 /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E4C87B9E1545969B058A4 /* ExportService.swift */; };
 		5E43BF71F5C133AC5A90C529 /* EnergyCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258D76DD8956D6FC85AB6B2C /* EnergyCalculatorTests.swift */; };
+		5F226A9FFFA70BC98EE902B4 /* ChargingSessionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7D3F765EE3BEA06895BDC /* ChargingSessionModels.swift */; };
+		668D3B17801009EF65E23EB4 /* ChargingSessionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C87D87314370EB77F1585A /* ChargingSessionTracker.swift */; };
 		69AA438432222FAC139BF550 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36514868DF4B257AB0FA367F /* RootTabView.swift */; };
 		6E9009F37B88943C650FB4D7 /* OBDResponseParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05A4C563812F26417A670A1 /* OBDResponseParserTests.swift */; };
 		75FD1CCDEBC83E0C6AA78DAA /* CostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB397B9958041F794C8B931 /* CostsView.swift */; };
@@ -73,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		072B027816CC19343085034A /* ChargingSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingSessionTests.swift; sourceTree = "<group>"; };
 		0CFE72DDD333A782CBF34A09 /* EnergyCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCalculator.swift; sourceTree = "<group>"; };
 		143B569452123408795E8D77 /* TripHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHistoryView.swift; sourceTree = "<group>"; };
 		1460DBFDBFAD4F0737D5DD1C /* TripSummaryGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryGenerator.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 		233F487A635A6DC4520B7192 /* TelemetryEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryEngine.swift; sourceTree = "<group>"; };
 		236EB997C8E70FC7F3EE011E /* DataRetention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRetention.swift; sourceTree = "<group>"; };
 		258D76DD8956D6FC85AB6B2C /* EnergyCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCalculatorTests.swift; sourceTree = "<group>"; };
+		2BA7D3F765EE3BEA06895BDC /* ChargingSessionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingSessionModels.swift; sourceTree = "<group>"; };
 		2C859C5C45F25216DF554985 /* PIDRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIDRegistry.swift; sourceTree = "<group>"; };
 		304E4C87B9E1545969B058A4 /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		36514868DF4B257AB0FA367F /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
@@ -101,6 +106,7 @@
 		7EF027303A9902B65389170D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		7FCBD27DADA0337F691D2F11 /* DisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerView.swift; sourceTree = "<group>"; };
 		80AE6B881CD8AB881B315DB4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		81C87D87314370EB77F1585A /* ChargingSessionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingSessionTracker.swift; sourceTree = "<group>"; };
 		8A101720B6FB2E66DC25E312 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		906B0294DE960533B94EE15B /* SystemSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSettings.swift; sourceTree = "<group>"; };
 		9478F5FEF0649D2357A33D88 /* BulgarianTariffEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulgarianTariffEngine.swift; sourceTree = "<group>"; };
@@ -152,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				DFE4B2D1EFF9016919ADEB75 /* CellAnalysis.swift */,
+				81C87D87314370EB77F1585A /* ChargingSessionTracker.swift */,
 				0CFE72DDD333A782CBF34A09 /* EnergyCalculator.swift */,
 				80AE6B881CD8AB881B315DB4 /* LocationManager.swift */,
 				233F487A635A6DC4520B7192 /* TelemetryEngine.swift */,
@@ -167,6 +174,7 @@
 			children = (
 				9BA0A9A051BD84E9464397B6 /* BulgarianTariffEngineTests.swift */,
 				6E7E4030D8017C7D992D2ED8 /* CellAnalysisTests.swift */,
+				072B027816CC19343085034A /* ChargingSessionTests.swift */,
 				172CBB5BF848C13ECC92B2AC /* DemoDataTests.swift */,
 				D19255243B03D61D94848EF0 /* DiagnosticsTests.swift */,
 				258D76DD8956D6FC85AB6B2C /* EnergyCalculatorTests.swift */,
@@ -279,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				219477A3317BF73F60E7D45A /* AppSchema.swift */,
+				2BA7D3F765EE3BEA06895BDC /* ChargingSessionModels.swift */,
 				236EB997C8E70FC7F3EE011E /* DataRetention.swift */,
 				304E4C87B9E1545969B058A4 /* ExportService.swift */,
 				C1EAE0E7B75D0453FEC30B41 /* HistoryModels.swift */,
@@ -390,6 +399,8 @@
 				193CA461C43DBCF51FE494CF /* BulgarianTariffEngine.swift in Sources */,
 				3995EEE8ED90090A46DB8617 /* CellAnalysis.swift in Sources */,
 				466CF231594E3335D893D128 /* CellVoltageView.swift in Sources */,
+				5F226A9FFFA70BC98EE902B4 /* ChargingSessionModels.swift in Sources */,
+				668D3B17801009EF65E23EB4 /* ChargingSessionTracker.swift in Sources */,
 				09A7EC454EF6F5990C5EDC40 /* ChargingView.swift in Sources */,
 				75FD1CCDEBC83E0C6AA78DAA /* CostsView.swift in Sources */,
 				95DB0B9238DDF234B72F49EB /* DashboardView.swift in Sources */,
@@ -429,6 +440,7 @@
 			files = (
 				AA83D51856BCFCA85DA557E9 /* BulgarianTariffEngineTests.swift in Sources */,
 				180E96F4EB2C6164D397D757 /* CellAnalysisTests.swift in Sources */,
+				4AE19B64209C415541B8AE97 /* ChargingSessionTests.swift in Sources */,
 				A06D8935F3DDA76084945126 /* DemoDataTests.swift in Sources */,
 				DB599922C1BDCB2A18BF34F5 /* DiagnosticsTests.swift in Sources */,
 				5E43BF71F5C133AC5A90C529 /* EnergyCalculatorTests.swift in Sources */,

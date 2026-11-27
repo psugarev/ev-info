@@ -154,11 +154,13 @@ struct IoniqDriveApp: App {
             telemetry.enableDemo(with: DemoData.liveSample())
             DemoData.seedHistory(container: Self.container)
             DemoData.seedTrips(container: Self.container)
+            DemoData.seedChargingSessions(container: Self.container)
         } else {
             ble.setDemoConnection(false)
             telemetry.disableDemo()
             DemoData.removeSeededHistory(container: Self.container)
             DemoData.removeSeededTrips(container: Self.container)
+            DemoData.removeSeededChargingSessions(container: Self.container)
         }
     }
 }

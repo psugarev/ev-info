@@ -12,6 +12,8 @@ final class TelemetryStore: ObservableObject {
 
     @Published private(set) var latestSample: TelemetrySample?
     @Published private(set) var lastReport: DiagnosticReport?
+    /// Session currently being charged, if the car is charging right now.
+    @Published private(set) var activeChargingSession: ChargingSession?
 
     private let modelContext: ModelContext
     private var cancellables = Set<AnyCancellable>()
@@ -19,8 +21,13 @@ final class TelemetryStore: ObservableObject {
     private var lastSnapshotTime = Date.distantPast
     private var unsavedRecords = 0
 
+    private var chargingTracker: ChargingSessionTracker
+    private var lastChargingPersist = Date.distantPast
+
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
+        self.chargingTracker = ChargingSessionTracker(tariff: .load())
+        closeInterruptedChargingSessions()
     }
 
     func bind(session: OBDSession) {
@@ -34,6 +41,7 @@ final class TelemetryStore: ObservableObject {
 
     private func record(_ sample: TelemetrySample) {
         latestSample = sample
+        recordChargingSession(sample)
         let now = Date()
 
         if now.timeIntervalSince(lastLogTime) >= 1 {
@@ -52,6 +60,60 @@ final class TelemetryStore: ObservableObject {
         if unsavedRecords >= 20 {
             save()
         }
+    }
+
+    // MARK: - Charging sessions
+
+    /// Turns tracker events into the persisted `ChargingSession`. The tracker is
+    /// a pure value type; this is the only place that touches SwiftData.
+    private func recordChargingSession(_ sample: TelemetrySample) {
+        guard let event = chargingTracker.ingest(sample) else { return }
+
+        switch event {
+        case let .started(start, startSOC):
+            let session = ChargingSession(startDate: start, startSOCPercent: startSOC)
+            modelContext.insert(session)
+            activeChargingSession = session
+            lastChargingPersist = .now
+            save()
+
+        case let .updated(start, energy, peak, cost, endSOC):
+            let session = activeChargingSession ?? {
+                let created = ChargingSession(startDate: start)
+                modelContext.insert(created)
+                activeChargingSession = created
+                return created
+            }()
+            // The session is written at most every 5 s: a 1 s poll would
+            // otherwise turn a 40-minute charge into 2 400 saves.
+            guard Date().timeIntervalSince(lastChargingPersist) >= 5 else { return }
+            session.energyKWh = energy
+            session.peakPowerKW = peak
+            session.costEUR = cost
+            session.endSOCPercent = endSOC
+            lastChargingPersist = .now
+            save()
+
+        case let .ended(summary):
+            guard let session = activeChargingSession else { return }
+            session.apply(summary)
+            activeChargingSession = nil
+            lastChargingPersist = .now
+            save()
+        }
+    }
+
+    /// A session with no end date is one the app was killed during. Close it at
+    /// its start rather than showing a charge that never ends.
+    private func closeInterruptedChargingSessions() {
+        let descriptor = FetchDescriptor<ChargingSession>(
+            predicate: #Predicate { $0.endDate == nil }
+        )
+        guard let sessions = try? modelContext.fetch(descriptor), !sessions.isEmpty else { return }
+        for session in sessions {
+            session.endDate = session.startDate
+        }
+        save()
     }
 
     func runBatteryTest() {
@@ -78,7 +140,7 @@ final class TelemetryStore: ObservableObject {
     }
 
     func save() {
-        guard unsavedRecords > 0 || lastReport != nil else { return }
+        guard unsavedRecords > 0 || lastReport != nil || lastChargingPersist != .distantPast else { return }
         try? modelContext.save()
         unsavedRecords = 0
     }

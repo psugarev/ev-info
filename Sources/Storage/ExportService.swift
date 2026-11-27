@@ -18,6 +18,7 @@ enum ExportService {
         let json: URL
         let telemetryCSV: URL
         let batteryCSV: URL
+        let chargingCSV: URL
     }
 
     /// Fetches and writes every export file using its own ModelContext.
@@ -45,8 +46,16 @@ enum ExportService {
         let battery = try context.fetch(batteryDescriptor)
         let reports = try context.fetch(reportDescriptor)
 
+        var sessionDescriptor = FetchDescriptor<ChargingSession>(
+            sortBy: [SortDescriptor(\.startDate, order: .reverse)]
+        )
+        if let since {
+            sessionDescriptor.predicate = #Predicate { $0.startDate >= since }
+        }
+        let sessions = try context.fetch(sessionDescriptor)
+
         let jsonURL = try write(
-            jsonBundle(telemetry: logs, battery: battery, diagnostics: reports),
+            jsonBundle(telemetry: logs, battery: battery, diagnostics: reports, chargingSessions: sessions),
             filename: timestampedName("ev-info-log", ext: "json")
         )
         let telemetryURL = try write(
@@ -57,7 +66,16 @@ enum ExportService {
             batteryCSV(battery),
             filename: timestampedName("ev-info-battery", ext: "csv")
         )
-        return Files(json: jsonURL, telemetryCSV: telemetryURL, batteryCSV: batteryURL)
+        let chargingURL = try write(
+            chargingSessionsCSV(sessions),
+            filename: timestampedName("ev-info-charging", ext: "csv")
+        )
+        return Files(
+            json: jsonURL,
+            telemetryCSV: telemetryURL,
+            batteryCSV: batteryURL,
+            chargingCSV: chargingURL
+        )
     }
 
     // MARK: - DTOs
@@ -128,6 +146,30 @@ enum ExportService {
         }
     }
 
+    struct ChargingSessionDTO: Codable {
+        let start: String
+        let end: String?
+        let energyKWh: Double
+        let peakPowerKW: Double
+        let startSOCPercent: Double?
+        let endSOCPercent: Double?
+        let costEUR: Double
+        let priceEURPerKWh: Double?
+        let isDC: Bool
+
+        init(_ session: ChargingSession) {
+            start = ExportService.iso(session.startDate)
+            end = session.endDate.map(ExportService.iso)
+            energyKWh = session.energyKWh
+            peakPowerKW = session.peakPowerKW
+            startSOCPercent = session.startSOCPercent
+            endSOCPercent = session.endSOCPercent
+            costEUR = session.costEUR
+            priceEURPerKWh = session.priceEURPerKWh
+            isDC = session.isDC
+        }
+    }
+
     struct DiagnosticDTO: Codable {
         let date: String
         let kind: String
@@ -152,6 +194,7 @@ enum ExportService {
         let telemetry: [TelemetryDTO]
         let batteryHistory: [BatteryDTO]
         let diagnostics: [DiagnosticDTO]
+        let chargingSessions: [ChargingSessionDTO]
     }
 
     // MARK: - JSON
@@ -159,14 +202,16 @@ enum ExportService {
     static func jsonBundle(
         telemetry: [TelemetryLogRecord],
         battery: [BatterySnapshot],
-        diagnostics: [DiagnosticReport]
+        diagnostics: [DiagnosticReport],
+        chargingSessions: [ChargingSession] = []
     ) throws -> Data {
         let bundle = Bundle(
             exportedAt: iso(.now),
             app: "EV Info",
             telemetry: telemetry.map(TelemetryDTO.init),
             batteryHistory: battery.map(BatteryDTO.init),
-            diagnostics: diagnostics.map(DiagnosticDTO.init)
+            diagnostics: diagnostics.map(DiagnosticDTO.init),
+            chargingSessions: chargingSessions.map(ChargingSessionDTO.init)
         )
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
@@ -215,6 +260,24 @@ enum ExportService {
                 number(snapshot.minTemperatureC),
                 number(snapshot.auxiliaryVoltageV),
                 number(snapshot.remainingEnergyKWh)
+            ].joined(separator: ",")
+        }
+        return ([header] + rows).joined(separator: "\n")
+    }
+
+    static func chargingSessionsCSV(_ sessions: [ChargingSession]) -> String {
+        let header = "start,end,energy_kwh,peak_power_kw,start_soc_percent,end_soc_percent,cost_eur,price_eur_per_kwh,is_dc"
+        let rows = sessions.map { session in
+            [
+                iso(session.startDate),
+                session.endDate.map(iso) ?? "",
+                number(session.energyKWh),
+                number(session.peakPowerKW),
+                number(session.startSOCPercent),
+                number(session.endSOCPercent),
+                number(session.costEUR),
+                number(session.priceEURPerKWh),
+                session.isDC ? "true" : "false"
             ].joined(separator: ",")
         }
         return ([header] + rows).joined(separator: "\n")
