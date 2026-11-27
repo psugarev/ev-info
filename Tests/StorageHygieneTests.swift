@@ -109,8 +109,9 @@ final class StorageHygieneTests: XCTestCase {
     func testVersionedSchemaListsEveryPersistentModel() {
         XCTAssertEqual(SchemaV1.models.count, 5)
         XCTAssertEqual(SchemaV2.models.count, 6)
-        XCTAssertEqual(AppMigrationPlan.schemas.count, 2)
-        XCTAssertEqual(AppMigrationPlan.stages.count, 1)
+        XCTAssertEqual(SchemaV3.models.count, 7)
+        XCTAssertEqual(AppMigrationPlan.schemas.count, 3)
+        XCTAssertEqual(AppMigrationPlan.stages.count, 2)
     }
 
     func testInMemoryContainerRoundTripsAModel() throws {

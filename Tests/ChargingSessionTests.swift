@@ -171,7 +171,7 @@ final class ChargingSessionTests: XCTestCase {
         }
 
         // Reopen with V2 and the migration plan.
-        let schema = Schema(versionedSchema: SchemaV2.self)
+        let schema = Schema(versionedSchema: SchemaV3.self)
         let configuration = ModelConfiguration(url: storeURL)
         let container = try ModelContainer(
             for: schema,
@@ -185,5 +185,9 @@ final class ChargingSessionTests: XCTestCase {
         context.insert(session)
         try context.save()
         XCTAssertEqual(try context.fetchCount(FetchDescriptor<ChargingSession>()), 1)
+
+        context.insert(CloudVehicleSnapshot(CloudVehicleData(vin: "VIN", fetchedAt: .now)))
+        try context.save()
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<CloudVehicleSnapshot>()), 1)
     }
 }

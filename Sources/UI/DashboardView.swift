@@ -10,6 +10,7 @@ struct DashboardView: View {
     @EnvironmentObject var recorder: TripRecorder
     @EnvironmentObject var ble: BLETransport
     @EnvironmentObject var location: LocationManager
+    @EnvironmentObject var cloud: CloudService
 
     @AppStorage("demoModeEnabled") private var demoModeEnabled = false
     @State private var showAdapterSettings = false
@@ -202,6 +203,92 @@ struct DashboardView: View {
                     .buttonStyle(.plain)
                 }
             }
+        }
+    }
+
+    // MARK: - Cloud
+
+    @ViewBuilder
+    private var cloudCard: some View {
+        if let snapshot = cloud.snapshot {
+            TelemetryCard {
+                VStack(spacing: 10) {
+                    HStack {
+                        CardLabel(text: "CLOUD")
+                        Spacer()
+                        if let updated = cloud.lastUpdatedText {
+                            Text(snapshot.isStale
+                                 ? AppLocalization.format("Last known %@", updated)
+                                 : AppLocalization.format("Updated %@", updated))
+                                .font(.system(size: 9, weight: .medium, design: .rounded))
+                                .foregroundStyle(snapshot.isStale ? Theme.amber : Theme.textTertiary)
+                        }
+                    }
+
+                    HStack(spacing: 0) {
+                        cloudStat("SOC", snapshot.socPercent.map { String(format: "%.0f", $0) } ?? "—", "%")
+                        Divider().frame(height: 30).overlay(Theme.border)
+                        cloudStat("RANGE", snapshot.rangeKm.map { String(format: "%.0f", $0) } ?? "—", "km")
+                        Divider().frame(height: 30).overlay(Theme.border)
+                        cloudStat("CHARGING", chargingText(snapshot), "")
+                        Divider().frame(height: 30).overlay(Theme.border)
+                        cloudStat("LOCK", lockText(snapshot), "")
+                    }
+
+                    if let comparison = cloud.comparison(bmsSOC: telemetry.obdReady ? telemetry.socPercent : nil) {
+                        HStack(spacing: 8) {
+                            Image(systemName: comparison.agrees ? "checkmark.seal.fill" : "exclamationmark.triangle.fill")
+                                .font(.system(size: 11, weight: .semibold))
+                                .foregroundStyle(comparison.agrees ? Theme.green : Theme.amber)
+                            Text(AppLocalization.format(
+                                "BMS %@ %% · cloud %@ %%",
+                                AppLocalization.number(comparison.bmsSOC, decimals: 1),
+                                AppLocalization.number(comparison.cloudSOC, decimals: 1)
+                            ))
+                            .font(.system(size: 10, weight: .medium, design: .monospaced))
+                            .foregroundStyle(Theme.textSecondary)
+                            Spacer()
+                            Text(comparison.agrees
+                                 ? AppLocalization.string("Matches cloud")
+                                 : AppLocalization.format("Differs by %@ %%", AppLocalization.number(abs(comparison.deltaPercent), decimals: 1)))
+                                .font(.system(size: 9, weight: .bold, design: .rounded))
+                                .foregroundStyle(comparison.agrees ? Theme.green : Theme.amber)
+                        }
+                    }
+
+                    Text("Read-only cloud data from Pleos. Used only as a fallback and a cross-check; the car is never commanded.")
+                        .font(.caption2)
+                        .foregroundStyle(Theme.textTertiary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+        }
+    }
+
+    private func cloudStat(_ title: LocalizedStringKey, _ value: String, _ unit: String) -> some View {
+        VStack(spacing: 3) {
+            CardLabel(text: title)
+            MetricValue(value: value, unit: unit)
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    private func chargingText(_ snapshot: CloudVehicleSnapshot) -> String {
+        if snapshot.isCharging == true {
+            if let minutes = snapshot.chargeRemainingMinutes, minutes > 0 {
+                return "\(minutes) min"
+            }
+            return AppLocalization.string("Charging")
+        }
+        if snapshot.isPluggedIn == true { return AppLocalization.string("Plugged in") }
+        return AppLocalization.string("Idle")
+    }
+
+    private func lockText(_ snapshot: CloudVehicleSnapshot) -> String {
+        switch snapshot.isLocked {
+        case true: return AppLocalization.string("Locked")
+        case false: return AppLocalization.string("Unlocked")
+        case nil: return "—"
         }
     }
 

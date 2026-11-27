@@ -19,7 +19,7 @@
 <body>
 <main>
   <h1>EV Info — Privacy Policy</h1>
-  <p class="updated">Last updated: 27 November 2026</p>
+  <p class="updated">Last updated: 27 November 2026 (added optional Pleos cloud data)</p>
 
   <p>EV Info reads vehicle data from an ELM327-compatible Bluetooth OBD2 adapter and
      stores it locally on your iPhone.</p>
@@ -31,6 +31,15 @@
        points and settings stay in the app's local storage on your device. The app makes no
        network requests of its own.</p>
   </div>
+
+
+  <h2>Optional cloud data (Pleos)</h2>
+  <p>If you connect your own Pleos personal API credentials (Client ID and Secret), the
+     app stores them in the iOS Keychain and sends them only to
+     <strong>api.pleos.ai</strong> to read your car's state (state of charge, range,
+     charging status, locks, location). Nothing is sent to the app's developer, and the
+     app never sends commands to the car. Disconnecting in Settings deletes the
+     credentials and the cached snapshot.</p>
 
   <h2>Location</h2>
   <p>Used only while you record a trip, to measure distance, speed and route when the car

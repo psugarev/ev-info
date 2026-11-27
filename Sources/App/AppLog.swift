@@ -10,4 +10,5 @@ enum AppLog {
     static let storage = Logger(subsystem: subsystem, category: "storage")
     static let bluetooth = Logger(subsystem: subsystem, category: "bluetooth")
     static let location = Logger(subsystem: subsystem, category: "location")
+    static let cloud = Logger(subsystem: subsystem, category: "cloud")
 }

@@ -30,10 +30,23 @@ enum SchemaV2: VersionedSchema {
     }
 }
 
+/// Adds the read-only Pleos cloud snapshot cache (issue #25). Existing data is
+/// untouched; only a new model joins the schema, so the stage is lightweight.
+enum SchemaV3: VersionedSchema {
+    static let versionIdentifier = Schema.Version(3, 0, 0)
+
+    static var models: [any PersistentModel.Type] {
+        SchemaV2.models + [CloudVehicleSnapshot.self]
+    }
+}
+
 enum AppMigrationPlan: SchemaMigrationPlan {
-    static var schemas: [any VersionedSchema.Type] { [SchemaV1.self, SchemaV2.self] }
+    static var schemas: [any VersionedSchema.Type] { [SchemaV1.self, SchemaV2.self, SchemaV3.self] }
     static var stages: [MigrationStage] {
-        [.lightweight(fromVersion: SchemaV1.self, toVersion: SchemaV2.self)]
+        [
+            .lightweight(fromVersion: SchemaV1.self, toVersion: SchemaV2.self),
+            .lightweight(fromVersion: SchemaV2.self, toVersion: SchemaV3.self)
+        ]
     }
 }
 
@@ -51,7 +64,7 @@ struct PersistenceController {
     var isPersistent: Bool { failureReason == nil }
 
     static func make() -> PersistenceController {
-        let schema = Schema(versionedSchema: SchemaV2.self)
+        let schema = Schema(versionedSchema: SchemaV3.self)
         let configuration = ModelConfiguration("IoniqDrive", schema: schema, isStoredInMemoryOnly: false)
         do {
             let container = try ModelContainer(
@@ -71,7 +84,7 @@ struct PersistenceController {
 
     /// In-memory container with the current schema (fallback and tests).
     static func makeInMemoryContainer() -> ModelContainer {
-        let schema = Schema(versionedSchema: SchemaV2.self)
+        let schema = Schema(versionedSchema: SchemaV3.self)
         let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
         do {
             return try ModelContainer(

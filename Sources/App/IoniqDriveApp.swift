@@ -22,6 +22,7 @@ struct IoniqDriveApp: App {
     @StateObject private var locationManager = LocationManager()
     @StateObject private var recorder: TripRecorder
     @StateObject private var store: TelemetryStore
+    @StateObject private var cloud: CloudService
 
     @State private var obdSession: OBDSession?
 
@@ -37,6 +38,7 @@ struct IoniqDriveApp: App {
         let context = Self.container.mainContext
         _recorder = StateObject(wrappedValue: TripRecorder(modelContext: context, tariffProfile: .load()))
         _store = StateObject(wrappedValue: TelemetryStore(modelContext: context))
+        _cloud = StateObject(wrappedValue: CloudService(modelContext: context))
     }
 
     var body: some Scene {
@@ -48,6 +50,7 @@ struct IoniqDriveApp: App {
                 .environmentObject(locationManager)
                 .environmentObject(recorder)
                 .environmentObject(store)
+                .environmentObject(cloud)
                 .environment(\.locale, Locale(identifier: appLanguage))
                 .preferredColorScheme(.dark)
                 .modelContainer(Self.container)
@@ -59,6 +62,7 @@ struct IoniqDriveApp: App {
                 .task {
                     bindSessionIfNeeded()
                     syncDemoMode()
+                    await cloud.refreshIfStale()
                     if Self.persistence.isPersistent {
                         DataRetention.purgeInBackground(container: Self.container)
                     }

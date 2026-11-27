@@ -7,6 +7,7 @@ import SwiftData
 
 struct SettingsView: View {
     @EnvironmentObject var ble: BLETransport
+    @EnvironmentObject var cloud: CloudService
     @Environment(\.modelContext) private var modelContext
 
     @AppStorage("appLanguage") private var appLanguage = "en"
@@ -15,6 +16,10 @@ struct SettingsView: View {
 
     @State private var confirmDeleteAll = false
     @State private var deleteError: String?
+
+    @State private var cloudClientId = ""
+    @State private var cloudClientSecret = ""
+    @State private var cloudBusy = false
 
     private var appVersion: String {
         let info = Bundle.main.infoDictionary
@@ -32,6 +37,7 @@ struct SettingsView: View {
             appSection
             demoSection
             adapterSection
+            cloudSection
             storageSection
             aboutSection
         }
@@ -140,6 +146,88 @@ struct SettingsView: View {
             Text("Scan, then select your OBD2 adapter from nearby BLE devices.")
                 .font(.caption)
                 .foregroundStyle(Theme.textSecondary)
+        }
+    }
+
+    // MARK: - Cloud (Pleos)
+
+    private var cloudSection: some View {
+        Section {
+            if cloud.isConfigured {
+                LabeledContent("Status") {
+                    Text(cloudStatusText)
+                }
+                if let updated = cloud.lastUpdatedText {
+                    LabeledContent("Last update", value: updated)
+                }
+                if let vin = cloud.snapshot?.vin {
+                    LabeledContent("VIN", value: vin)
+                }
+                Button {
+                    Task { await cloud.refresh() }
+                } label: {
+                    Label("Refresh cloud data", systemImage: "arrow.clockwise")
+                }
+                .disabled(cloudBusy)
+
+                Button("Disconnect", role: .destructive) {
+                    cloud.disconnect()
+                }
+            } else {
+                SecureField("Client ID", text: $cloudClientId)
+                SecureField("Client Secret", text: $cloudClientSecret)
+                Picker("Brand", selection: $cloud.brand) {
+                    ForEach(PleosBrand.allCases) { brand in
+                        Text(brand.title).tag(brand)
+                    }
+                }
+                Button {
+                    connectCloud()
+                } label: {
+                    HStack(spacing: 8) {
+                        if cloudBusy { ProgressView() }
+                        Text("Connect to Pleos")
+                    }
+                }
+                .disabled(cloudBusy || cloudClientId.isEmpty || cloudClientSecret.isEmpty)
+            }
+
+            if let error = cloud.lastError {
+                Text(error)
+                    .font(.caption)
+                    .foregroundStyle(Theme.red)
+            }
+        } header: {
+            Text("Cloud data (Pleos)")
+        } footer: {
+            Text("Read-only official Pleos personal Vehicle Data API. The Client ID and Secret are kept in the iOS Keychain and sent only to api.pleos.ai. Nothing is written back to the car.")
+        }
+    }
+
+    private var cloudStatusText: String {
+        switch cloud.state {
+        case .connected: return AppLocalization.string("Connected")
+        case .connecting: return AppLocalization.string("Connecting…")
+        case .notConfigured: return AppLocalization.string("Not connected")
+        case .error: return AppLocalization.string("Error")
+        }
+    }
+
+    private func connectCloud() {
+        cloudBusy = true
+        Task {
+            do {
+                try await cloud.connect(
+                    clientId: cloudClientId,
+                    clientSecret: cloudClientSecret,
+                    brand: cloud.brand
+                )
+                cloudClientId = ""
+                cloudClientSecret = ""
+            } catch {
+                // `cloud.lastError` carries the localised message.
+            }
+            cloudBusy = false
         }
     }
 
