@@ -3,6 +3,8 @@
 # EV Info
 
 [![CI](https://github.com/psugarev/ev-info/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/psugarev/ev-info/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-22D3EE.svg)](LICENSE)
+[![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-FF69B4.svg)](LICENSE)
 
 **See what your EV's battery is really doing — all 192 cells, on your iPhone, with nothing uploaded.**
 
@@ -169,6 +171,18 @@ Developer Program. See `Distribution/README.md`. App Store drafts live there too
 
 A normal app cannot draw an arbitrary dashboard on the factory screen. The phone
 is the primary UI; see `Sources/CarPlay/README.md`.
+
+## License
+
+**MIT** — see [`LICENSE`](LICENSE). In short: use it, fork it, learn from it,
+ship your own build; keep the copyright notice.
+
+Third-party marks are not part of the licence: *Hyundai*, *Ioniq* and *Bluetooth*
+belong to their owners, and EV Info is not affiliated with or endorsed by Hyundai
+Motor Company. The app icon is an original motif (a green power-up mushroom with
+an EV bolt), not artwork from any game. The OBD2 code is read-only by design: no
+actuator, coding or clear-fault commands, and no warranty for anything it reports
+on your car.
 
 ## Working on this repo (humans and AI agents)
 
