@@ -651,6 +651,329 @@
         }
       }
     },
+    "Below strongest by %lld mV" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Под най-силната с %lld mV"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Below strongest by %lld mV"
+          }
+        }
+      }
+    },
+    "Cell %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клетка %lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell %lld"
+          }
+        }
+      }
+    },
+    "Cells read" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прочетени клетки"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cells read"
+          }
+        }
+      }
+    },
+    "GOOD" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ДОБРЕ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GOOD"
+          }
+        }
+      }
+    },
+    "Informational only — values stay candidate until compared with the car's dashboard." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Само информативно — стойностите остават непотвърдени, докато не се сравнят с таблото на автомобила."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informational only — values stay candidate until compared with the car's dashboard."
+          }
+        }
+      }
+    },
+    "Module %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Модул %lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Module %lld"
+          }
+        }
+      }
+    },
+    "Module grouping follows the six BMS cell blocks; each block holds up to 32 cells." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Групирането следва шестте блока клетки на BMS; всеки блок съдържа до 32 клетки."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Module grouping follows the six BMS cell blocks; each block holds up to 32 cells."
+          }
+        }
+      }
+    },
+    "Module max" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Макс. в модула"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Module max"
+          }
+        }
+      }
+    },
+    "Module min" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мин. в модула"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Module min"
+          }
+        }
+      }
+    },
+    "Module spread" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разлика в модула"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Module spread"
+          }
+        }
+      }
+    },
+    "Not read yet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Още не е прочетен"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not read yet"
+          }
+        }
+      }
+    },
+    "DRIFT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ОТКЛОНЕНИЕ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DRIFT"
+          }
+        }
+      }
+    },
+    "Ring marks the strongest and weakest cell in the module." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рамката отбелязва най-силната и най-слабата клетка в модула."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ring marks the strongest and weakest cell in the module."
+          }
+        }
+      }
+    },
+    "Shows cell detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показва данни за клетката"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows cell detail"
+          }
+        }
+      }
+    },
+    "TAP FOR DETAILS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ДОКОСНЕТЕ ЗА ПОДРОБНОСТИ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TAP FOR DETAILS"
+          }
+        }
+      }
+    },
+    "This is the strongest cell in the pack." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Това е най-силната клетка в пакета."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is the strongest cell in the pack."
+          }
+        }
+      }
+    },
+    "WATCH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ВНИМАНИЕ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WATCH"
+          }
+        }
+      }
+    },
+    "WEAKEST CELLS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "НАЙ-СЛАБИ КЛЕТКИ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WEAKEST CELLS"
+          }
+        }
+      }
+    },
+    "Δ is measured from the strongest cell (%lld · %@ V)." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δ се измерва спрямо най-силната клетка (%lld · %@ V)."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δ is measured from the strongest cell (%lld · %@ V)."
+          }
+        }
+      }
+    },
     "CELL SPREAD" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -691,7 +1014,7 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Напрежение на клетките"
+            "value" : "Напрежения"
           }
         },
         "en" : {

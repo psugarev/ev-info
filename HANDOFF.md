@@ -70,7 +70,6 @@ are the source of truth.
 | [#2](https://github.com/psugarev/ev-info/issues/2) | Screenshots in demo mode | P0 |
 | [#12](https://github.com/psugarev/ev-info/issues/12) | App Store Connect admin (owner task, not code) | P0 |
 | [#4](https://github.com/psugarev/ev-info/issues/4) | Dynamic Type, hit targets, Reduce Motion | P1 |
-| [#6](https://github.com/psugarev/ev-info/issues/6) | Cell grid redesign | P1 |
 | [#7](https://github.com/psugarev/ev-info/issues/7) | Charge-session log with cost | P1 |
 | [#8](https://github.com/psugarev/ev-info/issues/8) | Read-only DTC scan | P1 |
 | [#9](https://github.com/psugarev/ev-info/issues/9) | Units setting | P1 |
@@ -96,6 +95,12 @@ are the source of truth.
   needs on-device validation first (Guideline 2.5.4).
 - `TripRecorder.swift:266/272` has two pre-existing actor-isolation warnings.
 - Retention purges raw frames/telemetry/snapshots/reports but keeps trip summaries.
+- Cells: the six blocks follow the six BMS cell DIDs; the real physical module
+  boundaries are not exposed over OBD, so the UI says "module grouping follows
+  the six BMS cell blocks". Thresholds (≤10 / 10–30 / >30 mV below the strongest
+  cell) live in `CellAnalysis` — change them there, not in the view.
+- Cells screenshot harness (Debug only): `-demoScrollModule 2` scrolls to that
+  block, `-demoCell 42` opens the detail sheet; combine with `-demo -demoRoute cells`.
 - Any model change needs a new `VersionedSchema` + migration stage in `AppSchema.swift`.
 
 ## Working agreement for multiple agents (traceability)
@@ -115,3 +120,4 @@ are the source of truth.
 | 2026-11-26 | (earlier agent) | pre-repo | Initial audit `APP_STORE_AUDIT.md`; privacy manifest, Info.plist purpose strings, iPhone-only, export names | Release build, 71 tests |
 | 2026-11-27 | Claude (Sonnet 5.5) | `main` @ 42ab1db | Implemented audit blockers + P0/high items (see §2b of the audit); added 13 tests, HANDOFF.md | 84 tests, Release + Debug build, simulator spot-check |
 | 2026-11-27 | Claude (Sonnet 5.5) | `agent/claude/handoff-repo-link` | Created private repo `psugarev/ev-info`, initial import, recorded repo URL; installed `gh` via Homebrew | docs only |
+| 2026-11-27 | Claude (deepseek-flash) | `agent/lead/cell-grid-redesign` | Issue #6: six labelled 32-cell module blocks (read count, min/max/Δ, BALANCED/WATCH/DRIFT chip), strongest/weakest ring per block, weakest-cell ranking card, tap-to-cell detail sheet, threshold legend with band counts, testable `CellAnalysis` + 10 tests, EN/BG strings, screenshot harness | 94 tests, Release + Debug build, simulator EN + BG screenshots |

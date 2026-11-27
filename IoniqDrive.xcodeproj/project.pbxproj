@@ -10,6 +10,7 @@
 		03432F09C208839A7A184184 /* TripHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143B569452123408795E8D77 /* TripHistoryView.swift */; };
 		09A7EC454EF6F5990C5EDC40 /* ChargingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CDB2F4F0A368CDAA1586E /* ChargingView.swift */; };
 		1061A25F63608F011678A30B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 22A0E0E8CC23AF1F55A70C2C /* PrivacyInfo.xcprivacy */; };
+		180E96F4EB2C6164D397D757 /* CellAnalysisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7E4030D8017C7D992D2ED8 /* CellAnalysisTests.swift */; };
 		193CA461C43DBCF51FE494CF /* BulgarianTariffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478F5FEF0649D2357A33D88 /* BulgarianTariffEngine.swift */; };
 		1A2C444CF7095BA3EE52C374 /* BLETransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC78AC0228E12B55078507 /* BLETransport.swift */; };
 		1E45BBC1C07E9B017C16B4F7 /* StorageHygieneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD9104E97F5A76C018D77FF /* StorageHygieneTests.swift */; };
@@ -18,6 +19,7 @@
 		2F79CF4C3C70853EAE5D1B68 /* OBDResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC5EA691D70D734C8CB6F7 /* OBDResponseParser.swift */; };
 		30482C3348D826C34B0D97A4 /* TripModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B87069F7D08F7F1BEC4A7 /* TripModels.swift */; };
 		3652449E7D45D036559C648A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF027303A9902B65389170D /* SettingsView.swift */; };
+		3995EEE8ED90090A46DB8617 /* CellAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE4B2D1EFF9016919ADEB75 /* CellAnalysis.swift */; };
 		3BC598C3F4DCF5D2ACF0B663 /* OBDSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2DC20D9FA19E9A456F74 /* OBDSessionTests.swift */; };
 		3DCB87DBFE1033944F5DB40C /* IoniqDriveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B0EDA2BDCDDF66BDB667C1 /* IoniqDriveApp.swift */; };
 		3E1677124C44756EB650E970 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A101720B6FB2E66DC25E312 /* Theme.swift */; };
@@ -88,6 +90,7 @@
 		47D49DD1C7DECBB5354BF8A2 /* IoniqDriveTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = IoniqDriveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D1D4E4B1F727859C8FBC33 /* TripRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRecorder.swift; sourceTree = "<group>"; };
 		59782B0441A0CADA50549A10 /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
+		6E7E4030D8017C7D992D2ED8 /* CellAnalysisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnalysisTests.swift; sourceTree = "<group>"; };
 		758476CBFE72B75984757267 /* TelemetryAvailabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryAvailabilityTests.swift; sourceTree = "<group>"; };
 		7A9D8F67999FDE82652CFB8B /* VehicleDiagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDiagnostics.swift; sourceTree = "<group>"; };
 		7D522EACCF7F82681594DA0B /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
@@ -113,6 +116,7 @@
 		D43B50E9FC6D796809623FA3 /* BatteryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryDetailView.swift; sourceTree = "<group>"; };
 		D91CDB2F4F0A368CDAA1586E /* ChargingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingView.swift; sourceTree = "<group>"; };
 		DDF32D4B28BFD0BB525C44F5 /* TelemetryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryStore.swift; sourceTree = "<group>"; };
+		DFE4B2D1EFF9016919ADEB75 /* CellAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnalysis.swift; sourceTree = "<group>"; };
 		E69F34E132050C4F9B1CF3CF /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		EFD9104E97F5A76C018D77FF /* StorageHygieneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHygieneTests.swift; sourceTree = "<group>"; };
 		F05A4C563812F26417A670A1 /* OBDResponseParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDResponseParserTests.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 		38E10C0F352550BBABD0CFEB /* Telemetry */ = {
 			isa = PBXGroup;
 			children = (
+				DFE4B2D1EFF9016919ADEB75 /* CellAnalysis.swift */,
 				0CFE72DDD333A782CBF34A09 /* EnergyCalculator.swift */,
 				80AE6B881CD8AB881B315DB4 /* LocationManager.swift */,
 				233F487A635A6DC4520B7192 /* TelemetryEngine.swift */,
@@ -155,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				9BA0A9A051BD84E9464397B6 /* BulgarianTariffEngineTests.swift */,
+				6E7E4030D8017C7D992D2ED8 /* CellAnalysisTests.swift */,
 				D19255243B03D61D94848EF0 /* DiagnosticsTests.swift */,
 				258D76DD8956D6FC85AB6B2C /* EnergyCalculatorTests.swift */,
 				F05A4C563812F26417A670A1 /* OBDResponseParserTests.swift */,
@@ -373,6 +379,7 @@
 				1F030F417712FC6B5891A1DB /* BatteryDetailView.swift in Sources */,
 				E430EC925710D06CE396BFE4 /* BatteryHistoryView.swift in Sources */,
 				193CA461C43DBCF51FE494CF /* BulgarianTariffEngine.swift in Sources */,
+				3995EEE8ED90090A46DB8617 /* CellAnalysis.swift in Sources */,
 				466CF231594E3335D893D128 /* CellVoltageView.swift in Sources */,
 				09A7EC454EF6F5990C5EDC40 /* ChargingView.swift in Sources */,
 				75FD1CCDEBC83E0C6AA78DAA /* CostsView.swift in Sources */,
@@ -411,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA83D51856BCFCA85DA557E9 /* BulgarianTariffEngineTests.swift in Sources */,
+				180E96F4EB2C6164D397D757 /* CellAnalysisTests.swift in Sources */,
 				DB599922C1BDCB2A18BF34F5 /* DiagnosticsTests.swift in Sources */,
 				5E43BF71F5C133AC5A90C529 /* EnergyCalculatorTests.swift in Sources */,
 				6E9009F37B88943C650FB4D7 /* OBDResponseParserTests.swift in Sources */,
