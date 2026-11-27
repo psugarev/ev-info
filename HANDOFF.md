@@ -84,6 +84,7 @@ xcodebuild -project IoniqDrive.xcodeproj -scheme IoniqDrive \
 | OBD/ELM327 engine, PIDs, parsing | `Sources/OBD/*` (see `OBD_PROTOCOL.md`) |
 | Live state, freshness, demo | `Sources/Telemetry/TelemetryEngine.swift` |
 | Charging sessions (detection + cost) | `Sources/Telemetry/ChargingSessionTracker.swift`, wired in `TelemetryStore` |
+| Cloud (read-only, Pleos personal API) | `Sources/Cloud/*` — `PleosClient`, `PleosSnapshotParser`, `CloudService`, `CloudModels`, `KeychainStore` |
 | Persistence: schema/migrations, retention, export | `Sources/Storage/AppSchema.swift`, `DataRetention.swift`, `ExportService.swift`, `ChargingSessionModels.swift` |
 | UI | `Sources/UI/*` (`DashboardView`, `SettingsView`, `DisclaimerView`, `LogsView`, …) |
 | Localisation | `Resources/Localizable.xcstrings`, `Resources/InfoPlist.xcstrings` |
@@ -130,6 +131,11 @@ are the source of truth.
 
 ## Known gaps / gotchas
 
+- **Cloud is a personal-build feature.** Pleos personal Client ID/Secret are entered in
+  Settings → Cloud data (Pleos), stored in the Keychain and sent only to `api.pleos.ai`;
+  the client only issues GET requests to the five data endpoints. Field paths come from
+  the documented API/HA integration, so the first real response may need small parser
+  adjustments — check the `cloud` os_log category and Settings error line.
 - **Never validated on a real car this pass**: auto-reconnect via
   `retrievePeripherals`, Bluetooth denial flow, stale threshold (3 s vs the 1 s
   BMS poll), background behaviour. Issue #5's init-progress text is covered by
@@ -156,8 +162,9 @@ are the source of truth.
 - Cells screenshot harness (Debug only): `-demoScrollModule 2` scrolls to that
   block, `-demoCell 42` opens the detail sheet; combine with `-demo -demoRoute cells`.
 - Any model change needs a new `VersionedSchema` + migration stage in `AppSchema.swift`.
-  Current: **SchemaV2** adds `ChargingSession` with a lightweight stage from V1; a
-  migration test in `Tests/ChargingSessionTests.swift` opens a real V1 store with V2.
+  Current: **SchemaV3** adds `ChargingSession` (V2) and `CloudVehicleSnapshot` (V3) with
+  lightweight stages; `Tests/ChargingSessionTests.swift` opens a real V1 store with the
+  full plan, and `Tests/CloudTests.swift` covers parsing and auth.
 - Charging sessions are **derived**, not a BMS counter: a session starts on the BMS
   charging flag with negative pack power, energy is integrated from power samples and
   priced per interval with the tariff (so 22:00 splits correctly), DC is classified by
@@ -192,6 +199,7 @@ are the source of truth.
 | 2026-11-27 | Claude (Sonnet 5.5) | `agent/claude/handoff-repo-link` | Created private repo `psugarev/ev-info`, initial import, recorded repo URL; installed `gh` via Homebrew | docs only |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/cell-grid-redesign` | Issue #6: six labelled 32-cell module blocks (read count, min/max/Δ, BALANCED/WATCH/DRIFT chip), strongest/weakest ring per block, weakest-cell ranking card, tap-to-cell detail sheet, threshold legend with band counts, testable `CellAnalysis` + 10 tests, EN/BG strings, screenshot harness | 94 tests, Release + Debug build, simulator EN + BG screenshots |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/ci-workflow` | Issue #16: GitHub Actions CI — `swift test` + XcodeGen/Release build, project-sync guard, bundle checks (privacy manifest, identity, lproj), pinned XcodeGen 2.49.0, README badge; enabled auto-delete of merged branches; required status checks blocked by the free private plan (403) and documented | CI green twice on PR #17 (1m15s + 1m36s); auto-delete verified |
+| 2026-11-27 | Claude (deepseek-flash) | `agent/lead/pleos-cloud` | Issue #25 (read-only spike): Pleos personal client (token, vehicles/consent, 5 data endpoints, 401 refresh once, 429 backoff), tolerant parser with unit conversion, Keychain credentials, SchemaV3 snapshot cache, Settings connect UI, Drive cloud fallback card + BMS cross-check, 7 tests, BG strings; privacy policy updated for the optional cloud path | 114 tests, Release + Debug build, simulator launch; live API not tested (needs your Pleos keys) |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/charge-sessions` | Issue #7: `ChargingSession` model + SchemaV2 lightweight migration, `ChargingSessionTracker` (energy integration, tariff split, AC/DC, flicker/gap handling), store persistence incl. interrupted-session recovery, session lists in Charging and Costs, demo sessions, JSON+CSV export, 8 new tests, BG strings | 107 tests, Release build, migration test on a V1 store |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/appstore-admin` | Issue #12 code side: GitHub Pages with privacy/support/landing (`docs/`), `Distribution/AppStore/ASC_CHECKLIST.md` (listing copy, category, age rating, privacy label, DSA, upload flow), `scripts/archive-appstore.sh` (auto build number, `--export`, `--dry-run`), docs cross-links; owner-only steps listed | script dry-run, Pages enabled, links checked |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/connect-flow` | Issue #5: finished the connect-flow progress text (stages for ATZ/config/protocol/discovery/BMS handshake, ready only after the first BMS reply, demo-mode guard), tests assert every stage; catalog cleanup of 12 stale keys + new translations; HANDOFF versioning section and real-device checklist | 99 tests, Release build, localisation check |

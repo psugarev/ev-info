@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		03432F09C208839A7A184184 /* TripHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143B569452123408795E8D77 /* TripHistoryView.swift */; };
 		09A7EC454EF6F5990C5EDC40 /* ChargingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CDB2F4F0A368CDAA1586E /* ChargingView.swift */; };
+		09CFC081DF8086546B39D6CF /* CloudModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5E3ED24C85CE61E2A74A7E /* CloudModels.swift */; };
 		1061A25F63608F011678A30B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 22A0E0E8CC23AF1F55A70C2C /* PrivacyInfo.xcprivacy */; };
 		180E96F4EB2C6164D397D757 /* CellAnalysisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7E4030D8017C7D992D2ED8 /* CellAnalysisTests.swift */; };
 		193CA461C43DBCF51FE494CF /* BulgarianTariffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478F5FEF0649D2357A33D88 /* BulgarianTariffEngine.swift */; };
@@ -28,6 +29,7 @@
 		466CF231594E3335D893D128 /* CellVoltageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CE5EC051EF1ADA385D726 /* CellVoltageView.swift */; };
 		4AE19B64209C415541B8AE97 /* ChargingSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072B027816CC19343085034A /* ChargingSessionTests.swift */; };
 		511DA8A23D531530530E851D /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D522EACCF7F82681594DA0B /* LogsView.swift */; };
+		537F039386CB0E8FAC52CF23 /* PleosSnapshotParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3921400859885F57A33510C4 /* PleosSnapshotParser.swift */; };
 		556F0D5C2DBEE349D1BEE864 /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E4C87B9E1545969B058A4 /* ExportService.swift */; };
 		5E43BF71F5C133AC5A90C529 /* EnergyCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258D76DD8956D6FC85AB6B2C /* EnergyCalculatorTests.swift */; };
 		5F226A9FFFA70BC98EE902B4 /* ChargingSessionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7D3F765EE3BEA06895BDC /* ChargingSessionModels.swift */; };
@@ -38,6 +40,7 @@
 		78AE26A4E02ED721E9994E53 /* TelemetryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF32D4B28BFD0BB525C44F5 /* TelemetryStore.swift */; };
 		912D4EFAA08491E3443C0298 /* TelemetryEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F487A635A6DC4520B7192 /* TelemetryEngine.swift */; };
 		9166E9115BD2DF83B230FB40 /* LocalizationCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF03A84489261FE51BB43C61 /* LocalizationCatalogTests.swift */; };
+		935310A14E2FF3AD65A55B7D /* CloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66CB0A6C15AD2FAC7717528 /* CloudTests.swift */; };
 		95DB0B9238DDF234B72F49EB /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DA898DC86E85879CFF31C /* DashboardView.swift */; };
 		9E7B9157A46E98E602C2E853 /* HistoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EAE0E7B75D0453FEC30B41 /* HistoryModels.swift */; };
 		A06D8935F3DDA76084945126 /* DemoDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172CBB5BF848C13ECC92B2AC /* DemoDataTests.swift */; };
@@ -50,13 +53,16 @@
 		BC7D2BE8689C8D6E7B8B36D1 /* VehicleDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D8F67999FDE82652CFB8B /* VehicleDiagnostics.swift */; };
 		C2E3524EE4B8E2661E86AF5E /* TripSummaryGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1460DBFDBFAD4F0737D5DD1C /* TripSummaryGenerator.swift */; };
 		C9C5DC24C5D5DABCBF0E8D0E /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30CC2714E7A7855ADFCF026 /* Localization.swift */; };
+		CAEA34C50180E13EFEDB9B8E /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4F159B886EF9D5B38FFA5 /* KeychainStore.swift */; };
 		CB119193F30EEE3DA03AD715 /* TelemetryAvailabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758476CBFE72B75984757267 /* TelemetryAvailabilityTests.swift */; };
 		D52197E9CF968BFD118DE075 /* TripRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1D4E4B1F727859C8FBC33 /* TripRecorder.swift */; };
 		D803C4D88351913016388F80 /* TelemetrySample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578A7D6DAF669F51E3A55B9 /* TelemetrySample.swift */; };
 		D91EA3481F23438113708055 /* AppSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219477A3317BF73F60E7D45A /* AppSchema.swift */; };
 		DB599922C1BDCB2A18BF34F5 /* DiagnosticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19255243B03D61D94848EF0 /* DiagnosticsTests.swift */; };
 		DC346049E93BF92BF63E0A6E /* RawLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E0E851BDC5A7BCA3CB173 /* RawLogView.swift */; };
+		E0A40C7172225AB6D62AD329 /* PleosClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56087F5F4B7035099DF47523 /* PleosClient.swift */; };
 		E430EC925710D06CE396BFE4 /* BatteryHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9D51284B056648D3B72327 /* BatteryHistoryView.swift */; };
+		EB3A87F16AA737E18FB79689 /* CloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB1C10B6F2811E2E6751EB /* CloudService.swift */; };
 		ED859CF98A0392C202523B69 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E69F34E132050C4F9B1CF3CF /* Localizable.xcstrings */; };
 		EDED186A2675FE5B40D748F3 /* DisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCBD27DADA0337F691D2F11 /* DisclaimerView.swift */; };
 		F671D1F0A501678DA77CDB8B /* TirePressureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A946698C819E6AF7E46DB8 /* TirePressureView.swift */; };
@@ -91,14 +97,18 @@
 		2C859C5C45F25216DF554985 /* PIDRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIDRegistry.swift; sourceTree = "<group>"; };
 		304E4C87B9E1545969B058A4 /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		36514868DF4B257AB0FA367F /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		3921400859885F57A33510C4 /* PleosSnapshotParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleosSnapshotParser.swift; sourceTree = "<group>"; };
 		3A9DA898DC86E85879CFF31C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		3B9D51284B056648D3B72327 /* BatteryHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryHistoryView.swift; sourceTree = "<group>"; };
+		3ECB1C10B6F2811E2E6751EB /* CloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudService.swift; sourceTree = "<group>"; };
 		417CE5EC051EF1ADA385D726 /* CellVoltageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellVoltageView.swift; sourceTree = "<group>"; };
 		44B0EDA2BDCDDF66BDB667C1 /* IoniqDriveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoniqDriveApp.swift; sourceTree = "<group>"; };
 		4578A7D6DAF669F51E3A55B9 /* TelemetrySample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetrySample.swift; sourceTree = "<group>"; };
 		47D49DD1C7DECBB5354BF8A2 /* IoniqDriveTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = IoniqDriveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D1D4E4B1F727859C8FBC33 /* TripRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRecorder.swift; sourceTree = "<group>"; };
+		56087F5F4B7035099DF47523 /* PleosClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleosClient.swift; sourceTree = "<group>"; };
 		59782B0441A0CADA50549A10 /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
+		5C5E3ED24C85CE61E2A74A7E /* CloudModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudModels.swift; sourceTree = "<group>"; };
 		6E7E4030D8017C7D992D2ED8 /* CellAnalysisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnalysisTests.swift; sourceTree = "<group>"; };
 		758476CBFE72B75984757267 /* TelemetryAvailabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryAvailabilityTests.swift; sourceTree = "<group>"; };
 		7A9D8F67999FDE82652CFB8B /* VehicleDiagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDiagnostics.swift; sourceTree = "<group>"; };
@@ -119,6 +129,7 @@
 		AEB397B9958041F794C8B931 /* CostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostsView.swift; sourceTree = "<group>"; };
 		C1BE12EEE6A52F95D378908E /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		C1EAE0E7B75D0453FEC30B41 /* HistoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModels.swift; sourceTree = "<group>"; };
+		C66CB0A6C15AD2FAC7717528 /* CloudTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudTests.swift; sourceTree = "<group>"; };
 		CEACE11644DA04F89ED56751 /* IoniqDrive.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = IoniqDrive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF03A84489261FE51BB43C61 /* LocalizationCatalogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationCatalogTests.swift; sourceTree = "<group>"; };
 		D19255243B03D61D94848EF0 /* DiagnosticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsTests.swift; sourceTree = "<group>"; };
@@ -127,6 +138,7 @@
 		D32E0E851BDC5A7BCA3CB173 /* RawLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawLogView.swift; sourceTree = "<group>"; };
 		D43B50E9FC6D796809623FA3 /* BatteryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryDetailView.swift; sourceTree = "<group>"; };
 		D91CDB2F4F0A368CDAA1586E /* ChargingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingView.swift; sourceTree = "<group>"; };
+		DAF4F159B886EF9D5B38FFA5 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		DDF32D4B28BFD0BB525C44F5 /* TelemetryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryStore.swift; sourceTree = "<group>"; };
 		DFE4B2D1EFF9016919ADEB75 /* CellAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnalysis.swift; sourceTree = "<group>"; };
 		E69F34E132050C4F9B1CF3CF /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -175,6 +187,7 @@
 				9BA0A9A051BD84E9464397B6 /* BulgarianTariffEngineTests.swift */,
 				6E7E4030D8017C7D992D2ED8 /* CellAnalysisTests.swift */,
 				072B027816CC19343085034A /* ChargingSessionTests.swift */,
+				C66CB0A6C15AD2FAC7717528 /* CloudTests.swift */,
 				172CBB5BF848C13ECC92B2AC /* DemoDataTests.swift */,
 				D19255243B03D61D94848EF0 /* DiagnosticsTests.swift */,
 				258D76DD8956D6FC85AB6B2C /* EnergyCalculatorTests.swift */,
@@ -238,11 +251,24 @@
 			);
 			sourceTree = "<group>";
 		};
+		9E65EC985CCF42BE5188FBCD /* Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				5C5E3ED24C85CE61E2A74A7E /* CloudModels.swift */,
+				3ECB1C10B6F2811E2E6751EB /* CloudService.swift */,
+				DAF4F159B886EF9D5B38FFA5 /* KeychainStore.swift */,
+				56087F5F4B7035099DF47523 /* PleosClient.swift */,
+				3921400859885F57A33510C4 /* PleosSnapshotParser.swift */,
+			);
+			path = Cloud;
+			sourceTree = "<group>";
+		};
 		A7431A9A6DB1AF24B47ED19A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				8DEAE949943F04C71AF631BC /* App */,
 				6730108ADD43C7D4BA9CFA0B /* Bluetooth */,
+				9E65EC985CCF42BE5188FBCD /* Cloud */,
 				B4B072A9F796696FAFBF2D9B /* Diagnostics */,
 				55E067D1CD482FAAFC9D91C8 /* OBD */,
 				38268213DE96D4DC70C1A12A /* Pricing */,
@@ -402,6 +428,8 @@
 				5F226A9FFFA70BC98EE902B4 /* ChargingSessionModels.swift in Sources */,
 				668D3B17801009EF65E23EB4 /* ChargingSessionTracker.swift in Sources */,
 				09A7EC454EF6F5990C5EDC40 /* ChargingView.swift in Sources */,
+				09CFC081DF8086546B39D6CF /* CloudModels.swift in Sources */,
+				EB3A87F16AA737E18FB79689 /* CloudService.swift in Sources */,
 				75FD1CCDEBC83E0C6AA78DAA /* CostsView.swift in Sources */,
 				95DB0B9238DDF234B72F49EB /* DashboardView.swift in Sources */,
 				FEF81B8A039B92BCE71B54F8 /* DataRetention.swift in Sources */,
@@ -411,12 +439,15 @@
 				556F0D5C2DBEE349D1BEE864 /* ExportService.swift in Sources */,
 				9E7B9157A46E98E602C2E853 /* HistoryModels.swift in Sources */,
 				3DCB87DBFE1033944F5DB40C /* IoniqDriveApp.swift in Sources */,
+				CAEA34C50180E13EFEDB9B8E /* KeychainStore.swift in Sources */,
 				C9C5DC24C5D5DABCBF0E8D0E /* Localization.swift in Sources */,
 				F707AD0BC4A783557751CFD2 /* LocationManager.swift in Sources */,
 				511DA8A23D531530530E851D /* LogsView.swift in Sources */,
 				2F79CF4C3C70853EAE5D1B68 /* OBDResponseParser.swift in Sources */,
 				3F69C030D2E110DE6DDF63AB /* OBDSession.swift in Sources */,
 				A19EA5A07BC4745296BFA8D6 /* PIDRegistry.swift in Sources */,
+				E0A40C7172225AB6D62AD329 /* PleosClient.swift in Sources */,
+				537F039386CB0E8FAC52CF23 /* PleosSnapshotParser.swift in Sources */,
 				DC346049E93BF92BF63E0A6E /* RawLogView.swift in Sources */,
 				69AA438432222FAC139BF550 /* RootTabView.swift in Sources */,
 				3652449E7D45D036559C648A /* SettingsView.swift in Sources */,
@@ -441,6 +472,7 @@
 				AA83D51856BCFCA85DA557E9 /* BulgarianTariffEngineTests.swift in Sources */,
 				180E96F4EB2C6164D397D757 /* CellAnalysisTests.swift in Sources */,
 				4AE19B64209C415541B8AE97 /* ChargingSessionTests.swift in Sources */,
+				935310A14E2FF3AD65A55B7D /* CloudTests.swift in Sources */,
 				A06D8935F3DDA76084945126 /* DemoDataTests.swift in Sources */,
 				DB599922C1BDCB2A18BF34F5 /* DiagnosticsTests.swift in Sources */,
 				5E43BF71F5C133AC5A90C529 /* EnergyCalculatorTests.swift in Sources */,

@@ -81,7 +81,13 @@ Result: **4+**.
 
 ## Privacy label
 
-- **Data Not Collected** — the app has no networking code, no analytics and no SDKs.
+- **Data Not Collected** — no analytics and no SDKs. The only network use is the optional
+  personal-build Pleos cloud connection: the user's own Client ID/Secret are stored in the
+  Keychain and sent only to `api.pleos.ai` (Hyundai's official API), never to the
+  developer. If the distributed App Store build excludes the cloud screen, answer
+  “Data Not Collected”; if it keeps it, disclose “User ID” (the Pleos credentials) in
+  App Privacy → Data Linked to You is still No, since the developer never receives it,
+  but be explicit in the review notes.
 - Location and Bluetooth are used on-device only; the privacy policy explains it.
 
 ## Pricing
