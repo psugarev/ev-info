@@ -2,6 +2,8 @@
 
 # EV Info
 
+[![CI](https://github.com/psugarev/ev-info/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/psugarev/ev-info/actions/workflows/ci.yml)
+
 **See what your EV's battery is really doing — all 192 cells, on your iPhone, with nothing uploaded.**
 
 Read-only OBD2 telemetry for the Hyundai Ioniq 5 / E-GMP family, built with SwiftUI.

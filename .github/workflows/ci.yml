@@ -1,0 +1,99 @@
+name: CI
+
+# Guards main against a broken merge: the core logic must pass its tests, the
+# iOS app must still build in Release, and the committed Xcode project must
+# match project.yml (XcodeGen is the source of truth in this repo).
+#
+# The repo is private, so macOS runner minutes are billed at 10x against the
+# plan quota: this is deliberately two short jobs with no matrix.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Pinned so the "does the committed project match project.yml?" check is
+  # deterministic. Keep in sync with the local `xcodegen --version`.
+  XCODEGEN_VERSION: "2.49.0"
+
+jobs:
+  tests:
+    name: Unit tests (SwiftPM)
+    runs-on: macos-26
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Run unit tests
+        run: swift test --disable-sandbox
+
+  app-build:
+    name: App build (Release, simulator)
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: |
+          curl -fsSL -o "$RUNNER_TEMP/xcodegen.zip" \
+            "https://github.com/yonaskolb/XcodeGen/releases/download/${XCODEGEN_VERSION}/xcodegen.zip"
+          mkdir -p "$RUNNER_TEMP/xcodegen"
+          unzip -q "$RUNNER_TEMP/xcodegen.zip" -d "$RUNNER_TEMP/xcodegen"
+          echo "$RUNNER_TEMP/xcodegen/xcodegen/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/xcodegen/xcodegen/bin/xcodegen" --version
+
+      - name: Regenerate project
+        run: xcodegen generate
+
+      - name: Committed project must match project.yml
+        run: git diff --exit-code -- IoniqDrive.xcodeproj
+
+      - name: Build Release
+        run: |
+          xcodebuild \
+            -project IoniqDrive.xcodeproj \
+            -scheme IoniqDrive \
+            -configuration Release \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Check bundle contents
+        run: |
+          app="$RUNNER_TEMP/DerivedData/Build/Products/Release-iphonesimulator/IoniqDrive.app"
+
+          echo "== bundle =="
+          ls "$app"
+
+          # Privacy manifest must ship at the bundle root and be valid JSON.
+          test -f "$app/PrivacyInfo.xcprivacy"
+          python3 -c 'import json,sys; json.load(open(sys.argv[1])); print("privacy manifest OK")' \
+            "$app/PrivacyInfo.xcprivacy"
+
+          # Identity checks: renaming the app must not silently drift.
+          test "$(plutil -extract CFBundleIdentifier raw "$app/Info.plist")" = "com.evinfo.app"
+          test "$(plutil -extract CFBundleDisplayName raw "$app/Info.plist")" = "EV Info"
+          test "$(plutil -extract ITSAppUsesNonExemptEncryption raw "$app/Info.plist")" = "false"
+
+          # Both localisations must be present.
+          test -d "$app/en.lproj"
+          test -d "$app/bg.lproj"
