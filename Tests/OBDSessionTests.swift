@@ -29,14 +29,20 @@ final class OBDSessionTests: XCTestCase {
         let transport = FakeOBDTransport()
         let session = OBDSession(transport: transport)
         var samples: [TelemetrySample] = []
+        var stages: [OBDSession.InitializationStatus] = []
+        session.initializationStatusDidChange = { status in
+            if let status { stages.append(status) }
+        }
         let cancellable = session.sampleUpdates.sink { samples.append($0) }
         defer { cancellable.cancel(); session.stopPolling() }
 
         session.begin()
         XCTAssertEqual(transport.sent, ["ATZ\r"])
+        XCTAssertEqual(stages.last, .initializingAdapter)
 
         session.receive("ATZ\r\r\rELM327 v2.3\r\r>")
         XCTAssertEqual(transport.sent.last, "ATE0\r")
+        XCTAssertEqual(stages.last, .configuringAdapter)
 
         for _ in 0..<6 {
             session.receive("OK\r\r>")
@@ -45,6 +51,7 @@ final class OBDSessionTests: XCTestCase {
 
         session.receive("A6\r\r>")
         XCTAssertEqual(transport.sent.last, "0100\r")
+        XCTAssertEqual(stages.last, .discoveringCapabilities)
 
         session.receive(real0100)
         XCTAssertEqual(transport.sent.last, "0120\r")
@@ -54,6 +61,7 @@ final class OBDSessionTests: XCTestCase {
 
         session.receive("7E8 06 41 40 00 00 00 00\r\r>")
         XCTAssertTrue(session.isReady)
+        XCTAssertEqual(stages.last, .preparingBMSRead)
         XCTAssertEqual(session.protocolCode, "A6")
         XCTAssertTrue(session.protocolName.contains("15765-4"))
 
@@ -86,6 +94,7 @@ final class OBDSessionTests: XCTestCase {
         XCTAssertEqual(sample.batteryTemperatureC ?? 0, 13.0, accuracy: 0.01)
         XCTAssertEqual(sample.auxiliaryVoltageV ?? 0, 13.8, accuracy: 0.01)
         XCTAssertNil(session.lastError)
+        XCTAssertEqual(stages.last, .ready(protocolName: session.protocolName))
     }
 
     func testDiscoveryFailureSetsErrorButFinishes() {

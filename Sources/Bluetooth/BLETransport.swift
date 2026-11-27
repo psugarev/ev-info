@@ -29,6 +29,17 @@ final class BLETransport: NSObject, ObservableObject {
         statusMessage = statusSource()
     }
 
+    /// Displays the setup stage supplied by an OBDSession after the BLE UART
+    /// is ready. The session owns the wording so its progress can be tested
+    /// without CoreBluetooth; this transport owns presentation/localisation.
+    func showInitializationStatus(_ status: OBDSession.InitializationStatus?) {
+        // Demo mode never performs the adapter handshake, so those stages would
+        // sit at "Checking vehicle data availability…" forever. Keep the
+        // "Demo data" header instead.
+        guard !isDemo, let status else { return }
+        setStatus { status.localizedDescription }
+    }
+
     private func setStatus(_ text: @escaping () -> String) {
         statusSource = text
         statusMessage = text()

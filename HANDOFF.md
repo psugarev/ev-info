@@ -55,6 +55,25 @@ xcodebuild -project IoniqDrive.xcodeproj -scheme IoniqDrive \
   auto-deleted. Free private repositories cannot use branch protection (GitHub
   returns 403); that is why this only became enforceable after the repo went public.
 
+## Versioning and App Store metadata
+
+- `MARKETING_VERSION` (`CFBundleShortVersionString`) is the user-facing version,
+  currently **1.0**. Bump it once per release train (1.0, 1.1, 2.0) — not for
+  every commit.
+- `CURRENT_PROJECT_VERSION` (`CFBundleVersion`) is the build number, currently
+  **1**. App Store Connect and TestFlight require every uploaded build to be
+  higher than the previous one for the same marketing version, so bump it when
+  uploading, not for local dev builds. `xcodebuild` can override both without
+  touching `project.yml`:
+  `CURRENT_PROJECT_VERSION=$(git rev-list --count HEAD) xcodebuild …`
+  (or `agvtool next-version -all`). This will be wired into the archive script
+  for issue #12.
+- **Category** is picked in App Store Connect (Primary/Secondary), not in
+  Xcode. `LSApplicationCategoryType: public.app-category.utilities` in
+  `project.yml` is only the plist declaration (it matters on macOS); App Review
+  follows the ASC category. Current plan: Primary **Utilities**, Secondary
+  **Navigation** (or Travel if Navigation is not offered).
+
 ## Where things are
 
 | Area | Files |
@@ -88,7 +107,6 @@ are the source of truth.
 
 | # | Task | Priority |
 |---|---|---|
-| [#5](https://github.com/psugarev/ev-info/issues/5) | Connect flow: init progress text + real-device verification | P0 |
 | [#12](https://github.com/psugarev/ev-info/issues/12) | App Store Connect admin (owner task, not code) | P0 |
 | [#4](https://github.com/psugarev/ev-info/issues/4) | Dynamic Type, hit targets, Reduce Motion | P1 |
 | [#7](https://github.com/psugarev/ev-info/issues/7) | Charge-session log with cost | P1 |
@@ -110,7 +128,19 @@ are the source of truth.
 ## Known gaps / gotchas
 
 - **Never validated on a real car this pass**: auto-reconnect via
-  `retrievePeripherals`, Bluetooth denial flow, stale threshold (3 s vs the 1 s BMS poll), background behaviour.
+  `retrievePeripherals`, Bluetooth denial flow, stale threshold (3 s vs the 1 s
+  BMS poll), background behaviour. Issue #5's init-progress text is covered by
+  the fake-transport tests (`TestOBDSession`), but the device checklist below
+  still needs a physical iPhone + vLinker:
+  1. Reconnect: connect once, quit the app, open it — header should reach
+     `OBD ready — …` without tapping, within ~5 s.
+  2. Denied permission: deny Bluetooth once, then Settings → Status shows
+     `Bluetooth permission denied` and the "Allow Bluetooth in Settings" button
+     opens the system screen.
+  3. Stale badge: drive with the adapter, unplug it — values should grey out
+     within 3 s (BMS poll is 1 s) and the live chip drop to OBD.
+  4. Locked phone: confirm whether BLE keeps the session alive in background
+     (`bluetooth-central` mode); record the result here.
 - Demo mode shows no speed on purpose (OBD speed is not validated, rule 3).
 - `LocationManager` is foreground-only; re-adding the `location` background mode
   needs on-device validation first (Guideline 2.5.4).
@@ -152,6 +182,7 @@ are the source of truth.
 | 2026-11-27 | Claude (Sonnet 5.5) | `agent/claude/handoff-repo-link` | Created private repo `psugarev/ev-info`, initial import, recorded repo URL; installed `gh` via Homebrew | docs only |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/cell-grid-redesign` | Issue #6: six labelled 32-cell module blocks (read count, min/max/Δ, BALANCED/WATCH/DRIFT chip), strongest/weakest ring per block, weakest-cell ranking card, tap-to-cell detail sheet, threshold legend with band counts, testable `CellAnalysis` + 10 tests, EN/BG strings, screenshot harness | 94 tests, Release + Debug build, simulator EN + BG screenshots |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/ci-workflow` | Issue #16: GitHub Actions CI — `swift test` + XcodeGen/Release build, project-sync guard, bundle checks (privacy manifest, identity, lproj), pinned XcodeGen 2.49.0, README badge; enabled auto-delete of merged branches; required status checks blocked by the free private plan (403) and documented | CI green twice on PR #17 (1m15s + 1m36s); auto-delete verified |
+| 2026-11-27 | Claude (deepseek-flash) | `agent/lead/connect-flow` | Issue #5: finished the connect-flow progress text (stages for ATZ/config/protocol/discovery/BMS handshake, ready only after the first BMS reply, demo-mode guard), tests assert every stage; catalog cleanup of 12 stale keys + new translations; HANDOFF versioning section and real-device checklist | 99 tests, Release build, localisation check |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/appstore-screenshots` | Issue #2: demo trips seeded (`DemoData.seedTrips`, Costs/Trip detail screenshots), debug routes `costs`/`trip`, `scripts/capture-appstore-screenshots.sh`, 24 JPEGs in `Distribution/screenshots/{69,65}/{en,bg}` (1320×2868 and 1242×2688, status bar 9:41), tariff subtitle localised; screenshots README | 99 tests, Release build, size-verified screenshot sets, EN/BG inspected |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/localization` | Issue #3: `AppLocalization` helper (language `.lproj`, format args), localized BLE statuses / diagnostics / trip summaries / chart titles / tire names / dates; 97 new+fixed BG strings, 29 stale keys removed, 10 re-enabled; `scripts/check-localization.py` + CI step + `LocalizationCatalogTests` | 97 tests, Release build, BG simulator screenshots (Drive/Battery/Charging) |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/open-source-license` | MIT licence + README licence/open-source badges; repo went public → enabled the `main protection` ruleset (required checks + PR, no force push/deletion) and updated the CI/HANDOFF notes for free public-repo minutes; secret scan of working tree and full history is clean | ruleset active, PR #17 still mergeable, CI green |

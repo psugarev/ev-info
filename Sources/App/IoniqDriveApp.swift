@@ -129,6 +129,9 @@ struct IoniqDriveApp: App {
     private func bindSessionIfNeeded() {
         guard obdSession == nil else { return }
         let session = OBDSession(transport: ble)
+        session.initializationStatusDidChange = { [weak ble] status in
+            ble?.showInitializationStatus(status)
+        }
         telemetry.bind(session: session, location: locationManager)
         recorder.bind(session: session, locationManager: locationManager)
         store.bind(session: session)
