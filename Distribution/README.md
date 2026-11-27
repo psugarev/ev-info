@@ -128,3 +128,15 @@ resale services — those certificates get revoked and the apps stop working.
 
 Безплатен Apple ID не позволява постоянно приложение или TestFlight — за това е
 нужен платен Apple Developer Program (99 USD/година).
+
+## App Store Connect kit
+
+- [`AppStore/ASC_CHECKLIST.md`](AppStore/ASC_CHECKLIST.md) — listing copy, category,
+  age-rating answers, privacy label, DSA trader steps, upload sequence and the
+  owner-only checklist.
+- `screenshots/{69,65}/{en,bg}/` — 6.9" and 6.5" screenshot sets.
+- `PRIVACY_POLICY.md` and `APP_REVIEW_NOTES.md` — mirrored at
+  https://psugarev.github.io/ev-info/privacy.html and
+  https://psugarev.github.io/ev-info/support.html.
+- `scripts/archive-appstore.sh` — signed archive/export with an automatic build
+  number (`--dry-run` to preview, `--export` for the IPA).

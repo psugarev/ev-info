@@ -196,3 +196,6 @@ readiness plan is [`APP_STORE_AUDIT.md`](APP_STORE_AUDIT.md).
 
 *EV Info is not affiliated with or endorsed by Hyundai Motor Company. Hyundai and
 Ioniq are trademarks of Hyundai Motor Company.*
+
+Support: https://psugarev.github.io/ev-info/support.html ·
+Privacy: https://psugarev.github.io/ev-info/privacy.html

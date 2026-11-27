@@ -66,8 +66,9 @@ xcodebuild -project IoniqDrive.xcodeproj -scheme IoniqDrive \
   uploading, not for local dev builds. `xcodebuild` can override both without
   touching `project.yml`:
   `CURRENT_PROJECT_VERSION=$(git rev-list --count HEAD) xcodebuild …`
-  (or `agvtool next-version -all`). This will be wired into the archive script
-  for issue #12.
+  (or `agvtool next-version -all`). `scripts/archive-appstore.sh` already does this:
+  build number = `git rev-list --count HEAD` unless `CURRENT_PROJECT_VERSION` is set,
+  `--export` produces the IPA, `--dry-run` prints the plan.
 - **Category** is picked in App Store Connect (Primary/Secondary), not in
   Xcode. `LSApplicationCategoryType: public.app-category.utilities` in
   `project.yml` is only the plist declaration (it matters on macOS); App Review
@@ -86,6 +87,8 @@ xcodebuild -project IoniqDrive.xcodeproj -scheme IoniqDrive \
 | UI | `Sources/UI/*` (`DashboardView`, `SettingsView`, `DisclaimerView`, `LogsView`, …) |
 | Localisation | `Resources/Localizable.xcstrings`, `Resources/InfoPlist.xcstrings` |
 | App Store screenshots | `Distribution/screenshots/{69,65}/{en,bg}/NN-*.jpg`, `scripts/capture-appstore-screenshots.sh` |
+| App Store Connect kit | `Distribution/AppStore/ASC_CHECKLIST.md`, `scripts/archive-appstore.sh` |
+| Public web pages | `docs/` (GitHub Pages → https://psugarev.github.io/ev-info/) |
 | App Store material | `APP_STORE_AUDIT.md` (the plan), `Distribution/PRIVACY_POLICY.md`, `Distribution/APP_REVIEW_NOTES.md` |
 
 ## What has been done
@@ -107,7 +110,7 @@ are the source of truth.
 
 | # | Task | Priority |
 |---|---|---|
-| [#12](https://github.com/psugarev/ev-info/issues/12) | App Store Connect admin (owner task, not code) | P0 |
+| [#12](https://github.com/psugarev/ev-info/issues/12) | App Store Connect admin — owner-only rows left (ASC login, category, age rating, DSA trader, hardware video) | P0 |
 | [#4](https://github.com/psugarev/ev-info/issues/4) | Dynamic Type, hit targets, Reduce Motion | P1 |
 | [#7](https://github.com/psugarev/ev-info/issues/7) | Charge-session log with cost | P1 |
 | [#8](https://github.com/psugarev/ev-info/issues/8) | Read-only DTC scan | P1 |
@@ -182,6 +185,7 @@ are the source of truth.
 | 2026-11-27 | Claude (Sonnet 5.5) | `agent/claude/handoff-repo-link` | Created private repo `psugarev/ev-info`, initial import, recorded repo URL; installed `gh` via Homebrew | docs only |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/cell-grid-redesign` | Issue #6: six labelled 32-cell module blocks (read count, min/max/Δ, BALANCED/WATCH/DRIFT chip), strongest/weakest ring per block, weakest-cell ranking card, tap-to-cell detail sheet, threshold legend with band counts, testable `CellAnalysis` + 10 tests, EN/BG strings, screenshot harness | 94 tests, Release + Debug build, simulator EN + BG screenshots |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/ci-workflow` | Issue #16: GitHub Actions CI — `swift test` + XcodeGen/Release build, project-sync guard, bundle checks (privacy manifest, identity, lproj), pinned XcodeGen 2.49.0, README badge; enabled auto-delete of merged branches; required status checks blocked by the free private plan (403) and documented | CI green twice on PR #17 (1m15s + 1m36s); auto-delete verified |
+| 2026-11-27 | Claude (deepseek-flash) | `agent/lead/appstore-admin` | Issue #12 code side: GitHub Pages with privacy/support/landing (`docs/`), `Distribution/AppStore/ASC_CHECKLIST.md` (listing copy, category, age rating, privacy label, DSA, upload flow), `scripts/archive-appstore.sh` (auto build number, `--export`, `--dry-run`), docs cross-links; owner-only steps listed | script dry-run, Pages enabled, links checked |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/connect-flow` | Issue #5: finished the connect-flow progress text (stages for ATZ/config/protocol/discovery/BMS handshake, ready only after the first BMS reply, demo-mode guard), tests assert every stage; catalog cleanup of 12 stale keys + new translations; HANDOFF versioning section and real-device checklist | 99 tests, Release build, localisation check |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/appstore-screenshots` | Issue #2: demo trips seeded (`DemoData.seedTrips`, Costs/Trip detail screenshots), debug routes `costs`/`trip`, `scripts/capture-appstore-screenshots.sh`, 24 JPEGs in `Distribution/screenshots/{69,65}/{en,bg}` (1320×2868 and 1242×2688, status bar 9:41), tariff subtitle localised; screenshots README | 99 tests, Release build, size-verified screenshot sets, EN/BG inspected |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/localization` | Issue #3: `AppLocalization` helper (language `.lproj`, format args), localized BLE statuses / diagnostics / trip summaries / chart titles / tire names / dates; 97 new+fixed BG strings, 29 stale keys removed, 10 re-enabled; `scripts/check-localization.py` + CI step + `LocalizationCatalogTests` | 97 tests, Release build, BG simulator screenshots (Drive/Battery/Charging) |

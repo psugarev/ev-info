@@ -1,7 +1,11 @@
 # EV Info — App Review notes
 
 > Paste the block below into App Store Connect → App Review Information → Notes.
-> Replace `<link>` with the hardware demo video before submitting.
+> Replace `<link>` with the hardware demo video before submitting; the rest of the
+> submission kit is in [`AppStore/ASC_CHECKLIST.md`](AppStore/ASC_CHECKLIST.md).
+>
+> Support URL: https://psugarev.github.io/ev-info/support.html
+> Privacy policy URL: https://psugarev.github.io/ev-info/privacy.html
 
 ---
 

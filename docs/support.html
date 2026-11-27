@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EV Info — Support</title>
+<style>
+  :root { color-scheme: dark; --bg:#06080d; --surface:#111722; --text:#f1f5f9; --muted:#8ca0b8; --cyan:#22d3ee; --green:#34d399; --border:#223044; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.65 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; }
+  main { max-width:720px; margin:0 auto; padding:48px 24px 80px; }
+  h1 { font-size:34px; line-height:1.2; margin:0 0 6px; letter-spacing:-0.02em; }
+  h2 { font-size:19px; margin:32px 0 6px; }
+  p, li { color:var(--muted); }
+  a { color:var(--cyan); }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:16px 20px; margin:14px 0; }
+  .ok { color:var(--green); font-weight:600; }
+</style>
+</head>
+<body>
+<main>
+  <h1>EV Info — Support</h1>
+  <p>Read-only battery and OBD2 telemetry for Hyundai Ioniq 5 / E-GMP cars.
+     Everything runs on your iPhone; there is no account and no server.</p>
+
+  <h2>What you need</h2>
+  <div class="card">
+    <ul>
+      <li><span class="ok">iPhone</span> with iOS 17.6 or later.</li>
+      <li><span class="ok">Bluetooth LE ELM327 adapter</span> — tested with vLinker iCar Pro BLE 4.0. Classic-Bluetooth-only adapters and Wi-Fi adapters are not supported.</li>
+      <li>Car powered on (accessory or ready) so the OBD port is alive.</li>
+    </ul>
+  </div>
+
+  <h2>First connection</h2>
+  <ol>
+    <li>Plug the adapter into the car's OBD2 port (under the dashboard, driver's side on the Ioniq 5).</li>
+    <li>Open EV Info and tap the status header on the Drive tab, or the gear → OBD2 adapter.</li>
+    <li>Tap <em>Rescan for OBD2 adapter</em>, then pick your adapter from the list.</li>
+    <li>The header narrates each stage: <em>Initializing ELM327 adapter… → Configuring read-only OBD session… → Selecting vehicle OBD protocol… → Checking vehicle data availability… → Preparing first BMS read… → OBD ready</em>.</li>
+    <li>No adapter nearby? Switch on <em>Demo mode</em> (gear → Demo mode, or the "Use demo data" button on Drive) to explore every screen with recorded data.</li>
+  </ol>
+
+  <h2>Troubleshooting</h2>
+  <div class="card">
+    <p><strong>“Bluetooth permission denied”</strong> — iOS Settings → EV Info → Bluetooth, then reopen the app.</p>
+    <p><strong>No adapter in the list</strong> — move the phone within ~1 m of the adapter, make sure it is not paired with another phone, and rescan. Entries older than five minutes are dropped.</p>
+    <p><strong>Values grey out</strong> — that is the stale badge: the app has not received BMS data for 3 seconds. Check the adapter is still powered and connected.</p>
+    <p><strong>Speed shows “—”</strong> — OBD speed is not exposed by this car's standard PID set; GPS speed is used while recording a trip.</p>
+  </div>
+
+  <h2>Data and privacy</h2>
+  <p>Everything is stored on the device. See the <a href="privacy.html">privacy policy</a>.
+     Settings → Storage lets you limit retention or delete all data.</p>
+
+  <h2>Contact</h2>
+  <p>Bug reports and questions: <a href="https://github.com/psugarev/ev-info/issues/new/choose">GitHub Issues</a>.
+     The code is open source (MIT): <a href="https://github.com/psugarev/ev-info">psugarev/ev-info</a>.</p>
+
+  <p style="font-size:14px">EV Info is not affiliated with or endorsed by Hyundai Motor Company.</p>
+</main>
+</body>
+</html>
