@@ -204,6 +204,17 @@ struct SettingsView: View {
         }
     }
 
+    private func chargeText(_ snapshot: CloudVehicleSnapshot) -> String {
+        if snapshot.isCharging == true {
+            if let minutes = snapshot.chargeRemainingMinutes, minutes > 0 {
+                return AppLocalization.format("%@ min", "\(minutes)")
+            }
+            return AppLocalization.string("Charging")
+        }
+        if snapshot.isPluggedIn == true { return AppLocalization.string("Plugged in") }
+        return AppLocalization.string("Idle")
+    }
+
     private var cloudStatusText: String {
         switch cloud.state {
         case .connected: return AppLocalization.string("Connected")
