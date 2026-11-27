@@ -1,134 +1,180 @@
-# EV Info (IoniqDrive)
+<div align="center">
 
-Native Swift/SwiftUI iPhone telemetry logger for a Hyundai Ioniq 5, built for
-MacBook Pro M2 + iPhone 12 Pro + vLinker iCar Pro BLE 4.0.
+# EV Info
 
-## Current status
+**See what your EV's battery is really doing — all 192 cells, on your iPhone, with nothing uploaded.**
 
-Implemented and unit-tested:
+Read-only OBD2 telemetry for the Hyundai Ioniq 5 / E-GMP family, built with SwiftUI.
 
-- BLE connection to a vLinker/iCar ELM327 UART (known service profiles, verified
-  before any command is sent).
-- ELM327 init, protocol detection, supported-PID discovery.
-- Header-aware request queue with timeout resync, so one slow reply cannot
-  corrupt the next command.
-- ISO-TP reassembly for single- and multi-frame CAN responses.
-- Mode 01 decoders: speed, RPM, throttle, ambient temperature.
-- VIN (`22F190` on 7E2) and odometer (`22B002` on 7C6).
-- Battery health: SoH and remaining energy (`220105`), lifetime AC/DC
-  charging counters and energy (`220111`), 12 V/LDC data (`22E011`), and a
-  dedicated Battery screen.
-- Cell voltages from six BMS DIDs (up to 192 cells), with a colour grid, a
-  sorted cell-spread chart, deviation legend and the three weakest cells.
-- Battery and charging self-tests with pass/warn/fail checks.
-- Tire pressures and temperatures (TPMS); values are shown in bar (the psi branch exists but there is no UI switch yet).
-- Always-on telemetry log, battery history (one snapshot per minute) and
-  JSON/CSV export from the Logs & Export screen.
-- Battery history chart for SOC, voltage, current and power: 1H/6H/24H/7D/ALL
-  range chips, tap-or-drag point inspection, area + line styling, average and
-  zero rules, min/avg/max footer, and the snapshot list as the text fallback.
-- Tick-style state-of-charge gauge on Drive and a refined bidirectional
-  power bar (regen/charge vs drive, quarter ticks, zero mark).
-- Five bottom tabs: **Drive, Battery, Cells, Charging, Costs**. Drive merges
-  the live summary with recent trips and a tire-pressure card; Trips is no
-  longer a separate tab. A gear/settings button is available on every tab.
-- Modern dark automotive theme: connection header, battery card, trip card,
-  metric grid, tire card and recent trips. No big speed hero — this is an
-  energy/trip app, not a dashboard to stare at while driving.
-- Tariff lives in **Costs** as one collapsible card; charging lives in its own
-  tab. Charging counters are now persisted in battery snapshots and shown with
-  their last-known timestamp. Tire size can be selected (235/55 R19 or 255/45 R20) with a
-  2.5 bar / 36 psi cold-pressure check per wheel.
-- Battery screen explains the hierarchy (pack → modules → cells) and
-  distinguishes the 800 V traction pack from the 12 V auxiliary battery
-  (акумулатор) and its LDC charger. Cell detail lives only in the Cells tab.
-- Nearby-only BLE discovery: max six adapters, 12-second scan, entries
-  expire after five minutes.
-- An original green "power-up mushroom" app icon with an EV bolt, inspired by
-  classic power-up mushrooms rather than copied from any game character.
-- English / Bulgarian UI with a Settings language switch (230 catalog keys, 197 translated; dynamic status/diagnostic/summary strings are still English).
-- A local trip summary after every trip: when, where, distance, time,
-  average/max speed, energy, cost and stop times.
-- Hyundai BMS request `22 01 01` with multi-frame decode (SOC, pack voltage,
-  current, temperatures, cell min/max, 12 V battery, isolation, inverter
-  capacitor, derived power). The layout is validated against a real 62-byte
-  Ioniq 5 capture; values stay labelled `candidate` until cluster-correlated.
-- Fresh timestamps on every sample, so trip energy and cost integrate correctly.
-- GPS speed fallback (only when OBD speed is absent or stale).
-- Trip recording to SwiftData, raw-frame preservation, day/night tariff cost.
-- Dashboard with provenance badges (an inline error line is planned; `TelemetryEngine.obdError` is published but not yet rendered).
+<img src="docs/images/demo.gif" alt="EV Info demo: Drive, Battery, Cells, Charging and history screens" width="280">
 
-Not validated yet:
+*Demo mode — sample data, no car needed.*
 
-- Cluster correlation of the BMS values (the capture decodes plausibly, but the
-  app has not compared them side by side with the dashboard in one session).
-- The standard bitmap on this car advertises only PIDs `01` and `20`, so no OBD
-  speed/RPM/throttle is polled through functional `0100`. Speed uses GPS until a
-  physical ECU request or Hyundai DID is confirmed.
-- Background/locked-phone behaviour on the iPhone.
+</div>
+
+---
+
+## Screens
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/images/drive.png" width="180"><br><b>Drive</b><br>SOC gauge, power, trip, tires</td>
+    <td align="center"><img src="docs/images/battery.png" width="180"><br><b>Battery</b><br>SoH, energy, 12 V / LDC</td>
+    <td align="center"><img src="docs/images/cells.png" width="180"><br><b>Cells</b><br>192 voltages, weakest cells</td>
+    <td align="center"><img src="docs/images/charging.png" width="180"><br><b>Charging</b><br>live power, AC/DC lifetime</td>
+    <td align="center"><img src="docs/images/history.png" width="180"><br><b>History</b><br>SOC / V / A / kW over time</td>
+  </tr>
+</table>
+
+A sixth tab, **Costs**, prices every trip with an editable Bulgarian day/night
+electricity tariff.
+
+## Why it exists
+
+- **192-cell BMS view** — per-cell voltages, spread chart and the three weakest
+  cells. Generic OBD apps don't show this for E-GMP cars.
+- **Real local cost** — editable Bulgarian day/night tariff (network charges and
+  VAT included), not a guessed average.
+- **Read-only and private** — it never sends control, coding or clear-fault
+  commands, has no account and no server, and keeps everything on the phone.
+
+## Try it without a car
+
+Settings → **Demo mode** (off by default) replaces live data with a recorded
+sample session and a day of battery history. Everything is labelled `DEMO`, and
+demo data is never mixed with real vehicle data. On a fresh install the Drive
+tab also offers a **Use demo data** button.
+
+## Features
+
+**Vehicle data**
+- BLE connection to a vLinker / iCar ELM327 adapter (known UART profiles only,
+  verified before any command is sent), remembered for automatic reconnect.
+- ELM327 init, protocol detection, supported-PID discovery, header-aware request
+  queue with timeout resync, ISO-TP multi-frame reassembly.
+- Hyundai BMS decoding: SOC, pack voltage/current, temperatures, cell min/max,
+  12 V battery, SoH, remaining energy, lifetime AC/DC charge counters, LDC.
+- Cell voltages from six BMS DIDs (up to 192 cells) with a colour grid, sorted
+  spread chart, deviation legend and weakest-cell ranking.
+- VIN, odometer, tire pressures and temperatures (shown in bar).
+- Raw frames are preserved so future decoders can re-read old trips.
+
+**Honest data**
+- Values the app cannot read show `—`, never a plausible-looking zero.
+- Values go grey with a `STALE` chip within seconds of the adapter going silent.
+- Battery values are labelled `BMS · CANDIDATE` and power `DERIVED` until they
+  are cluster-correlated; speed carries a `GPS`/`OBD` source chip.
+
+**Trips and costs**
+- Trip recording with GPS fallback, local trip summary (when, where, distance,
+  time, speed, energy, cost, stops), day/night tariff cost.
+- Battery history chart with 1H / 6H / 24H / 7D / ALL ranges and point inspection.
+- Battery and charging self-tests (informational; see Safety).
+- JSON / CSV export, generated on demand off the main thread.
+
+**Storage and privacy**
+- Retention setting (30 / 90 / 365 days / forever), cascade delete of a trip's
+  raw frames, and *Delete all data*.
+- Versioned SwiftData schema with a migration plan.
+- English / Bulgarian UI with a Settings language switch (dynamic status and
+  diagnostic strings are still English — see the roadmap).
+
+## Not validated yet
+
+- Cluster correlation of the BMS values against the car's dashboard.
+- OBD speed/RPM/throttle: this car's `0100` bitmap advertises only PIDs `01` and
+  `20`, so speed uses GPS until a physical ECU request or Hyundai DID is confirmed.
+- Auto-reconnect, the Bluetooth-denied flow and background behaviour on a real
+  iPhone. Background location was dropped for v1 (foreground trip recording only).
+
+## Ideas & roadmap
+
+The live backlog is in **[GitHub Issues](https://github.com/psugarev/ev-info/issues)**
+(labels `P0` / `P1` / `P2`). Highlights:
+
+| Next | Then | Ideas |
+|---|---|---|
+| Connect-flow polish + real-car check ([#5](https://github.com/psugarev/ev-info/issues/5)) | Cell-grid redesign: six 32-cell module blocks ([#6](https://github.com/psugarev/ev-info/issues/6)) | Home-screen widgets and App Intents ("SOC", "start trip") |
+| Localise dynamic strings ([#3](https://github.com/psugarev/ev-info/issues/3)) | Charge-session log with cost ([#7](https://github.com/psugarev/ev-info/issues/7)) | Local notifications: charge complete, 12 V low, tire low |
+| Demo-mode App Store screenshots ([#2](https://github.com/psugarev/ev-info/issues/2)) | Read-only fault-code scan, never clearing ([#8](https://github.com/psugarev/ev-info/issues/8)) | State-of-health degradation tracker (SoH vs km) |
+| Dynamic Type and accessibility ([#4](https://github.com/psugarev/ev-info/issues/4)) | Units: metric/imperial, bar/psi ([#9](https://github.com/psugarev/ev-info/issues/9)) | Glance / driving mode, daylight theme ([#11](https://github.com/psugarev/ev-info/issues/11)) |
+| | Per-trip CSV/GPX export and backup ([#10](https://github.com/psugarev/ev-info/issues/10)) | Landscape layout, Apple Watch, iPad; CarPlay stays a constrained UI |
+
+Monetisation idea (not decided): free live view, one-time Pro unlock for history,
+cell analytics and cost engine — no subscription, no tip jar.
 
 ## Build
 
-Open `IoniqDrive.xcodeproj` in Xcode, select the `IoniqDrive` scheme, choose your
-iPhone 12 Pro, confirm the signing team, and Run.
+Requires Xcode 27, iOS 17.6+. The Xcode project is generated from `project.yml`
+with [XcodeGen](https://github.com/yonaskolb/XcodeGen):
 
-This copy installs as **EV Info** with bundle identifier `com.evinfo.app`.
-Change `CFBundleDisplayName` and `PRODUCT_BUNDLE_IDENTIFIER` in `project.yml`
-(then run `xcodegen generate`) if you want a different name or a replacement
-install.
+```sh
+brew install xcodegen
+xcodegen generate
+open IoniqDrive.xcodeproj   # pick the IoniqDrive scheme, set your signing team, Run
+```
 
-`Package.swift` builds the core logic and tests only; it is not the deployable
-iOS app target. The app target compiles all sources directly.
+The app installs as **EV Info** (`com.evinfo.app`). Change `CFBundleDisplayName`
+and `PRODUCT_BUNDLE_IDENTIFIER` in `project.yml`, then regenerate, for a different
+name. Never hand-edit `Resources/Info.plist`.
 
-For design QA on the Simulator, Debug builds accept `-demo` (seeds a day of
-sample battery history, live telemetry, cell voltages and tire data) and
-`-demoRoute drive|battery|cells|charging|history` plus `-demoScrollBottom` to
-open a screen directly. Release builds and the real BLE path are untouched.
+`Package.swift` builds the core logic and tests only; the app target compiles all
+sources directly.
 
-Bluetooth and location usage descriptions are already in `Resources/Info.plist`.
+**Simulator QA (Debug builds):** `-demoModeEnabled YES -disclaimerAccepted YES`
+turns on demo mode and skips the first-run notice; add
+`-demoRoute drive|battery|cells|charging|history` to open one screen directly
+(`-demoScrollBottom` scrolls the history screen). The legacy `-demo` flag still
+works. Release builds and the real BLE path are untouched.
+
+## Test
+
+```sh
+swift test --disable-sandbox
+```
+
+`--disable-sandbox` is only needed inside an already-sandboxed shell (e.g. an AI
+agent); a normal terminal can run plain `swift test`.
+
+Current result: **84 tests, 0 failures**. See `DESIGN.md` for the visual system,
+`OBD_PROTOCOL.md` for the PID map and `TEST_RESULTS.md` for coverage.
+
+## Electricity pricing
+
+The default Bulgarian tariff profile is based on a supplied EVN invoice
+(09.09.2026–08.10.2026): day €0.09297/kWh, night €0.04103/kWh, network charges
+€0.03585/kWh, 20 % VAT. The app adds network and VAT instead of hard-coding the
+€0.13267/kWh blended figure. All components are editable in the Costs tab.
+
+## Safety
+
+The app is **read-only**: it never sends actuator, coding or clear-diagnostic
+commands. Battery and diagnostic results are informational estimates from
+manufacturer-specific data that has not been validated against the car; they are
+not a substitute for a service inspection. Do not use the app while driving.
 
 ## Sharing with friends
 
 `Distribution/` contains an unsigned IPA plus guides for installing it with a
 free Apple ID (Sideloadly / AltStore / SideStore). Free-account signatures last
 7 days and allow 3 apps per device; TestFlight/App Store need the paid Apple
-Developer Program. See `Distribution/README.md` for the full options and limits.
-
-## Test
-
-From the project root:
-
-```sh
-swift test --disable-sandbox
-```
-
-The `--disable-sandbox` flag is only needed when the shell is already sandboxed
-(e.g. inside an agent). On a normal terminal `swift test` works.
-
-Current result: 71 tests, 0 failures.
-See `DESIGN.md` for the visual system and `OBD_PROTOCOL.md` for the PID map. See `TEST_RESULTS.md` for coverage.
-
-## Electricity pricing
-
-The default Bulgarian tariff profile is based on the supplied EVN invoice
-(09.09.2026–08.10.2026):
-
-- day energy: €0.09297/kWh
-- night energy: €0.04103/kWh
-- network charges: €0.03585/kWh
-- 20% VAT, editable day/night rates
-
-For an all-in bill model the app adds network and VAT rather than hard-coding
-the €0.13267/kWh blended figure. All components are editable in Settings.
-
-## Safety
-
-The app is read-only. It does not send actuator, coding, or clear-diagnostic
-commands. Raw responses are preserved so future decoders can be added without
-losing trips.
+Developer Program. See `Distribution/README.md`. App Store drafts live there too:
+`PRIVACY_POLICY.md` and `APP_REVIEW_NOTES.md`.
 
 ## CarPlay
 
-CarPlay remains a constrained platform: a normal app cannot draw an arbitrary
-dashboard on the factory screen. The phone dashboard is the primary UI; see
-`Sources/CarPlay/README.md`.
+A normal app cannot draw an arbitrary dashboard on the factory screen. The phone
+is the primary UI; see `Sources/CarPlay/README.md`.
+
+## Working on this repo (humans and AI agents)
+
+Start with **[`HANDOFF.md`](HANDOFF.md)** — current state, open work, gotchas and
+the workflow: one branch per task (`agent/<name>/<topic>`), one PR per task,
+commit trailers naming the agent, and a session-log row before you finish.
+Hard rules for the vehicle code are in [`AGENTS.md`](AGENTS.md). The App Store
+readiness plan is [`APP_STORE_AUDIT.md`](APP_STORE_AUDIT.md).
+
+---
+
+*EV Info is not affiliated with or endorsed by Hyundai Motor Company. Hyundai and
+Ioniq are trademarks of Hyundai Motor Company.*
