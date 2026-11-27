@@ -4,12 +4,13 @@ name: CI
 # iOS app must still build in Release, and the committed Xcode project must
 # match project.yml (XcodeGen is the source of truth in this repo).
 #
-# The repo is private, so macOS runner minutes are billed at 10x against the
-# plan quota: this is deliberately two short jobs with no matrix.
+# The repo is public, so Actions minutes are free; the workflow still keeps to
+# two short jobs with no matrix so a PR gets an answer in about two minutes.
 
 on:
+  # No branch filter: stacked PRs (base = another feature branch) must be
+  # checked too. `branches` here would match the PR *base*, not the head.
   pull_request:
-    branches: [main]
   push:
     branches: [main]
   workflow_dispatch:

@@ -40,15 +40,15 @@ xcodebuild -project IoniqDrive.xcodeproj -scheme IoniqDrive \
 - CI pins **XcodeGen 2.49.0** (env `XCODEGEN_VERSION` in the workflow) so the
   project-sync check is deterministic. If you bump XcodeGen locally, bump that pin in
   the same PR and commit the regenerated project.
-- **CI is advisory, not enforced.** Required status checks and branch protection for
-  *private* repos need GitHub Pro (or a public repo); on the current free private repo
-  GitHub answers 403 "Upgrade to GitHub Pro…". Until that changes, the rule is
-  convention only: **never merge a PR whose checks are red or missing**. When the repo
-  is upgraded or made public, apply the ruleset (contexts must match the job names):
-  `gh api -X POST repos/psugarev/ev-info/rulesets --input -` with `target: branch`,
-  `conditions.ref_name.include: ["~DEFAULT_BRANCH"]` and rules `deletion`,
-  `non_fast_forward`, `required_status_checks` (`Unit tests (SwiftPM)`,
-  `App build (Release, simulator)`). Merged PR branches are auto-deleted.
+- **`main` is protected** by the repository ruleset `main protection` (id 28228106,
+  created when the repo went public): PR required (0 approvals — self-merge is fine),
+  no force pushes, no branch deletion, and both CI jobs
+  (`Unit tests (SwiftPM)`, `App build (Release, simulator)`) must pass. Bypass is
+  disabled even for the owner, so a red check blocks the merge — fix the branch
+  instead of merging around it.
+- The repo is **public**, so Actions minutes are free and merged PR branches are
+  auto-deleted. Free private repositories cannot use branch protection (GitHub
+  returns 403); that is why this only became enforceable after the repo went public.
 
 ## Where things are
 
@@ -139,3 +139,4 @@ are the source of truth.
 | 2026-11-27 | Claude (Sonnet 5.5) | `agent/claude/handoff-repo-link` | Created private repo `psugarev/ev-info`, initial import, recorded repo URL; installed `gh` via Homebrew | docs only |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/cell-grid-redesign` | Issue #6: six labelled 32-cell module blocks (read count, min/max/Δ, BALANCED/WATCH/DRIFT chip), strongest/weakest ring per block, weakest-cell ranking card, tap-to-cell detail sheet, threshold legend with band counts, testable `CellAnalysis` + 10 tests, EN/BG strings, screenshot harness | 94 tests, Release + Debug build, simulator EN + BG screenshots |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/ci-workflow` | Issue #16: GitHub Actions CI — `swift test` + XcodeGen/Release build, project-sync guard, bundle checks (privacy manifest, identity, lproj), pinned XcodeGen 2.49.0, README badge; enabled auto-delete of merged branches; required status checks blocked by the free private plan (403) and documented | CI green twice on PR #17 (1m15s + 1m36s); auto-delete verified |
+| 2026-11-27 | Claude (deepseek-flash) | `agent/lead/open-source-license` | MIT licence + README licence/open-source badges; repo went public → enabled the `main protection` ruleset (required checks + PR, no force push/deletion) and updated the CI/HANDOFF notes for free public-repo minutes; secret scan of working tree and full history is clean | ruleset active, PR #17 still mergeable, CI green |
