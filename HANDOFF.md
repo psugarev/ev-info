@@ -20,7 +20,7 @@ never claim a PID is validated before it is).
 
 ```bash
 xcodegen generate                       # project.yml is the source of truth
-swift test --disable-sandbox            # 84 tests, core logic (macOS)
+swift test --disable-sandbox            # 94 tests, core logic (macOS)
 xcodebuild -project IoniqDrive.xcodeproj -scheme IoniqDrive \
   -configuration Release -destination 'generic/platform=iOS Simulator' \
   CODE_SIGNING_ALLOWED=NO build
@@ -32,6 +32,23 @@ xcodebuild -project IoniqDrive.xcodeproj -scheme IoniqDrive \
 - Debug-only harness: launch args `-demo`, `-demoRoute drive|battery|cells|charging|history`.
   You can also pass NSUserDefaults overrides, e.g. `-disclaimerAccepted YES -demoModeEnabled YES`.
 - Simulator cold start shows a blank launch screen for ~10 s (dyld cost, not app code).
+- CI (`.github/workflows/ci.yml`) runs on every PR and on `main`: `swift test`, then
+  XcodeGen + Release build for `generic/platform=iOS Simulator`, a project-sync check
+  (`xcodegen generate` must not change the committed project), and bundle assertions
+  (privacy manifest present and valid, bundle id / display name / export-compliance,
+  `en.lproj` + `bg.lproj`). Runs on `macos-26` (Xcode 26.x), ~6–10 min per PR.
+- CI pins **XcodeGen 2.49.0** (env `XCODEGEN_VERSION` in the workflow) so the
+  project-sync check is deterministic. If you bump XcodeGen locally, bump that pin in
+  the same PR and commit the regenerated project.
+- **CI is advisory, not enforced.** Required status checks and branch protection for
+  *private* repos need GitHub Pro (or a public repo); on the current free private repo
+  GitHub answers 403 "Upgrade to GitHub Pro…". Until that changes, the rule is
+  convention only: **never merge a PR whose checks are red or missing**. When the repo
+  is upgraded or made public, apply the ruleset (contexts must match the job names):
+  `gh api -X POST repos/psugarev/ev-info/rulesets --input -` with `target: branch`,
+  `conditions.ref_name.include: ["~DEFAULT_BRANCH"]` and rules `deletion`,
+  `non_fast_forward`, `required_status_checks` (`Unit tests (SwiftPM)`,
+  `App build (Release, simulator)`). Merged PR branches are auto-deleted.
 
 ## Where things are
 
@@ -121,3 +138,4 @@ are the source of truth.
 | 2026-11-27 | Claude (Sonnet 5.5) | `main` @ 42ab1db | Implemented audit blockers + P0/high items (see §2b of the audit); added 13 tests, HANDOFF.md | 84 tests, Release + Debug build, simulator spot-check |
 | 2026-11-27 | Claude (Sonnet 5.5) | `agent/claude/handoff-repo-link` | Created private repo `psugarev/ev-info`, initial import, recorded repo URL; installed `gh` via Homebrew | docs only |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/cell-grid-redesign` | Issue #6: six labelled 32-cell module blocks (read count, min/max/Δ, BALANCED/WATCH/DRIFT chip), strongest/weakest ring per block, weakest-cell ranking card, tap-to-cell detail sheet, threshold legend with band counts, testable `CellAnalysis` + 10 tests, EN/BG strings, screenshot harness | 94 tests, Release + Debug build, simulator EN + BG screenshots |
+| 2026-11-27 | Claude (deepseek-flash) | `agent/lead/ci-workflow` | Issue #16: GitHub Actions CI — `swift test` + XcodeGen/Release build, project-sync guard, bundle checks (privacy manifest, identity, lproj), pinned XcodeGen 2.49.0, README badge; enabled auto-delete of merged branches; required status checks blocked by the free private plan (403) and documented | CI green twice on PR #17 (1m15s + 1m36s); auto-delete verified |
