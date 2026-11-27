@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EV Info — EV battery &amp; OBD2 telemetry</title>
+<style>
+  :root { color-scheme: dark; --bg:#06080d; --surface:#111722; --text:#f1f5f9; --muted:#8ca0b8; --cyan:#22d3ee; --green:#34d399; --border:#223044; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; }
+  main { max-width:720px; margin:0 auto; padding:56px 24px 80px; }
+  h1 { font-size:40px; line-height:1.15; margin:0 0 12px; letter-spacing:-0.02em; }
+  h2 { font-size:20px; margin:36px 0 8px; }
+  p, li { color:var(--muted); }
+  a { color:var(--cyan); }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:20px 22px; margin:18px 0; }
+  .tag { display:inline-block; color:var(--green); font-size:13px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
+  ul { padding-left:22px; }
+</style>
+</head>
+<body>
+<main>
+  <span class="tag">Open source · MIT</span>
+  <h1>EV Info</h1>
+  <p>Read-only battery and OBD2 telemetry for the Hyundai Ioniq 5 / E-GMP family.
+     State of health, all 192 cell voltages, charging power, tire pressures, trips and real
+     electricity cost — computed on your iPhone. Nothing is uploaded.</p>
+
+  <div class="card">
+    <h2>What it needs</h2>
+    <ul>
+      <li>An iPhone with iOS 17.6 or later.</li>
+      <li>A Bluetooth LE ELM327-compatible OBD2 adapter (for example vLinker iCar Pro) plugged into the car's OBD port.</li>
+      <li>No account, no subscription, no cloud.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Pages</h2>
+    <ul>
+      <li><a href="privacy.html">Privacy policy</a> — the app stores everything locally.</li>
+      <li><a href="support.html">Support</a> — setup, troubleshooting and contact.</li>
+      <li><a href="https://github.com/psugarev/ev-info">Source code</a> — MIT licensed.</li>
+    </ul>
+  </div>
+
+  <p style="font-size:14px">EV Info is not affiliated with or endorsed by Hyundai Motor Company.
+     Hyundai and Ioniq are trademarks of Hyundai Motor Company.</p>
+</main>
+</body>
+</html>

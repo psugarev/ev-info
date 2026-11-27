@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EV Info — Privacy Policy</title>
+<style>
+  :root { color-scheme: dark; --bg:#06080d; --surface:#111722; --text:#f1f5f9; --muted:#8ca0b8; --cyan:#22d3ee; --border:#223044; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.65 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; }
+  main { max-width:720px; margin:0 auto; padding:48px 24px 80px; }
+  h1 { font-size:34px; line-height:1.2; margin:0 0 6px; letter-spacing:-0.02em; }
+  h2 { font-size:19px; margin:32px 0 6px; }
+  p, li { color:var(--muted); }
+  a { color:var(--cyan); }
+  .updated { color:var(--muted); font-size:14px; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:16px 20px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>EV Info — Privacy Policy</h1>
+  <p class="updated">Last updated: 27 November 2026</p>
+
+  <p>EV Info reads vehicle data from an ELM327-compatible Bluetooth OBD2 adapter and
+     stores it locally on your iPhone.</p>
+
+  <h2>What the app collects</h2>
+  <div class="card">
+    <p><strong>None.</strong> There is no account, no server, no analytics, no advertising
+       and no third-party SDK. Trip data, battery history, diagnostic reports, GPS track
+       points and settings stay in the app's local storage on your device. The app makes no
+       network requests of its own.</p>
+  </div>
+
+  <h2>Location</h2>
+  <p>Used only while you record a trip, to measure distance, speed and route when the car
+     does not report them over OBD2. Reverse geocoding of a trip's start and end point is
+     performed by Apple's CoreLocation service. Location is not used in the background.</p>
+
+  <h2>Bluetooth</h2>
+  <p>Used only to connect to your OBD2 adapter. The app only reads data from the vehicle;
+     it never sends control, coding or clear-fault commands.</p>
+
+  <h2>Export</h2>
+  <p>JSON and CSV files are created on your device only when you tap Prepare, and go wherever
+     you choose to send them through the iOS share sheet.</p>
+
+  <h2>Your control over your data</h2>
+  <ul>
+    <li>Delete a single trip (and its raw OBD frames) from Trip History.</li>
+    <li>Choose how long detailed logs are kept in Settings → Storage.</li>
+    <li>Erase everything with Settings → Storage → Delete all data.</li>
+    <li>Deleting the app removes all stored data.</li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p>Questions or data requests: <a href="https://github.com/psugarev/ev-info/issues/new/choose">open an issue on GitHub</a>.</p>
+
+  <h2>Not affiliated</h2>
+  <p>EV Info is not affiliated with or endorsed by Hyundai Motor Company. Hyundai and Ioniq
+     are trademarks of Hyundai Motor Company.</p>
+</main>
+</body>
+</html>

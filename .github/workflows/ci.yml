@@ -44,6 +44,9 @@ jobs:
       - name: Localisation check
         run: python3 scripts/check-localization.py
 
+      - name: Archive script dry run
+        run: bash scripts/archive-appstore.sh --dry-run
+
       - name: Run unit tests
         run: swift test --disable-sandbox
 

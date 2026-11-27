@@ -1,9 +1,10 @@
 # EV Info — Privacy Policy
 
-> Host this page at a public URL and enter that URL in App Store Connect →
-> App Information → Privacy Policy URL. Fill in the two placeholders first.
+> **Hosted at:** https://psugarev.github.io/ev-info/privacy.html — enter that URL in
+> App Store Connect → App Information → Privacy Policy URL. The hosted page is
+> `docs/privacy.html` in this repository (GitHub Pages, branch `main`, folder `/docs`).
 
-**Last updated:** `<date>`
+**Last updated:** 27 November 2026
 
 EV Info reads vehicle data from an ELM327-compatible Bluetooth OBD2 adapter and
 stores it locally on your iPhone.
@@ -41,7 +42,8 @@ wherever you choose to send them through the iOS share sheet.
 
 ## Contact
 
-`<your email>`
+Questions or data requests: open an issue at
+https://github.com/psugarev/ev-info/issues/new/choose
 
 ## Not affiliated
 
