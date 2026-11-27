@@ -30,9 +30,13 @@ xcodebuild -project IoniqDrive.xcodeproj -scheme IoniqDrive \
 - Never hand-edit `Resources/Info.plist`; edit `project.yml` and regenerate.
 - `Package.swift` compiles `Sources/` as a library (all but `App/IoniqDriveApp.swift`)
   so new files must build on macOS too (guard UIKit with `#if os(iOS)`).
-- Debug-only harness: launch args `-demo`, `-demoRoute drive|battery|cells|charging|history`.
+- Debug-only harness: launch args `-demo`, `-demoRoute drive|battery|cells|charging|history|costs|trip`.
   You can also pass NSUserDefaults overrides, e.g. `-disclaimerAccepted YES -demoModeEnabled YES`.
 - Simulator cold start shows a blank launch screen for ~10 s (dyld cost, not app code).
+- Screenshots are generated from demo mode: `bash scripts/capture-appstore-screenshots.sh`
+  (~10 min). It reinstalls the app per language because trip summaries are
+  written text in the language active when demo data was seeded; re-capture after
+  any UI or demo-seed change.
 - CI (`.github/workflows/ci.yml`) runs on every PR and on `main`: `swift test`, then
   XcodeGen + Release build for `generic/platform=iOS Simulator`, a project-sync check
   (`xcodegen generate` must not change the committed project), and bundle assertions
@@ -62,6 +66,7 @@ xcodebuild -project IoniqDrive.xcodeproj -scheme IoniqDrive \
 | Persistence: schema/migrations, retention, export | `Sources/Storage/AppSchema.swift`, `DataRetention.swift`, `ExportService.swift` |
 | UI | `Sources/UI/*` (`DashboardView`, `SettingsView`, `DisclaimerView`, `LogsView`, …) |
 | Localisation | `Resources/Localizable.xcstrings`, `Resources/InfoPlist.xcstrings` |
+| App Store screenshots | `Distribution/screenshots/{69,65}/{en,bg}/NN-*.jpg`, `scripts/capture-appstore-screenshots.sh` |
 | App Store material | `APP_STORE_AUDIT.md` (the plan), `Distribution/PRIVACY_POLICY.md`, `Distribution/APP_REVIEW_NOTES.md` |
 
 ## What has been done
@@ -84,7 +89,6 @@ are the source of truth.
 | # | Task | Priority |
 |---|---|---|
 | [#5](https://github.com/psugarev/ev-info/issues/5) | Connect flow: init progress text + real-device verification | P0 |
-| [#2](https://github.com/psugarev/ev-info/issues/2) | Screenshots in demo mode | P0 |
 | [#12](https://github.com/psugarev/ev-info/issues/12) | App Store Connect admin (owner task, not code) | P0 |
 | [#4](https://github.com/psugarev/ev-info/issues/4) | Dynamic Type, hit targets, Reduce Motion | P1 |
 | [#7](https://github.com/psugarev/ev-info/issues/7) | Charge-session log with cost | P1 |
@@ -148,5 +152,6 @@ are the source of truth.
 | 2026-11-27 | Claude (Sonnet 5.5) | `agent/claude/handoff-repo-link` | Created private repo `psugarev/ev-info`, initial import, recorded repo URL; installed `gh` via Homebrew | docs only |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/cell-grid-redesign` | Issue #6: six labelled 32-cell module blocks (read count, min/max/Δ, BALANCED/WATCH/DRIFT chip), strongest/weakest ring per block, weakest-cell ranking card, tap-to-cell detail sheet, threshold legend with band counts, testable `CellAnalysis` + 10 tests, EN/BG strings, screenshot harness | 94 tests, Release + Debug build, simulator EN + BG screenshots |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/ci-workflow` | Issue #16: GitHub Actions CI — `swift test` + XcodeGen/Release build, project-sync guard, bundle checks (privacy manifest, identity, lproj), pinned XcodeGen 2.49.0, README badge; enabled auto-delete of merged branches; required status checks blocked by the free private plan (403) and documented | CI green twice on PR #17 (1m15s + 1m36s); auto-delete verified |
+| 2026-11-27 | Claude (deepseek-flash) | `agent/lead/appstore-screenshots` | Issue #2: demo trips seeded (`DemoData.seedTrips`, Costs/Trip detail screenshots), debug routes `costs`/`trip`, `scripts/capture-appstore-screenshots.sh`, 24 JPEGs in `Distribution/screenshots/{69,65}/{en,bg}` (1320×2868 and 1242×2688, status bar 9:41), tariff subtitle localised; screenshots README | 99 tests, Release build, size-verified screenshot sets, EN/BG inspected |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/localization` | Issue #3: `AppLocalization` helper (language `.lproj`, format args), localized BLE statuses / diagnostics / trip summaries / chart titles / tire names / dates; 97 new+fixed BG strings, 29 stale keys removed, 10 re-enabled; `scripts/check-localization.py` + CI step + `LocalizationCatalogTests` | 97 tests, Release build, BG simulator screenshots (Drive/Battery/Charging) |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/open-source-license` | MIT licence + README licence/open-source badges; repo went public → enabled the `main protection` ruleset (required checks + PR, no force push/deletion) and updated the CI/HANDOFF notes for free public-repo minutes; secret scan of working tree and full history is clean | ruleset active, PR #17 still mergeable, CI green |

@@ -90,6 +90,10 @@ struct IoniqDriveApp: App {
                 NavigationStack { ChargingView() }
             case .history:
                 NavigationStack { BatteryHistoryView() }
+            case .costs:
+                NavigationStack { CostsView() }
+            case .trip:
+                DemoTripDetailRoute()
             }
         } else {
             RootTabView()
@@ -146,18 +150,40 @@ struct IoniqDriveApp: App {
             ble.setDemoConnection(true)
             telemetry.enableDemo(with: DemoData.liveSample())
             DemoData.seedHistory(container: Self.container)
+            DemoData.seedTrips(container: Self.container)
         } else {
             ble.setDemoConnection(false)
             telemetry.disableDemo()
             DemoData.removeSeededHistory(container: Self.container)
+            DemoData.removeSeededTrips(container: Self.container)
         }
     }
 }
 
 #if DEBUG
+/// Opens the newest trip's detail for App Store screenshots.
+private struct DemoTripDetailRoute: View {
+    @Query(sort: \TripRecord.startDate, order: .reverse)
+    private var trips: [TripRecord]
+
+    var body: some View {
+        NavigationStack {
+            if let trip = trips.first {
+                TripDetailView(trip: trip)
+            } else {
+                ContentUnavailableView(
+                    "No trips yet",
+                    systemImage: "car",
+                    description: Text("Turn on Demo mode to seed sample trips.")
+                )
+            }
+        }
+    }
+}
+
 // MARK: - Debug route
-// Design harness only: `-demoRoute drive|battery|cells|charging|history` opens
-// one screen directly. Excluded from Release builds.
+// Design harness only: `-demoRoute drive|battery|cells|charging|history|costs|trip`
+// opens one screen directly. Excluded from Release builds.
 
 private enum DebugRoute: String {
     case drive
@@ -165,6 +191,8 @@ private enum DebugRoute: String {
     case cells
     case charging
     case history
+    case costs
+    case trip
 
     static var current: DebugRoute? {
         let arguments = ProcessInfo.processInfo.arguments

@@ -100,7 +100,11 @@ struct CostsView: View {
                         Text("Electricity tariff")
                             .font(.system(size: 15, weight: .semibold, design: .rounded))
                             .foregroundStyle(Theme.textPrimary)
-                        Text(String(format: "Day €%.4f · Night €%.4f / kWh", profile.day.allInEURPerKWh, profile.night.allInEURPerKWh))
+                        Text(AppLocalization.format(
+                            "Day €%@ · Night €%@ / kWh",
+                            AppLocalization.number(profile.day.allInEURPerKWh, decimals: 4),
+                            AppLocalization.number(profile.night.allInEURPerKWh, decimals: 4)
+                        ))
                             .font(.system(size: 10, weight: .medium, design: .monospaced))
                             .foregroundStyle(Theme.textTertiary)
                     }
