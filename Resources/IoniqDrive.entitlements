@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- No special entitlements needed for CoreBluetooth central on iOS.
+         Background BLE is declared via UIBackgroundModes in Info.plist.
+         CarPlay would require com.apple.developer.carplay-* entitlements when added. -->
+</dict>
+</plist>

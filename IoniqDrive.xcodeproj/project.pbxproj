@@ -1,0 +1,672 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03432F09C208839A7A184184 /* TripHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143B569452123408795E8D77 /* TripHistoryView.swift */; };
+		09A7EC454EF6F5990C5EDC40 /* ChargingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CDB2F4F0A368CDAA1586E /* ChargingView.swift */; };
+		1061A25F63608F011678A30B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 22A0E0E8CC23AF1F55A70C2C /* PrivacyInfo.xcprivacy */; };
+		193CA461C43DBCF51FE494CF /* BulgarianTariffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478F5FEF0649D2357A33D88 /* BulgarianTariffEngine.swift */; };
+		1A2C444CF7095BA3EE52C374 /* BLETransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC78AC0228E12B55078507 /* BLETransport.swift */; };
+		1E45BBC1C07E9B017C16B4F7 /* StorageHygieneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD9104E97F5A76C018D77FF /* StorageHygieneTests.swift */; };
+		1E5B4B076C4F71EF96548427 /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59782B0441A0CADA50549A10 /* AppLog.swift */; };
+		1F030F417712FC6B5891A1DB /* BatteryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43B50E9FC6D796809623FA3 /* BatteryDetailView.swift */; };
+		2F79CF4C3C70853EAE5D1B68 /* OBDResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC5EA691D70D734C8CB6F7 /* OBDResponseParser.swift */; };
+		30482C3348D826C34B0D97A4 /* TripModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B87069F7D08F7F1BEC4A7 /* TripModels.swift */; };
+		3652449E7D45D036559C648A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF027303A9902B65389170D /* SettingsView.swift */; };
+		3BC598C3F4DCF5D2ACF0B663 /* OBDSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2DC20D9FA19E9A456F74 /* OBDSessionTests.swift */; };
+		3DCB87DBFE1033944F5DB40C /* IoniqDriveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B0EDA2BDCDDF66BDB667C1 /* IoniqDriveApp.swift */; };
+		3E1677124C44756EB650E970 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A101720B6FB2E66DC25E312 /* Theme.swift */; };
+		3F40720B5FEE77F0DA9947FF /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C1BE12EEE6A52F95D378908E /* InfoPlist.xcstrings */; };
+		3F69C030D2E110DE6DDF63AB /* OBDSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDC7F8488F9F07B6725D45 /* OBDSession.swift */; };
+		466CF231594E3335D893D128 /* CellVoltageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CE5EC051EF1ADA385D726 /* CellVoltageView.swift */; };
+		511DA8A23D531530530E851D /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D522EACCF7F82681594DA0B /* LogsView.swift */; };
+		556F0D5C2DBEE349D1BEE864 /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E4C87B9E1545969B058A4 /* ExportService.swift */; };
+		5E43BF71F5C133AC5A90C529 /* EnergyCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258D76DD8956D6FC85AB6B2C /* EnergyCalculatorTests.swift */; };
+		69AA438432222FAC139BF550 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36514868DF4B257AB0FA367F /* RootTabView.swift */; };
+		6E9009F37B88943C650FB4D7 /* OBDResponseParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05A4C563812F26417A670A1 /* OBDResponseParserTests.swift */; };
+		75FD1CCDEBC83E0C6AA78DAA /* CostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB397B9958041F794C8B931 /* CostsView.swift */; };
+		78AE26A4E02ED721E9994E53 /* TelemetryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF32D4B28BFD0BB525C44F5 /* TelemetryStore.swift */; };
+		912D4EFAA08491E3443C0298 /* TelemetryEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F487A635A6DC4520B7192 /* TelemetryEngine.swift */; };
+		95DB0B9238DDF234B72F49EB /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DA898DC86E85879CFF31C /* DashboardView.swift */; };
+		9E7B9157A46E98E602C2E853 /* HistoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EAE0E7B75D0453FEC30B41 /* HistoryModels.swift */; };
+		A19EA5A07BC4745296BFA8D6 /* PIDRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C859C5C45F25216DF554985 /* PIDRegistry.swift */; };
+		AA83D51856BCFCA85DA557E9 /* BulgarianTariffEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA0A9A051BD84E9464397B6 /* BulgarianTariffEngineTests.swift */; };
+		ABD8165887EF513D9539A70A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAF9FA627BF15DF699A21095 /* Assets.xcassets */; };
+		AC58D15F8031B7D1700EFCAC /* EnergyCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFE72DDD333A782CBF34A09 /* EnergyCalculator.swift */; };
+		AD3E4845AE76DE1F7A7F4621 /* SystemSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906B0294DE960533B94EE15B /* SystemSettings.swift */; };
+		B1CAEFE618259840920F58AB /* TripRecorderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BFA6CCEAE4E62B3FD8F2D6 /* TripRecorderTests.swift */; };
+		BC7D2BE8689C8D6E7B8B36D1 /* VehicleDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D8F67999FDE82652CFB8B /* VehicleDiagnostics.swift */; };
+		C2E3524EE4B8E2661E86AF5E /* TripSummaryGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1460DBFDBFAD4F0737D5DD1C /* TripSummaryGenerator.swift */; };
+		CB119193F30EEE3DA03AD715 /* TelemetryAvailabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758476CBFE72B75984757267 /* TelemetryAvailabilityTests.swift */; };
+		D52197E9CF968BFD118DE075 /* TripRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1D4E4B1F727859C8FBC33 /* TripRecorder.swift */; };
+		D803C4D88351913016388F80 /* TelemetrySample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578A7D6DAF669F51E3A55B9 /* TelemetrySample.swift */; };
+		D91EA3481F23438113708055 /* AppSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219477A3317BF73F60E7D45A /* AppSchema.swift */; };
+		DB599922C1BDCB2A18BF34F5 /* DiagnosticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19255243B03D61D94848EF0 /* DiagnosticsTests.swift */; };
+		DC346049E93BF92BF63E0A6E /* RawLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E0E851BDC5A7BCA3CB173 /* RawLogView.swift */; };
+		E430EC925710D06CE396BFE4 /* BatteryHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9D51284B056648D3B72327 /* BatteryHistoryView.swift */; };
+		ED859CF98A0392C202523B69 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E69F34E132050C4F9B1CF3CF /* Localizable.xcstrings */; };
+		EDED186A2675FE5B40D748F3 /* DisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCBD27DADA0337F691D2F11 /* DisclaimerView.swift */; };
+		F671D1F0A501678DA77CDB8B /* TirePressureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A946698C819E6AF7E46DB8 /* TirePressureView.swift */; };
+		F707AD0BC4A783557751CFD2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE6B881CD8AB881B315DB4 /* LocationManager.swift */; };
+		FE4C2F17657D88B49E7B8C54 /* DemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD3BE22CACD27BB34D137AE /* DemoData.swift */; };
+		FEF81B8A039B92BCE71B54F8 /* DataRetention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236EB997C8E70FC7F3EE011E /* DataRetention.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DFDD96C827F04031B19FA8E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF8FCDE0DB54AB253B76E7DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12BFAC8EB4D40FB3ECB98B1F;
+			remoteInfo = IoniqDrive;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0CFE72DDD333A782CBF34A09 /* EnergyCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCalculator.swift; sourceTree = "<group>"; };
+		143B569452123408795E8D77 /* TripHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHistoryView.swift; sourceTree = "<group>"; };
+		1460DBFDBFAD4F0737D5DD1C /* TripSummaryGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryGenerator.swift; sourceTree = "<group>"; };
+		1BD3BE22CACD27BB34D137AE /* DemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoData.swift; sourceTree = "<group>"; };
+		219477A3317BF73F60E7D45A /* AppSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSchema.swift; sourceTree = "<group>"; };
+		22A0E0E8CC23AF1F55A70C2C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		233F487A635A6DC4520B7192 /* TelemetryEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryEngine.swift; sourceTree = "<group>"; };
+		236EB997C8E70FC7F3EE011E /* DataRetention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRetention.swift; sourceTree = "<group>"; };
+		258D76DD8956D6FC85AB6B2C /* EnergyCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCalculatorTests.swift; sourceTree = "<group>"; };
+		2C859C5C45F25216DF554985 /* PIDRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIDRegistry.swift; sourceTree = "<group>"; };
+		304E4C87B9E1545969B058A4 /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
+		36514868DF4B257AB0FA367F /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		3A9DA898DC86E85879CFF31C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		3B9D51284B056648D3B72327 /* BatteryHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryHistoryView.swift; sourceTree = "<group>"; };
+		417CE5EC051EF1ADA385D726 /* CellVoltageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellVoltageView.swift; sourceTree = "<group>"; };
+		44B0EDA2BDCDDF66BDB667C1 /* IoniqDriveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoniqDriveApp.swift; sourceTree = "<group>"; };
+		4578A7D6DAF669F51E3A55B9 /* TelemetrySample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetrySample.swift; sourceTree = "<group>"; };
+		47D49DD1C7DECBB5354BF8A2 /* IoniqDriveTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = IoniqDriveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52D1D4E4B1F727859C8FBC33 /* TripRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRecorder.swift; sourceTree = "<group>"; };
+		59782B0441A0CADA50549A10 /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
+		758476CBFE72B75984757267 /* TelemetryAvailabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryAvailabilityTests.swift; sourceTree = "<group>"; };
+		7A9D8F67999FDE82652CFB8B /* VehicleDiagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDiagnostics.swift; sourceTree = "<group>"; };
+		7D522EACCF7F82681594DA0B /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
+		7EF027303A9902B65389170D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		7FCBD27DADA0337F691D2F11 /* DisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerView.swift; sourceTree = "<group>"; };
+		80AE6B881CD8AB881B315DB4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		8A101720B6FB2E66DC25E312 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		906B0294DE960533B94EE15B /* SystemSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSettings.swift; sourceTree = "<group>"; };
+		9478F5FEF0649D2357A33D88 /* BulgarianTariffEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulgarianTariffEngine.swift; sourceTree = "<group>"; };
+		9BA0A9A051BD84E9464397B6 /* BulgarianTariffEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulgarianTariffEngineTests.swift; sourceTree = "<group>"; };
+		9BBDC7F8488F9F07B6725D45 /* OBDSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDSession.swift; sourceTree = "<group>"; };
+		9CEC5EA691D70D734C8CB6F7 /* OBDResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDResponseParser.swift; sourceTree = "<group>"; };
+		9EDC78AC0228E12B55078507 /* BLETransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLETransport.swift; sourceTree = "<group>"; };
+		A8BA2DC20D9FA19E9A456F74 /* OBDSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDSessionTests.swift; sourceTree = "<group>"; };
+		AE6B87069F7D08F7F1BEC4A7 /* TripModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModels.swift; sourceTree = "<group>"; };
+		AEB397B9958041F794C8B931 /* CostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostsView.swift; sourceTree = "<group>"; };
+		C1BE12EEE6A52F95D378908E /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		C1EAE0E7B75D0453FEC30B41 /* HistoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModels.swift; sourceTree = "<group>"; };
+		CEACE11644DA04F89ED56751 /* IoniqDrive.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = IoniqDrive.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D19255243B03D61D94848EF0 /* DiagnosticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsTests.swift; sourceTree = "<group>"; };
+		D2BFA6CCEAE4E62B3FD8F2D6 /* TripRecorderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRecorderTests.swift; sourceTree = "<group>"; };
+		D32E0E851BDC5A7BCA3CB173 /* RawLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawLogView.swift; sourceTree = "<group>"; };
+		D43B50E9FC6D796809623FA3 /* BatteryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryDetailView.swift; sourceTree = "<group>"; };
+		D91CDB2F4F0A368CDAA1586E /* ChargingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingView.swift; sourceTree = "<group>"; };
+		DDF32D4B28BFD0BB525C44F5 /* TelemetryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryStore.swift; sourceTree = "<group>"; };
+		E69F34E132050C4F9B1CF3CF /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		EFD9104E97F5A76C018D77FF /* StorageHygieneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHygieneTests.swift; sourceTree = "<group>"; };
+		F05A4C563812F26417A670A1 /* OBDResponseParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDResponseParserTests.swift; sourceTree = "<group>"; };
+		F1A946698C819E6AF7E46DB8 /* TirePressureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TirePressureView.swift; sourceTree = "<group>"; };
+		FAF9FA627BF15DF699A21095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1ACC9D9ECE077F2DEF64F2B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEACE11644DA04F89ED56751 /* IoniqDrive.app */,
+				47D49DD1C7DECBB5354BF8A2 /* IoniqDriveTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		38268213DE96D4DC70C1A12A /* Pricing */ = {
+			isa = PBXGroup;
+			children = (
+				9478F5FEF0649D2357A33D88 /* BulgarianTariffEngine.swift */,
+			);
+			path = Pricing;
+			sourceTree = "<group>";
+		};
+		38E10C0F352550BBABD0CFEB /* Telemetry */ = {
+			isa = PBXGroup;
+			children = (
+				0CFE72DDD333A782CBF34A09 /* EnergyCalculator.swift */,
+				80AE6B881CD8AB881B315DB4 /* LocationManager.swift */,
+				233F487A635A6DC4520B7192 /* TelemetryEngine.swift */,
+				4578A7D6DAF669F51E3A55B9 /* TelemetrySample.swift */,
+				52D1D4E4B1F727859C8FBC33 /* TripRecorder.swift */,
+				1460DBFDBFAD4F0737D5DD1C /* TripSummaryGenerator.swift */,
+			);
+			path = Telemetry;
+			sourceTree = "<group>";
+		};
+		49DE6CEEB2F80DDD3B6BBC4C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9BA0A9A051BD84E9464397B6 /* BulgarianTariffEngineTests.swift */,
+				D19255243B03D61D94848EF0 /* DiagnosticsTests.swift */,
+				258D76DD8956D6FC85AB6B2C /* EnergyCalculatorTests.swift */,
+				F05A4C563812F26417A670A1 /* OBDResponseParserTests.swift */,
+				A8BA2DC20D9FA19E9A456F74 /* OBDSessionTests.swift */,
+				EFD9104E97F5A76C018D77FF /* StorageHygieneTests.swift */,
+				758476CBFE72B75984757267 /* TelemetryAvailabilityTests.swift */,
+				D2BFA6CCEAE4E62B3FD8F2D6 /* TripRecorderTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		55E067D1CD482FAAFC9D91C8 /* OBD */ = {
+			isa = PBXGroup;
+			children = (
+				9CEC5EA691D70D734C8CB6F7 /* OBDResponseParser.swift */,
+				9BBDC7F8488F9F07B6725D45 /* OBDSession.swift */,
+				2C859C5C45F25216DF554985 /* PIDRegistry.swift */,
+			);
+			path = OBD;
+			sourceTree = "<group>";
+		};
+		6730108ADD43C7D4BA9CFA0B /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				9EDC78AC0228E12B55078507 /* BLETransport.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		7C397AEEBA6218351C987CC7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FAF9FA627BF15DF699A21095 /* Assets.xcassets */,
+				C1BE12EEE6A52F95D378908E /* InfoPlist.xcstrings */,
+				E69F34E132050C4F9B1CF3CF /* Localizable.xcstrings */,
+				22A0E0E8CC23AF1F55A70C2C /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8DEAE949943F04C71AF631BC /* App */ = {
+			isa = PBXGroup;
+			children = (
+				59782B0441A0CADA50549A10 /* AppLog.swift */,
+				1BD3BE22CACD27BB34D137AE /* DemoData.swift */,
+				44B0EDA2BDCDDF66BDB667C1 /* IoniqDriveApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		9DBF1A60A335DA29D2FD5769 = {
+			isa = PBXGroup;
+			children = (
+				7C397AEEBA6218351C987CC7 /* Resources */,
+				A7431A9A6DB1AF24B47ED19A /* Sources */,
+				49DE6CEEB2F80DDD3B6BBC4C /* Tests */,
+				1ACC9D9ECE077F2DEF64F2B9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A7431A9A6DB1AF24B47ED19A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8DEAE949943F04C71AF631BC /* App */,
+				6730108ADD43C7D4BA9CFA0B /* Bluetooth */,
+				B4B072A9F796696FAFBF2D9B /* Diagnostics */,
+				55E067D1CD482FAAFC9D91C8 /* OBD */,
+				38268213DE96D4DC70C1A12A /* Pricing */,
+				EE1B482D389467D9C5B40E93 /* Storage */,
+				38E10C0F352550BBABD0CFEB /* Telemetry */,
+				CF2C754149C30712F05C2373 /* UI */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B4B072A9F796696FAFBF2D9B /* Diagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D8F67999FDE82652CFB8B /* VehicleDiagnostics.swift */,
+			);
+			path = Diagnostics;
+			sourceTree = "<group>";
+		};
+		CF2C754149C30712F05C2373 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D43B50E9FC6D796809623FA3 /* BatteryDetailView.swift */,
+				3B9D51284B056648D3B72327 /* BatteryHistoryView.swift */,
+				417CE5EC051EF1ADA385D726 /* CellVoltageView.swift */,
+				D91CDB2F4F0A368CDAA1586E /* ChargingView.swift */,
+				AEB397B9958041F794C8B931 /* CostsView.swift */,
+				3A9DA898DC86E85879CFF31C /* DashboardView.swift */,
+				7FCBD27DADA0337F691D2F11 /* DisclaimerView.swift */,
+				7D522EACCF7F82681594DA0B /* LogsView.swift */,
+				D32E0E851BDC5A7BCA3CB173 /* RawLogView.swift */,
+				36514868DF4B257AB0FA367F /* RootTabView.swift */,
+				7EF027303A9902B65389170D /* SettingsView.swift */,
+				906B0294DE960533B94EE15B /* SystemSettings.swift */,
+				8A101720B6FB2E66DC25E312 /* Theme.swift */,
+				F1A946698C819E6AF7E46DB8 /* TirePressureView.swift */,
+				143B569452123408795E8D77 /* TripHistoryView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		EE1B482D389467D9C5B40E93 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				219477A3317BF73F60E7D45A /* AppSchema.swift */,
+				236EB997C8E70FC7F3EE011E /* DataRetention.swift */,
+				304E4C87B9E1545969B058A4 /* ExportService.swift */,
+				C1EAE0E7B75D0453FEC30B41 /* HistoryModels.swift */,
+				DDF32D4B28BFD0BB525C44F5 /* TelemetryStore.swift */,
+				AE6B87069F7D08F7F1BEC4A7 /* TripModels.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		12BFAC8EB4D40FB3ECB98B1F /* IoniqDrive */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A4D37850409138B27B4EF24 /* Build configuration list for PBXNativeTarget "IoniqDrive" */;
+			buildPhases = (
+				02EB0753FB7B7B5FF65E11EA /* Sources */,
+				7076F7F119ECB4B591065791 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IoniqDrive;
+			packageProductDependencies = (
+			);
+			productName = IoniqDrive;
+			productReference = CEACE11644DA04F89ED56751 /* IoniqDrive.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2B69E8F7003DBB300AA7150F /* IoniqDriveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BF288AD72FC97C8040B4C26 /* Build configuration list for PBXNativeTarget "IoniqDriveTests" */;
+			buildPhases = (
+				3A4E37687E742601FE2535E6 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F97394483B910EF07953B360 /* PBXTargetDependency */,
+			);
+			name = IoniqDriveTests;
+			packageProductDependencies = (
+			);
+			productName = IoniqDriveTests;
+			productReference = 47D49DD1C7DECBB5354BF8A2 /* IoniqDriveTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF8FCDE0DB54AB253B76E7DA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					12BFAC8EB4D40FB3ECB98B1F = {
+						DevelopmentTeam = Z9FRWWUQBT;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 678108F45859F1C6CCD8696D /* Build configuration list for PBXProject "IoniqDrive" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				bg,
+				en,
+			);
+			mainGroup = 9DBF1A60A335DA29D2FD5769;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1ACC9D9ECE077F2DEF64F2B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				12BFAC8EB4D40FB3ECB98B1F /* IoniqDrive */,
+				2B69E8F7003DBB300AA7150F /* IoniqDriveTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7076F7F119ECB4B591065791 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABD8165887EF513D9539A70A /* Assets.xcassets in Resources */,
+				3F40720B5FEE77F0DA9947FF /* InfoPlist.xcstrings in Resources */,
+				ED859CF98A0392C202523B69 /* Localizable.xcstrings in Resources */,
+				1061A25F63608F011678A30B /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		02EB0753FB7B7B5FF65E11EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E5B4B076C4F71EF96548427 /* AppLog.swift in Sources */,
+				D91EA3481F23438113708055 /* AppSchema.swift in Sources */,
+				1A2C444CF7095BA3EE52C374 /* BLETransport.swift in Sources */,
+				1F030F417712FC6B5891A1DB /* BatteryDetailView.swift in Sources */,
+				E430EC925710D06CE396BFE4 /* BatteryHistoryView.swift in Sources */,
+				193CA461C43DBCF51FE494CF /* BulgarianTariffEngine.swift in Sources */,
+				466CF231594E3335D893D128 /* CellVoltageView.swift in Sources */,
+				09A7EC454EF6F5990C5EDC40 /* ChargingView.swift in Sources */,
+				75FD1CCDEBC83E0C6AA78DAA /* CostsView.swift in Sources */,
+				95DB0B9238DDF234B72F49EB /* DashboardView.swift in Sources */,
+				FEF81B8A039B92BCE71B54F8 /* DataRetention.swift in Sources */,
+				FE4C2F17657D88B49E7B8C54 /* DemoData.swift in Sources */,
+				EDED186A2675FE5B40D748F3 /* DisclaimerView.swift in Sources */,
+				AC58D15F8031B7D1700EFCAC /* EnergyCalculator.swift in Sources */,
+				556F0D5C2DBEE349D1BEE864 /* ExportService.swift in Sources */,
+				9E7B9157A46E98E602C2E853 /* HistoryModels.swift in Sources */,
+				3DCB87DBFE1033944F5DB40C /* IoniqDriveApp.swift in Sources */,
+				F707AD0BC4A783557751CFD2 /* LocationManager.swift in Sources */,
+				511DA8A23D531530530E851D /* LogsView.swift in Sources */,
+				2F79CF4C3C70853EAE5D1B68 /* OBDResponseParser.swift in Sources */,
+				3F69C030D2E110DE6DDF63AB /* OBDSession.swift in Sources */,
+				A19EA5A07BC4745296BFA8D6 /* PIDRegistry.swift in Sources */,
+				DC346049E93BF92BF63E0A6E /* RawLogView.swift in Sources */,
+				69AA438432222FAC139BF550 /* RootTabView.swift in Sources */,
+				3652449E7D45D036559C648A /* SettingsView.swift in Sources */,
+				AD3E4845AE76DE1F7A7F4621 /* SystemSettings.swift in Sources */,
+				912D4EFAA08491E3443C0298 /* TelemetryEngine.swift in Sources */,
+				D803C4D88351913016388F80 /* TelemetrySample.swift in Sources */,
+				78AE26A4E02ED721E9994E53 /* TelemetryStore.swift in Sources */,
+				3E1677124C44756EB650E970 /* Theme.swift in Sources */,
+				F671D1F0A501678DA77CDB8B /* TirePressureView.swift in Sources */,
+				03432F09C208839A7A184184 /* TripHistoryView.swift in Sources */,
+				30482C3348D826C34B0D97A4 /* TripModels.swift in Sources */,
+				D52197E9CF968BFD118DE075 /* TripRecorder.swift in Sources */,
+				C2E3524EE4B8E2661E86AF5E /* TripSummaryGenerator.swift in Sources */,
+				BC7D2BE8689C8D6E7B8B36D1 /* VehicleDiagnostics.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A4E37687E742601FE2535E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA83D51856BCFCA85DA557E9 /* BulgarianTariffEngineTests.swift in Sources */,
+				DB599922C1BDCB2A18BF34F5 /* DiagnosticsTests.swift in Sources */,
+				5E43BF71F5C133AC5A90C529 /* EnergyCalculatorTests.swift in Sources */,
+				6E9009F37B88943C650FB4D7 /* OBDResponseParserTests.swift in Sources */,
+				3BC598C3F4DCF5D2ACF0B663 /* OBDSessionTests.swift in Sources */,
+				1E45BBC1C07E9B017C16B4F7 /* StorageHygieneTests.swift in Sources */,
+				CB119193F30EEE3DA03AD715 /* TelemetryAvailabilityTests.swift in Sources */,
+				B1CAEFE618259840920F58AB /* TripRecorderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F97394483B910EF07953B360 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12BFAC8EB4D40FB3ECB98B1F /* IoniqDrive */;
+			targetProxy = DFDD96C827F04031B19FA8E3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		01E39873D7135D7596FDFAC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.evinfo.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IoniqDrive.app/IoniqDrive";
+			};
+			name = Debug;
+		};
+		0EE9540C53DE8DA6BD8643C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ENTITLEMENTS = Resources/IoniqDrive.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z9FRWWUQBT;
+				INFOPLIST_FILE = Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evinfo.app;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2ABDAF24AE6598A3F079B3B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ENTITLEMENTS = Resources/IoniqDrive.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z9FRWWUQBT;
+				INFOPLIST_FILE = Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evinfo.app;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		5FEF0781C0CBC60CA84ADB63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		682E738530DF2F51C8821050 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		AD4516F94C962000FAFE9EA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.evinfo.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IoniqDrive.app/IoniqDrive";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0BF288AD72FC97C8040B4C26 /* Build configuration list for PBXNativeTarget "IoniqDriveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01E39873D7135D7596FDFAC1 /* Debug */,
+				AD4516F94C962000FAFE9EA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5A4D37850409138B27B4EF24 /* Build configuration list for PBXNativeTarget "IoniqDrive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EE9540C53DE8DA6BD8643C4 /* Debug */,
+				2ABDAF24AE6598A3F079B3B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		678108F45859F1C6CCD8696D /* Build configuration list for PBXProject "IoniqDrive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				682E738530DF2F51C8821050 /* Debug */,
+				5FEF0781C0CBC60CA84ADB63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF8FCDE0DB54AB253B76E7DA /* Project object */;
+}

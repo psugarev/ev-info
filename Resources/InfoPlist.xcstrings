@@ -1,0 +1,54 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EV Info"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EV Info"
+          }
+        }
+      }
+    },
+    "NSBluetoothAlwaysUsageDescription" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EV Info се свързва с вашия OBD2 Bluetooth адаптер, съвместим с ELM327 (например vLinker iCar Pro), за да чете данни за батерията, зареждането и пътуванията. Всички данни остават на вашия iPhone."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EV Info connects to your ELM327-compatible OBD2 Bluetooth adapter (for example vLinker iCar Pro) to read battery, charging and trip data. All data stays on your iPhone."
+          }
+        }
+      }
+    },
+    "NSLocationWhenInUseUsageDescription" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EV Info използва местоположението ви, докато записвате пътуване, за да измерва разстояние, скорост и маршрут, когато автомобилът не ги подава през OBD2."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EV Info uses your location while recording a trip to measure distance, speed and route when the car does not report them over OBD2."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

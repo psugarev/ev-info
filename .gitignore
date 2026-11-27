@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# SwiftPM / Xcode build output
+.build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Local env / secrets (never commit)
+.env
+.env.*
+*.p12
+*.mobileprovision
+*.pem
+
+# Scratch
+*.log
