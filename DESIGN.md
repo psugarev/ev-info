@@ -45,10 +45,13 @@ data-dense automotive dashboard rather than a marketing page.
   Start/Stop action, 2×2 metric grid, a tire-pressure card and recent trips.
   There is deliberately no large speed hero; the app is energy/trip focused.
   Settings is reachable from every tab.
-- **Charging:** live charging state/power, lifetime AC/DC counters (persisted
-  with a last-known timestamp) and the charging test.
-- **Costs:** total cost/energy, one collapsible electricity-tariff card and the
-  trip cost list. Tariff is never shown on Drive.
+- **Charging:** live charging state/power, a **sessions card** (detected
+  sessions with date, AC/DC chip, energy, peak power, SOC window and cost; the
+  active session shows "charging now"), lifetime AC/DC counters (persisted with a
+  last-known timestamp) and the charging test.
+- **Costs:** total trip cost/energy, one collapsible electricity-tariff card, a
+  **charging card** (session total, last three sessions, AC/DC chips) and the trip
+  cost list. Tariff is never shown on Drive.
 - **Battery:** a summary card with an (i) button opening a "Battery explained"
   sheet, an info card explaining pack → modules → cells, and collapsible
   groups (Health, HV Pack, 12 V battery & DC-DC, Diagnostics, More). Cell

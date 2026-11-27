@@ -11,6 +11,9 @@ struct CostsView: View {
     @Query(sort: \TripRecord.startDate, order: .reverse)
     private var trips: [TripRecord]
 
+    @Query(sort: \ChargingSession.startDate, order: .reverse)
+    private var chargingSessions: [ChargingSession]
+
     @State private var profile = BulgarianTariffProfile.load()
     @State private var tariffExpanded = false
     @State private var saved = false
@@ -32,6 +35,7 @@ struct CostsView: View {
             VStack(spacing: 12) {
                 summaryCard
                 tariffCard
+                chargingCard
                 tripsCard
             }
             .padding(16)
@@ -154,6 +158,68 @@ struct CostsView: View {
                 .padding(16)
             }
         }
+        .background(Theme.surface, in: Theme.cardShape)
+        .overlay(Theme.cardShape.stroke(Theme.border, lineWidth: 1))
+    }
+
+    // MARK: - Charging
+
+    private var chargingSessionsCost: Double {
+        chargingSessions.reduce(0) { $0 + $1.costEUR }
+    }
+
+    private var chargingSessionsEnergy: Double {
+        chargingSessions.reduce(0) { $0 + $1.energyKWh }
+    }
+
+    private var chargingCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            CardLabel(text: "CHARGING")
+
+            if chargingSessions.isEmpty {
+                Text("No charging sessions yet — they are logged automatically while the car charges.")
+                    .font(.caption)
+                    .foregroundStyle(Theme.textSecondary)
+            } else {
+                HStack(alignment: .firstTextBaseline) {
+                    Text(String(format: "€%.2f", chargingSessionsCost))
+                        .font(.system(size: 26, weight: .bold, design: .rounded))
+                        .monospacedDigit()
+                        .foregroundStyle(Theme.green)
+                    Spacer()
+                    Text(String(format: "%.0f kWh · %d", chargingSessionsEnergy, chargingSessions.count))
+                        .font(.caption)
+                        .foregroundStyle(Theme.textSecondary)
+                }
+
+                ForEach(Array(chargingSessions.prefix(3))) { session in
+                    HStack {
+                        Text(session.startDate, format: .dateTime.day().month(.abbreviated).hour().minute())
+                            .font(.caption)
+                            .foregroundStyle(Theme.textSecondary)
+                        Text(session.isDC ? "DC" : "AC")
+                            .font(.system(size: 8, weight: .heavy, design: .rounded))
+                            .foregroundStyle(session.isDC ? Theme.violet : Theme.cyan)
+                            .padding(.horizontal, 5)
+                            .padding(.vertical, 1)
+                            .background((session.isDC ? Theme.violet : Theme.cyan).opacity(0.12), in: Capsule())
+                        Spacer()
+                        Text(String(format: "%.1f kWh", session.energyKWh))
+                            .font(.system(.caption, design: .monospaced))
+                            .foregroundStyle(Theme.textSecondary)
+                        Text(String(format: "€%.2f", session.costEUR))
+                            .font(.system(.caption, design: .monospaced))
+                            .foregroundStyle(Theme.amber)
+                    }
+                }
+
+                Text("Detected from the BMS while charging; priced with the tariff above.")
+                    .font(.caption2)
+                    .foregroundStyle(Theme.textTertiary)
+            }
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(Theme.surface, in: Theme.cardShape)
         .overlay(Theme.cardShape.stroke(Theme.border, lineWidth: 1))
     }

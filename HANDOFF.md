@@ -83,7 +83,8 @@ xcodebuild -project IoniqDrive.xcodeproj -scheme IoniqDrive \
 | BLE (lazy central, remembered adapter, demo connection) | `Sources/Bluetooth/BLETransport.swift` |
 | OBD/ELM327 engine, PIDs, parsing | `Sources/OBD/*` (see `OBD_PROTOCOL.md`) |
 | Live state, freshness, demo | `Sources/Telemetry/TelemetryEngine.swift` |
-| Persistence: schema/migrations, retention, export | `Sources/Storage/AppSchema.swift`, `DataRetention.swift`, `ExportService.swift` |
+| Charging sessions (detection + cost) | `Sources/Telemetry/ChargingSessionTracker.swift`, wired in `TelemetryStore` |
+| Persistence: schema/migrations, retention, export | `Sources/Storage/AppSchema.swift`, `DataRetention.swift`, `ExportService.swift`, `ChargingSessionModels.swift` |
 | UI | `Sources/UI/*` (`DashboardView`, `SettingsView`, `DisclaimerView`, `LogsView`, …) |
 | Localisation | `Resources/Localizable.xcstrings`, `Resources/InfoPlist.xcstrings` |
 | App Store screenshots | `Distribution/screenshots/{69,65}/{en,bg}/NN-*.jpg`, `scripts/capture-appstore-screenshots.sh` |
@@ -112,7 +113,6 @@ are the source of truth.
 |---|---|---|
 | [#12](https://github.com/psugarev/ev-info/issues/12) | App Store Connect admin — owner-only rows left (ASC login, category, age rating, DSA trader, hardware video) | P0 |
 | [#4](https://github.com/psugarev/ev-info/issues/4) | Dynamic Type, hit targets, Reduce Motion | P1 |
-| [#7](https://github.com/psugarev/ev-info/issues/7) | Charge-session log with cost | P1 |
 | [#8](https://github.com/psugarev/ev-info/issues/8) | Read-only DTC scan | P1 |
 | [#9](https://github.com/psugarev/ev-info/issues/9) | Units setting | P1 |
 | [#10](https://github.com/psugarev/ev-info/issues/10) | Per-trip export and backup/restore | P1 |
@@ -156,6 +156,13 @@ are the source of truth.
 - Cells screenshot harness (Debug only): `-demoScrollModule 2` scrolls to that
   block, `-demoCell 42` opens the detail sheet; combine with `-demo -demoRoute cells`.
 - Any model change needs a new `VersionedSchema` + migration stage in `AppSchema.swift`.
+  Current: **SchemaV2** adds `ChargingSession` with a lightweight stage from V1; a
+  migration test in `Tests/ChargingSessionTests.swift` opens a real V1 store with V2.
+- Charging sessions are **derived**, not a BMS counter: a session starts on the BMS
+  charging flag with negative pack power, energy is integrated from power samples and
+  priced per interval with the tariff (so 22:00 splits correctly), DC is classified by
+  peak > 22 kW, and the session closes after 3 idle samples or a >10 min gap. Only
+  logged while the app is connected — a phone asleep for the whole charge logs nothing.
 - **Localisation rule:** SwiftUI `Text("…")` keys follow the environment locale; strings
   built outside SwiftUI (BLE status, diagnostics, trip summaries, chart titles, dates)
   must go through `AppLocalization.string/format` in `Sources/App/Localization.swift`.
@@ -185,6 +192,7 @@ are the source of truth.
 | 2026-11-27 | Claude (Sonnet 5.5) | `agent/claude/handoff-repo-link` | Created private repo `psugarev/ev-info`, initial import, recorded repo URL; installed `gh` via Homebrew | docs only |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/cell-grid-redesign` | Issue #6: six labelled 32-cell module blocks (read count, min/max/Δ, BALANCED/WATCH/DRIFT chip), strongest/weakest ring per block, weakest-cell ranking card, tap-to-cell detail sheet, threshold legend with band counts, testable `CellAnalysis` + 10 tests, EN/BG strings, screenshot harness | 94 tests, Release + Debug build, simulator EN + BG screenshots |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/ci-workflow` | Issue #16: GitHub Actions CI — `swift test` + XcodeGen/Release build, project-sync guard, bundle checks (privacy manifest, identity, lproj), pinned XcodeGen 2.49.0, README badge; enabled auto-delete of merged branches; required status checks blocked by the free private plan (403) and documented | CI green twice on PR #17 (1m15s + 1m36s); auto-delete verified |
+| 2026-11-27 | Claude (deepseek-flash) | `agent/lead/charge-sessions` | Issue #7: `ChargingSession` model + SchemaV2 lightweight migration, `ChargingSessionTracker` (energy integration, tariff split, AC/DC, flicker/gap handling), store persistence incl. interrupted-session recovery, session lists in Charging and Costs, demo sessions, JSON+CSV export, 8 new tests, BG strings | 107 tests, Release build, migration test on a V1 store |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/appstore-admin` | Issue #12 code side: GitHub Pages with privacy/support/landing (`docs/`), `Distribution/AppStore/ASC_CHECKLIST.md` (listing copy, category, age rating, privacy label, DSA, upload flow), `scripts/archive-appstore.sh` (auto build number, `--export`, `--dry-run`), docs cross-links; owner-only steps listed | script dry-run, Pages enabled, links checked |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/connect-flow` | Issue #5: finished the connect-flow progress text (stages for ATZ/config/protocol/discovery/BMS handshake, ready only after the first BMS reply, demo-mode guard), tests assert every stage; catalog cleanup of 12 stale keys + new translations; HANDOFF versioning section and real-device checklist | 99 tests, Release build, localisation check |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/appstore-screenshots` | Issue #2: demo trips seeded (`DemoData.seedTrips`, Costs/Trip detail screenshots), debug routes `costs`/`trip`, `scripts/capture-appstore-screenshots.sh`, 24 JPEGs in `Distribution/screenshots/{69,65}/{en,bg}` (1320×2868 and 1242×2688, status bar 9:41), tariff subtitle localised; screenshots README | 99 tests, Release build, size-verified screenshot sets, EN/BG inspected |

@@ -1346,6 +1346,193 @@
         }
       }
     },
+    "%@ · %@ min · %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · %@ мин · %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · %@ min · %@"
+          }
+        }
+      }
+    },
+    "CHARGING NOW" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ЗАРЕЖДА СЕ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CHARGING NOW"
+          }
+        }
+      }
+    },
+    "Detected from the BMS while charging; priced with the tariff above." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открива се от BMS по време на зареждане; изчислява се с тарифата по-горе."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detected from the BMS while charging; priced with the tariff above."
+          }
+        }
+      }
+    },
+    "No charging sessions yet — plug in and the app starts logging automatically." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Още няма сесии на зареждане — включете и приложението започва да записва автоматично."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No charging sessions yet — plug in and the app starts logging automatically."
+          }
+        }
+      }
+    },
+    "No charging sessions yet — they are logged automatically while the car charges." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Още няма сесии на зареждане — записват се автоматично, докато автомобилът се зарежда."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No charging sessions yet — they are logged automatically while the car charges."
+          }
+        }
+      }
+    },
+    "Peak %@ kW" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пик %@ kW"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peak %@ kW"
+          }
+        }
+      }
+    },
+    "Sessions are detected from the BMS while the app is connected. Energy is integrated from pack power and priced with the tariff in Costs." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сесиите се откриват от BMS, докато приложението е свързано. Енергията се интегрира от мощността на пакета и се изчислява с тарифата в Разходи."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessions are detected from the BMS while the app is connected. Energy is integrated from pack power and priced with the tariff in Costs."
+          }
+        }
+      }
+    },
+    "Share charging sessions CSV" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сподели CSV на сесиите"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share charging sessions CSV"
+          }
+        }
+      }
+    },
+    "So far · %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Досега · %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So far · %@"
+          }
+        }
+      }
+    },
+    "Telemetry exports include at most the latest 100,000 rows. Charging sessions follow the selected range." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортът на телеметрия включва най-много последните 100 000 реда. Сесиите на зареждане следват избрания период."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telemetry exports include at most the latest 100,000 rows. Charging sessions follow the selected range."
+          }
+        }
+      }
+    },
+    "SESSIONS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "СЕСИИ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SESSIONS"
+          }
+        }
+      }
+    },
     "CELL SPREAD" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -12,6 +12,9 @@ struct ChargingView: View {
     @Query(sort: \BatterySnapshot.timestamp, order: .reverse)
     private var snapshots: [BatterySnapshot]
 
+    @Query(sort: \ChargingSession.startDate, order: .reverse)
+    private var sessions: [ChargingSession]
+
     private var counterSource: BatterySnapshot? {
         snapshots.first { $0.normalChargeCount != nil || $0.quickChargeCount != nil }
     }
@@ -36,6 +39,7 @@ struct ChargingView: View {
         ScrollView {
             VStack(spacing: 12) {
                 liveCard
+                sessionsCard
                 countersCard
                 diagnosticsCard
             }
@@ -94,6 +98,103 @@ struct ChargingView: View {
                 }
             }
         }
+    }
+
+    // MARK: - Sessions
+
+    private var sessionsCard: some View {
+        TelemetryCard {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    CardLabel(text: "SESSIONS")
+                    Spacer()
+                    if !sessions.isEmpty {
+                        Text("\(sessions.count)")
+                            .font(.system(size: 10, weight: .bold, design: .monospaced))
+                            .foregroundStyle(Theme.textTertiary)
+                    }
+                }
+
+                if let active = store.activeChargingSession {
+                    sessionRow(active, isActive: true)
+                    Divider().overlay(Theme.border)
+                }
+
+                let finished = sessions.filter { !$0.isActive }
+                if finished.isEmpty && store.activeChargingSession == nil {
+                    Text("No charging sessions yet — plug in and the app starts logging automatically.")
+                        .font(.caption2)
+                        .foregroundStyle(Theme.textTertiary)
+                } else {
+                    ForEach(Array(finished.prefix(8))) { session in
+                        sessionRow(session, isActive: false)
+                        if session.id != finished.prefix(8).last?.id {
+                            Divider().overlay(Theme.border)
+                        }
+                    }
+                }
+
+                Text("Sessions are detected from the BMS while the app is connected. Energy is integrated from pack power and priced with the tariff in Costs.")
+                    .font(.caption2)
+                    .foregroundStyle(Theme.textTertiary)
+            }
+        }
+    }
+
+    private func sessionRow(_ session: ChargingSession, isActive: Bool) -> some View {
+        HStack(alignment: .top, spacing: 10) {
+            VStack(alignment: .leading, spacing: 3) {
+                HStack(spacing: 6) {
+                    Text(session.startDate, format: .dateTime.day().month(.abbreviated).hour().minute())
+                        .font(.system(size: 13, weight: .semibold, design: .rounded))
+                        .foregroundStyle(Theme.textPrimary)
+                    Text(session.isDC ? "DC" : "AC")
+                        .font(.system(size: 8, weight: .heavy, design: .rounded))
+                        .tracking(0.6)
+                        .foregroundStyle(session.isDC ? Theme.violet : Theme.cyan)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background((session.isDC ? Theme.violet : Theme.cyan).opacity(0.12), in: Capsule())
+                    if isActive {
+                        Text("CHARGING NOW")
+                            .font(.system(size: 8, weight: .heavy, design: .rounded))
+                            .tracking(0.6)
+                            .foregroundStyle(Theme.green)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Theme.green.opacity(0.12), in: Capsule())
+                    }
+                }
+                Text(sessionDetail(session, isActive: isActive))
+                    .font(.caption2)
+                    .foregroundStyle(Theme.textSecondary)
+            }
+            Spacer(minLength: 6)
+            VStack(alignment: .trailing, spacing: 3) {
+                Text(String(format: "%.1f kWh", session.energyKWh))
+                    .font(.system(size: 13, weight: .semibold, design: .monospaced))
+                    .foregroundStyle(Theme.textPrimary)
+                Text(String(format: "€%.2f", session.costEUR))
+                    .font(.system(size: 12, weight: .medium, design: .monospaced))
+                    .foregroundStyle(Theme.amber)
+            }
+        }
+        .padding(.vertical, 4)
+        .accessibilityElement(children: .combine)
+    }
+
+    private func sessionDetail(_ session: ChargingSession, isActive: Bool) -> String {
+        let peak = AppLocalization.format("Peak %@ kW", AppLocalization.number(session.peakPowerKW, decimals: 1))
+        guard !isActive, let duration = session.durationSeconds else {
+            return AppLocalization.format("So far · %@", peak)
+        }
+        let minutes = Int((duration / 60).rounded())
+        return AppLocalization.format("%@ · %@ min · %@", peak, "\(minutes)", socText(session))
+    }
+
+    private func socText(_ session: ChargingSession) -> String {
+        guard let start = session.startSOCPercent, let end = session.endSOCPercent else { return "—" }
+        return AppLocalization.format("%@ → %@ %%", AppLocalization.number(start, decimals: 0), AppLocalization.number(end, decimals: 0))
     }
 
     private var countersCard: some View {

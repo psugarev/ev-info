@@ -115,6 +115,9 @@ struct LogsView: View {
                 ShareLink(item: files.batteryCSV) {
                     Label("Share battery CSV", systemImage: "tablecells")
                 }
+                ShareLink(item: files.chargingCSV) {
+                    Label("Share charging sessions CSV", systemImage: "bolt.car")
+                }
             }
 
             if let exportError {
@@ -125,7 +128,7 @@ struct LogsView: View {
         } header: {
             Text("Export")
         } footer: {
-            Text("Telemetry exports include at most the latest 100,000 rows.")
+            Text("Telemetry exports include at most the latest 100,000 rows. Charging sessions follow the selected range.")
         }
     }
 

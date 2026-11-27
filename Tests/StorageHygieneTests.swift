@@ -91,6 +91,7 @@ final class StorageHygieneTests: XCTestCase {
         context.insert(TelemetryLogRecord(sample: TelemetrySample(timestamp: now)))
         context.insert(BatterySnapshot(sample: TelemetrySample(timestamp: now)))
         context.insert(DiagnosticReport(kind: "battery", status: "pass", title: "t", summary: "s", detailsJSON: "{}"))
+        context.insert(ChargingSession(startDate: now))
         try context.save()
 
         try DataRetention.deleteAll(in: context)
@@ -100,13 +101,16 @@ final class StorageHygieneTests: XCTestCase {
         XCTAssertEqual(try context.fetchCount(FetchDescriptor<TelemetryLogRecord>()), 0)
         XCTAssertEqual(try context.fetchCount(FetchDescriptor<BatterySnapshot>()), 0)
         XCTAssertEqual(try context.fetchCount(FetchDescriptor<DiagnosticReport>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<ChargingSession>()), 0)
     }
 
     // MARK: Schema
 
     func testVersionedSchemaListsEveryPersistentModel() {
         XCTAssertEqual(SchemaV1.models.count, 5)
-        XCTAssertEqual(AppMigrationPlan.schemas.count, 1)
+        XCTAssertEqual(SchemaV2.models.count, 6)
+        XCTAssertEqual(AppMigrationPlan.schemas.count, 2)
+        XCTAssertEqual(AppMigrationPlan.stages.count, 1)
     }
 
     func testInMemoryContainerRoundTripsAModel() throws {
