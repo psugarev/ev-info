@@ -23,6 +23,35 @@ protocol OBDTransport: AnyObject {
 
 final class OBDSession: ObservableObject {
 
+    /// A user-visible stage of the safe, read-only setup performed after BLE
+    /// notifications are available. It deliberately does not imply that any
+    /// vehicle PID has been validated.
+    enum InitializationStatus: Equatable {
+        case initializingAdapter
+        case configuringAdapter
+        case selectingProtocol
+        case discoveringCapabilities
+        case preparingBMSRead
+        case ready(protocolName: String)
+
+        var localizedDescription: String {
+            switch self {
+            case .initializingAdapter:
+                AppLocalization.string("Initializing ELM327 adapter…")
+            case .configuringAdapter:
+                AppLocalization.string("Configuring read-only OBD session…")
+            case .selectingProtocol:
+                AppLocalization.string("Selecting vehicle OBD protocol…")
+            case .discoveringCapabilities:
+                AppLocalization.string("Checking vehicle data availability…")
+            case .preparingBMSRead:
+                AppLocalization.string("Preparing first BMS read…")
+            case .ready(let protocolName):
+                AppLocalization.format("OBD ready — %@", protocolName)
+            }
+        }
+    }
+
     // MARK: - Public state
 
     @Published private(set) var isReady = false         // init + discovery complete
@@ -31,6 +60,14 @@ final class OBDSession: ObservableObject {
     @Published private(set) var lastError: String?
     @Published private(set) var supportedPIDs: [String] = []
     @Published private(set) var vin = ""
+    @Published private(set) var initializationStatus: InitializationStatus?
+
+    /// The app entry point forwards these stages to the BLE connection header.
+    /// Keeping this as a callback preserves the transport abstraction used by
+    /// unit tests and avoids making the OBD layer depend on CoreBluetooth.
+    var initializationStatusDidChange: ((InitializationStatus?) -> Void)? {
+        didSet { initializationStatusDidChange?(initializationStatus) }
+    }
 
     /// Raw ELM327 response lines for logging / debugging.
     let rawResponses = PassthroughSubject<RawOBDFrame, Never>()
@@ -130,6 +167,7 @@ final class OBDSession: ObservableObject {
         discoveryAttempts = 0
         currentHeader = PIDRegistry.functionalHeader
         scheduledHeader = PIDRegistry.functionalHeader
+        updateInitializationStatus(.initializingAdapter)
 
         let initCommands: [(String, TimeInterval)] = [
             ("ATZ", 5.0),     // Reset
@@ -165,6 +203,7 @@ final class OBDSession: ObservableObject {
         vin = ""
         currentHeader = PIDRegistry.functionalHeader
         scheduledHeader = PIDRegistry.functionalHeader
+        updateInitializationStatus(nil)
     }
 
     // MARK: - Command Queue
@@ -209,6 +248,7 @@ final class OBDSession: ObservableObject {
         let next = commandQueue.removeFirst()
         pendingCommand = next
         responseBuffer = ""
+        updateInitializationStatus(for: next.command)
 
         transport.send(next.command + "\r")
 
@@ -336,6 +376,12 @@ final class OBDSession: ObservableObject {
 
         case "220101":
             decodeBMS(response)
+            // A response to the first BMS request confirms that the complete
+            // read-only setup path is usable, even if that particular payload
+            // cannot yet be decoded for this vehicle.
+            updateInitializationStatus(.ready(protocolName: protocolName.isEmpty
+                ? "—"
+                : protocolName))
 
         case "22F190":
             if let value = OBDResponseParser.parseVIN(response) {
@@ -432,8 +478,35 @@ final class OBDSession: ObservableObject {
 
     private func finishInit() {
         guard !isReady else { return }
+        // Capability discovery is complete, but keep the connection header
+        // honest until the first BMS request actually receives a reply.
+        updateInitializationStatus(.preparingBMSRead)
         isReady = true
         startPolling()
+    }
+
+    private func updateInitializationStatus(for command: String) {
+        guard !isReady else { return }
+        switch command.uppercased() {
+        case "ATZ":
+            updateInitializationStatus(.initializingAdapter)
+        case "ATE0", "ATL0", "ATS1", "ATH1", "ATAT1":
+            updateInitializationStatus(.configuringAdapter)
+        case "ATSP0", "ATDPN":
+            updateInitializationStatus(.selectingProtocol)
+        case "0100", "0120", "0140":
+            updateInitializationStatus(.discoveringCapabilities)
+        default:
+            if command.uppercased().hasPrefix("ATSH") || command.uppercased() == "220101" {
+                updateInitializationStatus(.preparingBMSRead)
+            }
+        }
+    }
+
+    private func updateInitializationStatus(_ status: InitializationStatus?) {
+        guard initializationStatus != status else { return }
+        initializationStatus = status
+        initializationStatusDidChange?(status)
     }
 
     // MARK: - Polling
