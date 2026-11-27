@@ -14,6 +14,9 @@ enum DemoData {
     /// turning demo mode off removes only data it created.
     static let seededHistoryKey = "demoHistorySeeded"
 
+    /// Same idea for the demo trips used by Costs and Trip detail screenshots.
+    static let seededTripsKey = "demoTripsSeeded"
+
     // MARK: History
 
     /// Seeds 24 h of battery snapshots when the store has none.
@@ -54,6 +57,116 @@ enum DemoData {
                 AppLog.storage.error("Demo history removal failed: \(error.localizedDescription)")
             }
         }
+    }
+
+    // MARK: Trips
+
+    /// Seeds a handful of trips when the store has none, so Costs and Trip
+    /// detail are not empty in demo mode (and can be screenshotted).
+    static func seedTrips(container: ModelContainer) {
+        Task.detached(priority: .utility) {
+            let context = ModelContext(container)
+            let existing = (try? context.fetchCount(FetchDescriptor<TripRecord>())) ?? 0
+            guard existing == 0 else { return }
+
+            let now = Date.now
+            let hour = 3_600.0
+            let trips = [
+                demoTrip(
+                    start: now.addingTimeInterval(-3 * hour),
+                    minutes: 32, km: 18.4, average: 34, maximum: 78,
+                    energyKWh: 3.10, costEUR: 0.42,
+                    from: "Sofia", to: "Vitosha",
+                    stops: 2, stopSummary: "10:12, 10:15"
+                ),
+                demoTrip(
+                    start: now.addingTimeInterval(-1 * 24 * hour),
+                    minutes: 38, km: 21.7, average: 35, maximum: 71,
+                    energyKWh: 3.90, costEUR: 0.53,
+                    from: "Vitosha", to: "Sofia",
+                    stops: 1, stopSummary: "18:20"
+                ),
+                demoTrip(
+                    start: now.addingTimeInterval(-2 * 24 * hour),
+                    minutes: 14, km: 6.2, average: 27, maximum: 52,
+                    energyKWh: 1.10, costEUR: 0.15,
+                    from: "Sofia", to: "Sofia Airport",
+                    stops: 0, stopSummary: nil
+                ),
+                demoTrip(
+                    start: now.addingTimeInterval(-4 * 24 * hour),
+                    minutes: 84, km: 118.6, average: 85, maximum: 122,
+                    energyKWh: 20.40, costEUR: 2.74,
+                    from: "Sofia", to: "Plovdiv",
+                    stops: 1, stopSummary: "09:40"
+                ),
+                demoTrip(
+                    start: now.addingTimeInterval(-6 * 24 * hour),
+                    minutes: 46, km: 42.3, average: 55, maximum: 96,
+                    energyKWh: 7.60, costEUR: 1.02,
+                    from: "Plovdiv", to: "Sofia",
+                    stops: 1, stopSummary: "17:05"
+                )
+            ]
+            for trip in trips {
+                context.insert(trip)
+            }
+            do {
+                try context.save()
+                UserDefaults.standard.set(true, forKey: seededTripsKey)
+            } catch {
+                AppLog.storage.error("Demo trips save failed: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    /// Removes the demo trips, but only if demo mode created them.
+    static func removeSeededTrips(container: ModelContainer) {
+        guard UserDefaults.standard.bool(forKey: seededTripsKey) else { return }
+        Task.detached(priority: .utility) {
+            let context = ModelContext(container)
+            do {
+                let frames = try context.fetch(FetchDescriptor<RawOBDFrame>())
+                for frame in frames {
+                    context.delete(frame)
+                }
+                try context.delete(model: TripRecord.self)
+                try context.save()
+                UserDefaults.standard.set(false, forKey: seededTripsKey)
+            } catch {
+                AppLog.storage.error("Demo trips removal failed: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    private static func demoTrip(
+        start: Date,
+        minutes: Double,
+        km: Double,
+        average: Double,
+        maximum: Double,
+        energyKWh: Double,
+        costEUR: Double,
+        from: String,
+        to: String,
+        stops: Int,
+        stopSummary: String?
+    ) -> TripRecord {
+        let trip = TripRecord(startDate: start)
+        trip.endDate = start.addingTimeInterval(minutes * 60)
+        trip.distanceKm = km
+        trip.durationSeconds = minutes * 60
+        trip.averageSpeedKmh = average
+        trip.maxSpeedKmh = maximum
+        trip.energyKWh = energyKWh
+        trip.consumptionKWhPer100Km = km > 0 ? energyKWh / km * 100 : nil
+        trip.costEUR = costEUR
+        trip.stopCount = stops
+        trip.stopSummary = stopSummary
+        trip.startPlace = from
+        trip.endPlace = to
+        trip.summary = TripSummaryGenerator.summary(for: trip)
+        return trip
     }
 
     static func historySample(at date: Date, hours: Double) -> TelemetrySample {

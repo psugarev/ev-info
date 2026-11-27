@@ -2,6 +2,122 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {},
+    "Checking vehicle data availability…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка на наличните данни от автомобила…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking vehicle data availability…"
+          }
+        }
+      }
+    },
+    "Configuring read-only OBD session…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройване на OBD сесия само за четене…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuring read-only OBD session…"
+          }
+        }
+      }
+    },
+    "Initializing ELM327 adapter…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инициализиране на ELM327 адаптера…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Initializing ELM327 adapter…"
+          }
+        }
+      }
+    },
+    "OBD ready — %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OBD е готов — %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OBD ready — %@"
+          }
+        }
+      }
+    },
+    "No trips yet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : { "stringUnit" : { "state" : "translated", "value" : "Все още няма пътувания" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No trips yet" } }
+      }
+    },
+    "Preparing first BMS read…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подготовка на първото четене от BMS…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparing first BMS read…"
+          }
+        }
+      }
+    },
+    "Turn on Demo mode to seed sample trips." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : { "stringUnit" : { "state" : "translated", "value" : "Включете демо режима, за да добавите примерни пътувания." } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turn on Demo mode to seed sample trips." } }
+      }
+    },
+    "Selecting vehicle OBD protocol…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избиране на OBD протокола на автомобила…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecting vehicle OBD protocol…"
+          }
+        }
+      }
+    },
     "—" : {
       "localizations" : {
         "bg" : {
@@ -2179,6 +2295,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld/%lld"
+          }
+        }
+      }
+    },
+    "Day €%@ · Night €%@ / kWh" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ден €%@ · Нощ €%@ / kWh"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Day €%@ · Night €%@ / kWh"
           }
         }
       }

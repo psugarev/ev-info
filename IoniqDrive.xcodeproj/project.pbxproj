@@ -37,6 +37,7 @@
 		9166E9115BD2DF83B230FB40 /* LocalizationCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF03A84489261FE51BB43C61 /* LocalizationCatalogTests.swift */; };
 		95DB0B9238DDF234B72F49EB /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DA898DC86E85879CFF31C /* DashboardView.swift */; };
 		9E7B9157A46E98E602C2E853 /* HistoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EAE0E7B75D0453FEC30B41 /* HistoryModels.swift */; };
+		A06D8935F3DDA76084945126 /* DemoDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172CBB5BF848C13ECC92B2AC /* DemoDataTests.swift */; };
 		A19EA5A07BC4745296BFA8D6 /* PIDRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C859C5C45F25216DF554985 /* PIDRegistry.swift */; };
 		AA83D51856BCFCA85DA557E9 /* BulgarianTariffEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA0A9A051BD84E9464397B6 /* BulgarianTariffEngineTests.swift */; };
 		ABD8165887EF513D9539A70A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAF9FA627BF15DF699A21095 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		0CFE72DDD333A782CBF34A09 /* EnergyCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCalculator.swift; sourceTree = "<group>"; };
 		143B569452123408795E8D77 /* TripHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHistoryView.swift; sourceTree = "<group>"; };
 		1460DBFDBFAD4F0737D5DD1C /* TripSummaryGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryGenerator.swift; sourceTree = "<group>"; };
+		172CBB5BF848C13ECC92B2AC /* DemoDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoDataTests.swift; sourceTree = "<group>"; };
 		1BD3BE22CACD27BB34D137AE /* DemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoData.swift; sourceTree = "<group>"; };
 		219477A3317BF73F60E7D45A /* AppSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSchema.swift; sourceTree = "<group>"; };
 		22A0E0E8CC23AF1F55A70C2C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				9BA0A9A051BD84E9464397B6 /* BulgarianTariffEngineTests.swift */,
 				6E7E4030D8017C7D992D2ED8 /* CellAnalysisTests.swift */,
+				172CBB5BF848C13ECC92B2AC /* DemoDataTests.swift */,
 				D19255243B03D61D94848EF0 /* DiagnosticsTests.swift */,
 				258D76DD8956D6FC85AB6B2C /* EnergyCalculatorTests.swift */,
 				CF03A84489261FE51BB43C61 /* LocalizationCatalogTests.swift */,
@@ -426,6 +429,7 @@
 			files = (
 				AA83D51856BCFCA85DA557E9 /* BulgarianTariffEngineTests.swift in Sources */,
 				180E96F4EB2C6164D397D757 /* CellAnalysisTests.swift in Sources */,
+				A06D8935F3DDA76084945126 /* DemoDataTests.swift in Sources */,
 				DB599922C1BDCB2A18BF34F5 /* DiagnosticsTests.swift in Sources */,
 				5E43BF71F5C133AC5A90C529 /* EnergyCalculatorTests.swift in Sources */,
 				9166E9115BD2DF83B230FB40 /* LocalizationCatalogTests.swift in Sources */,
