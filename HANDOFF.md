@@ -4,6 +4,9 @@ Current state of **EV Info** (`com.evinfo.app`, repo folder `IoniqDrive2`) for a
 AI agent or human picking the work up. Keep this file current: update it at the
 end of every session (see "Session log" at the bottom).
 
+**Repo:** https://github.com/psugarev/ev-info (private, default branch `main`).
+Clone, then follow "Build & test" below.
+
 ## What the app is
 
 Read-only SwiftUI / SwiftData / CoreBluetooth / CoreLocation telemetry app for a
@@ -54,16 +57,35 @@ visible storage-failure banner), first-run disclaimer, 57 BG strings +
 Info.plist BG strings, contrast fix, `os.Logger`. Verified: 84 tests pass,
 Release + Debug builds succeed, simulator run seen for disclaimer and Drive/demo.
 
-## Open work (priority order)
+## Open work
 
-1. **Screenshots in demo mode**, 6.9" and 6.5" (shot list: Audit Appendix C).
-2. **Localise dynamic strings** (BLE status text, `VehicleDiagnostics`, `TripSummaryGenerator`, chart titles); purge stale `Localizable` keys (build in Xcode marks them stale).
-3. **Dynamic Type**: replace ~55 hard-coded font sizes with a `Theme.font` system, min 12 pt; sub-44 pt targets; Reduce Motion.
-4. Connect-step progress text during `ATZ` init; verify auto-reconnect on a real device.
-5. **Cell grid redesign** (six 32-cell module blocks, min/max, weakest-cell ranking).
-6. P1 features: charge-session log with cost, read-only DTC scan (Mode 03/07/0A, never clear), units setting, per-trip CSV/GPX export.
-7. Colour-semantics cleanup, replace hard-coded `.blue/.green/…` in TripHistory, Logs, BatteryHistory, CellVoltage; onboarding pages; daylight theme.
-8. Not repo work: host privacy policy, age rating, EU DSA trader status, hardware demo video, fill placeholders in `Distribution/*`.
+The backlog lives in GitHub Issues (labels `P0` / `P1` / `P2`, `area:*`):
+https://github.com/psugarev/ev-info/issues — this list is a snapshot, the issues
+are the source of truth.
+
+| # | Task | Priority |
+|---|---|---|
+| [#5](https://github.com/psugarev/ev-info/issues/5) | Connect flow: init progress text + real-device verification | P0 |
+| [#3](https://github.com/psugarev/ev-info/issues/3) | Localise dynamic strings, purge stale keys | P0 |
+| [#2](https://github.com/psugarev/ev-info/issues/2) | Screenshots in demo mode | P0 |
+| [#12](https://github.com/psugarev/ev-info/issues/12) | App Store Connect admin (owner task, not code) | P0 |
+| [#4](https://github.com/psugarev/ev-info/issues/4) | Dynamic Type, hit targets, Reduce Motion | P1 |
+| [#6](https://github.com/psugarev/ev-info/issues/6) | Cell grid redesign | P1 |
+| [#7](https://github.com/psugarev/ev-info/issues/7) | Charge-session log with cost | P1 |
+| [#8](https://github.com/psugarev/ev-info/issues/8) | Read-only DTC scan | P1 |
+| [#9](https://github.com/psugarev/ev-info/issues/9) | Units setting | P1 |
+| [#10](https://github.com/psugarev/ev-info/issues/10) | Per-trip export and backup/restore | P1 |
+| [#11](https://github.com/psugarev/ev-info/issues/11) | Colour semantics, onboarding, daylight theme | P1 |
+
+## How to continue (every agent, every session)
+
+1. `git clone https://github.com/psugarev/ev-info && cd ev-info && git pull`; read this file and `AGENTS.md`.
+2. Pick an issue; **comment "claiming" on it** and add an `agent:*` label so two agents never take the same task.
+3. `git switch -c agent/<agent-name>/<topic>` from an up-to-date `main`.
+4. Work in small commits (`<type>: <description>` + `Agent:` trailer). Run `swift test --disable-sandbox` and a Release build.
+5. `git push -u origin <branch>` and open a PR with `Closes #<issue>`; state what was verified and what was not (e.g. "not tested on device").
+6. In the same PR, update this file: tick/remove the finished item, add new gotchas, append a Session-log row.
+7. The owner reviews and merges. Never push to `main` directly.
 
 ## Known gaps / gotchas
 
@@ -91,4 +113,5 @@ Release + Debug builds succeed, simulator run seen for disclaimer and Drive/demo
 | Date | Agent | Branch / commit | Summary | Verified |
 |---|---|---|---|---|
 | 2026-11-26 | (earlier agent) | pre-repo | Initial audit `APP_STORE_AUDIT.md`; privacy manifest, Info.plist purpose strings, iPhone-only, export names | Release build, 71 tests |
-| 2026-11-27 | Claude (Sonnet 5.5) | initial import | Implemented audit blockers + P0/high items (see §2b of the audit); added 13 tests, HANDOFF.md | 84 tests, Release + Debug build, simulator spot-check |
+| 2026-11-27 | Claude (Sonnet 5.5) | `main` @ 42ab1db | Implemented audit blockers + P0/high items (see §2b of the audit); added 13 tests, HANDOFF.md | 84 tests, Release + Debug build, simulator spot-check |
+| 2026-11-27 | Claude (Sonnet 5.5) | `agent/claude/handoff-repo-link` | Created private repo `psugarev/ev-info`, initial import, recorded repo URL; installed `gh` via Homebrew | docs only |
