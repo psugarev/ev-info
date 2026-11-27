@@ -110,6 +110,27 @@ final class CloudTests: XCTestCase {
         XCTAssertTrue(snapshot.warnings.isEmpty)
     }
 
+    func testParserFindsFieldsInsideAnExtraWrapper() {
+        // The API may wrap the endpoint object one level deeper than the docs.
+        let payloads: [String: Any] = [
+            "batteries": ["data": ["charge": ["stateOfCharge": wrapper(64, "%"), "charging": wrapper("ON")]]],
+            "powertrains": ["result": ["distanceToEmpties": [
+                ["type": "ev", "value": wrapper(300, "km")]
+            ]]],
+            "driving": ["vehicle": ["odometer": wrapper(500, "km")]],
+            "locations": ["result": ["latitude": wrapper(42.0), "longitude": wrapper(23.0)]],
+            "status": ["result": ["outsideTemperature": wrapper(10, "C")]]
+        ]
+        let snapshot = PleosSnapshotParser.parse(vin: "V", fetchedAt: .now, payloads: payloads)
+        XCTAssertEqual(snapshot.socPercent, 64)
+        XCTAssertEqual(snapshot.isCharging, true)
+        XCTAssertEqual(snapshot.rangeKm, 300)
+        XCTAssertEqual(snapshot.odometerKm, 500)
+        XCTAssertEqual(snapshot.latitude, 42)
+        XCTAssertEqual(snapshot.longitude, 23)
+        XCTAssertEqual(snapshot.outsideTemperatureC, 10)
+    }
+
     // MARK: - Client
 
     private final class FakeTransport: PleosTransport, @unchecked Sendable {
