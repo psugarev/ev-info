@@ -185,6 +185,8 @@ struct CardLabel: View {
             .font(.system(size: 11, weight: .semibold, design: .rounded))
             .tracking(1.4)
             .foregroundStyle(Theme.textTertiary)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
     }
 }
 

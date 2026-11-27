@@ -112,7 +112,7 @@ struct ChargingView: View {
                 }
 
                 if let timestamp = counterSource?.timestamp {
-                    Text("Last known values from \(timestamp.formatted(date: .abbreviated, time: .shortened)). These are stored every minute while the BMS is connected.")
+                    Text(lastKnownText(timestamp))
                         .font(.caption2)
                         .foregroundStyle(Theme.textTertiary)
                 } else {
@@ -156,6 +156,18 @@ struct ChargingView: View {
                 DisclaimerFootnote()
             }
         }
+    }
+
+    /// Date is formatted with the app language, not the system locale, because
+    /// this string is built outside SwiftUI's environment.
+    private func lastKnownText(_ timestamp: Date) -> String {
+        let stamp = timestamp.formatted(
+            Date.FormatStyle().day().month(.abbreviated).year().hour().minute().locale(AppLocalization.locale)
+        )
+        return AppLocalization.format(
+            "Last known values from %@. These are stored every minute while the BMS is connected.",
+            stamp
+        )
     }
 
     private func stat(_ title: LocalizedStringKey, _ value: String) -> some View {

@@ -143,7 +143,7 @@ final class TripRecorder: ObservableObject {
         record.stopCount = stopCount
         record.stopSummary = stopTimes.isEmpty
             ? nil
-            : stopTimes.map { $0.formatted(date: .omitted, time: .shortened) }.joined(separator: ", ")
+            : stopTimes.map { $0.formatted(Date.FormatStyle().hour().minute().locale(AppLocalization.locale)) }.joined(separator: ", ")
         record.startLatitude = firstLocation?.coordinate.latitude
         record.startLongitude = firstLocation?.coordinate.longitude
         record.endLatitude = lastValidLocation?.coordinate.latitude

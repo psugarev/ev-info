@@ -22,12 +22,14 @@ struct DiagnosticOutcome {
     let title: String
     let checks: [DiagnosticCheck]
 
+    /// Localised when the report is created, so the stored text matches the
+    /// language the user was reading at the time.
     var summary: String {
         switch status {
-        case .pass: return "All checks passed."
-        case .warn: return "Passed with warnings."
-        case .fail: return "One or more checks failed."
-        case .unavailable: return "Not enough data — connect the adapter."
+        case .pass: return AppLocalization.string("All checks passed.")
+        case .warn: return AppLocalization.string("Passed with warnings.")
+        case .fail: return AppLocalization.string("One or more checks failed.")
+        case .unavailable: return AppLocalization.string("Not enough data — connect the adapter.")
         }
     }
 
@@ -61,57 +63,94 @@ enum VehicleDiagnostics {
             return DiagnosticOutcome(
                 kind: "battery",
                 status: .unavailable,
-                title: "Battery test",
-                checks: [DiagnosticCheck(name: "BMS data", status: .unavailable, detail: "No BMS response yet")]
+                title: AppLocalization.string("Battery test"),
+                checks: [DiagnosticCheck(
+                    name: AppLocalization.string("BMS data"),
+                    status: .unavailable,
+                    detail: AppLocalization.string("No BMS response yet")
+                )]
             )
         }
 
         var checks: [DiagnosticCheck] = []
 
         checks.append(DiagnosticCheck(
-            name: "BMS data",
+            name: AppLocalization.string("BMS data"),
             status: .pass,
-            detail: String(format: "SOC %.1f %%, pack %.1f V", sample.socPercent ?? 0, sample.batteryVoltageV ?? 0)
+            detail: String(
+                format: AppLocalization.string("SOC %@ %%, pack %@ V"),
+                AppLocalization.number(sample.socPercent ?? 0, decimals: 1),
+                AppLocalization.number(sample.batteryVoltageV ?? 0, decimals: 1)
+            )
         ))
 
         if let soh = sample.sohPercent {
             let status: CheckStatus = soh >= 90 ? .pass : (soh >= 80 ? .warn : .fail)
-            checks.append(DiagnosticCheck(name: "State of Health", status: status, detail: String(format: "%.1f %%", soh)))
+            checks.append(DiagnosticCheck(
+                name: AppLocalization.string("State of Health"),
+                status: status,
+                detail: String(format: AppLocalization.string("%@ %%"), AppLocalization.number(soh, decimals: 1))
+            ))
         } else {
-            checks.append(DiagnosticCheck(name: "State of Health", status: .warn, detail: "Not read yet"))
+            checks.append(DiagnosticCheck(
+                name: AppLocalization.string("State of Health"),
+                status: .warn,
+                detail: AppLocalization.string("Not read yet")
+            ))
         }
 
         if let maxCell = sample.cellVoltageMaxV, let minCell = sample.cellVoltageMinV {
             let delta = max(0, maxCell - minCell)
             let status: CheckStatus = delta <= 0.03 ? .pass : (delta <= 0.06 ? .warn : .fail)
             checks.append(DiagnosticCheck(
-                name: "Cell balance",
+                name: AppLocalization.string("Cell balance"),
                 status: status,
-                detail: String(format: "%.0f mV (max %.2f V, min %.2f V)", delta * 1_000, maxCell, minCell)
+                detail: String(
+                    format: AppLocalization.string("%@ mV (max %@ V, min %@ V)"),
+                    AppLocalization.number(delta * 1_000, decimals: 0),
+                    AppLocalization.number(maxCell, decimals: 2),
+                    AppLocalization.number(minCell, decimals: 2)
+                )
             ))
         } else {
-            checks.append(DiagnosticCheck(name: "Cell balance", status: .unavailable, detail: "No cell data"))
+            checks.append(DiagnosticCheck(
+                name: AppLocalization.string("Cell balance"),
+                status: .unavailable,
+                detail: AppLocalization.string("No cell data")
+            ))
         }
 
         if let isolation = sample.isolationResistanceKOhm {
             let status: CheckStatus = isolation >= 500 ? .pass : (isolation >= 100 ? .warn : .fail)
-            checks.append(DiagnosticCheck(name: "Isolation", status: status, detail: String(format: "%.0f kΩ", isolation)))
+            checks.append(DiagnosticCheck(
+                name: AppLocalization.string("Isolation"),
+                status: status,
+                detail: String(format: AppLocalization.string("%@ kΩ"), AppLocalization.number(isolation, decimals: 0))
+            ))
         }
 
         if let auxiliary = sample.auxiliaryVoltageV {
             let status: CheckStatus = auxiliary >= 12.2 ? .pass : (auxiliary >= 11.6 ? .warn : .fail)
-            checks.append(DiagnosticCheck(name: "12 V battery", status: status, detail: String(format: "%.1f V", auxiliary)))
+            checks.append(DiagnosticCheck(
+                name: AppLocalization.string("12 V battery"),
+                status: status,
+                detail: String(format: AppLocalization.string("%@ V"), AppLocalization.number(auxiliary, decimals: 1))
+            ))
         }
 
         if let maxTemperature = sample.batteryTemperatureC {
             let status: CheckStatus = maxTemperature < 40 ? .pass : (maxTemperature < 50 ? .warn : .fail)
-            checks.append(DiagnosticCheck(name: "Pack temperature", status: status, detail: String(format: "%.0f °C", maxTemperature)))
+            checks.append(DiagnosticCheck(
+                name: AppLocalization.string("Pack temperature"),
+                status: status,
+                detail: String(format: AppLocalization.string("%@ °C"), AppLocalization.number(maxTemperature, decimals: 0))
+            ))
         }
 
         return DiagnosticOutcome(
             kind: "battery",
             status: DiagnosticOutcome.overall(checks),
-            title: "Battery test",
+            title: AppLocalization.string("Battery test"),
             checks: checks
         )
     }
@@ -123,60 +162,89 @@ enum VehicleDiagnostics {
             return DiagnosticOutcome(
                 kind: "charging",
                 status: .unavailable,
-                title: "Charging test",
-                checks: [DiagnosticCheck(name: "BMS data", status: .unavailable, detail: "No BMS response yet")]
+                title: AppLocalization.string("Charging test"),
+                checks: [DiagnosticCheck(
+                    name: AppLocalization.string("BMS data"),
+                    status: .unavailable,
+                    detail: AppLocalization.string("No BMS response yet")
+                )]
             )
         }
 
         var checks: [DiagnosticCheck] = []
 
         checks.append(DiagnosticCheck(
-            name: "BMS data",
+            name: AppLocalization.string("BMS data"),
             status: .pass,
-            detail: String(format: "SOC %.1f %%, %.1f V", sample.socPercent ?? 0, sample.batteryVoltageV ?? 0)
+            detail: String(
+                format: AppLocalization.string("SOC %@ %%, %@ V"),
+                AppLocalization.number(sample.socPercent ?? 0, decimals: 1),
+                AppLocalization.number(sample.batteryVoltageV ?? 0, decimals: 1)
+            )
         ))
 
         if let charging = sample.isCharging {
             checks.append(DiagnosticCheck(
-                name: "Charging state",
+                name: AppLocalization.string("Charging state"),
                 status: charging ? .pass : .warn,
-                detail: charging ? "Charging" : "Not charging — plug in and run again"
+                detail: charging
+                    ? AppLocalization.string("Charging")
+                    : AppLocalization.string("Not charging — plug in and run again")
             ))
 
             if charging, let power = sample.batteryPowerKW {
                 let status: CheckStatus = power < 0 ? .pass : .warn
                 checks.append(DiagnosticCheck(
-                    name: "Power direction",
+                    name: AppLocalization.string("Power direction"),
                     status: status,
-                    detail: String(format: "%.2f kW (negative = charging in this app)", power)
+                    detail: String(
+                        format: AppLocalization.string("%@ kW (negative = charging in this app)"),
+                        AppLocalization.number(power, decimals: 2)
+                    )
                 ))
             }
         } else {
-            checks.append(DiagnosticCheck(name: "Charging state", status: .unavailable, detail: "Not reported"))
+            checks.append(DiagnosticCheck(
+                name: AppLocalization.string("Charging state"),
+                status: .unavailable,
+                detail: AppLocalization.string("Not reported")
+            ))
         }
 
         if let maxTemperature = sample.batteryTemperatureC {
             let status: CheckStatus = maxTemperature < 40 ? .pass : (maxTemperature < 50 ? .warn : .fail)
-            checks.append(DiagnosticCheck(name: "Pack temperature", status: status, detail: String(format: "%.0f °C", maxTemperature)))
+            checks.append(DiagnosticCheck(
+                name: AppLocalization.string("Pack temperature"),
+                status: status,
+                detail: String(format: AppLocalization.string("%@ °C"), AppLocalization.number(maxTemperature, decimals: 0))
+            ))
         }
 
         if let soh = sample.sohPercent {
             let status: CheckStatus = soh >= 80 ? .pass : .warn
-            checks.append(DiagnosticCheck(name: "State of Health", status: status, detail: String(format: "%.1f %%", soh)))
+            checks.append(DiagnosticCheck(
+                name: AppLocalization.string("State of Health"),
+                status: status,
+                detail: String(format: AppLocalization.string("%@ %%"), AppLocalization.number(soh, decimals: 1))
+            ))
         }
 
         if let count = sample.normalChargeCount, let quick = sample.quickChargeCount {
             checks.append(DiagnosticCheck(
-                name: "Charging history",
+                name: AppLocalization.string("Charging history"),
                 status: .pass,
-                detail: "\(count) AC / \(quick) DC sessions"
+                detail: String(
+                    format: AppLocalization.string("%@ AC / %@ DC sessions"),
+                    "\(count)",
+                    "\(quick)"
+                )
             ))
         }
 
         return DiagnosticOutcome(
             kind: "charging",
             status: DiagnosticOutcome.overall(checks),
-            title: "Charging test",
+            title: AppLocalization.string("Charging test"),
             checks: checks
         )
     }

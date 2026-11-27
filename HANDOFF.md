@@ -20,7 +20,8 @@ never claim a PID is validated before it is).
 
 ```bash
 xcodegen generate                       # project.yml is the source of truth
-swift test --disable-sandbox            # 94 tests, core logic (macOS)
+python3 scripts/check-localization.py   # every referenced key must have BG
+swift test --disable-sandbox            # 97 tests, core logic (macOS)
 xcodebuild -project IoniqDrive.xcodeproj -scheme IoniqDrive \
   -configuration Release -destination 'generic/platform=iOS Simulator' \
   CODE_SIGNING_ALLOWED=NO build
@@ -83,7 +84,6 @@ are the source of truth.
 | # | Task | Priority |
 |---|---|---|
 | [#5](https://github.com/psugarev/ev-info/issues/5) | Connect flow: init progress text + real-device verification | P0 |
-| [#3](https://github.com/psugarev/ev-info/issues/3) | Localise dynamic strings, purge stale keys | P0 |
 | [#2](https://github.com/psugarev/ev-info/issues/2) | Screenshots in demo mode | P0 |
 | [#12](https://github.com/psugarev/ev-info/issues/12) | App Store Connect admin (owner task, not code) | P0 |
 | [#4](https://github.com/psugarev/ev-info/issues/4) | Dynamic Type, hit targets, Reduce Motion | P1 |
@@ -119,6 +119,15 @@ are the source of truth.
 - Cells screenshot harness (Debug only): `-demoScrollModule 2` scrolls to that
   block, `-demoCell 42` opens the detail sheet; combine with `-demo -demoRoute cells`.
 - Any model change needs a new `VersionedSchema` + migration stage in `AppSchema.swift`.
+- **Localisation rule:** SwiftUI `Text("…")` keys follow the environment locale; strings
+  built outside SwiftUI (BLE status, diagnostics, trip summaries, chart titles, dates)
+  must go through `AppLocalization.string/format` in `Sources/App/Localization.swift`.
+  `String(localized:)` alone picks the bundle's preferred language, so the helper opens
+  the selected `.lproj` itself. `scripts/check-localization.py` (also a CI step) fails on
+  an untranslated or stale key, and `Tests/LocalizationCatalogTests.swift` runs in
+  `swift test`.
+- Locale-aware dates use `Date.FormatStyle(...).locale(AppLocalization.locale)`; a bare
+  `.formatted(date:time:)` inside a string bypasses the language switch.
 
 ## Working agreement for multiple agents (traceability)
 
@@ -139,4 +148,5 @@ are the source of truth.
 | 2026-11-27 | Claude (Sonnet 5.5) | `agent/claude/handoff-repo-link` | Created private repo `psugarev/ev-info`, initial import, recorded repo URL; installed `gh` via Homebrew | docs only |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/cell-grid-redesign` | Issue #6: six labelled 32-cell module blocks (read count, min/max/Δ, BALANCED/WATCH/DRIFT chip), strongest/weakest ring per block, weakest-cell ranking card, tap-to-cell detail sheet, threshold legend with band counts, testable `CellAnalysis` + 10 tests, EN/BG strings, screenshot harness | 94 tests, Release + Debug build, simulator EN + BG screenshots |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/ci-workflow` | Issue #16: GitHub Actions CI — `swift test` + XcodeGen/Release build, project-sync guard, bundle checks (privacy manifest, identity, lproj), pinned XcodeGen 2.49.0, README badge; enabled auto-delete of merged branches; required status checks blocked by the free private plan (403) and documented | CI green twice on PR #17 (1m15s + 1m36s); auto-delete verified |
+| 2026-11-27 | Claude (deepseek-flash) | `agent/lead/localization` | Issue #3: `AppLocalization` helper (language `.lproj`, format args), localized BLE statuses / diagnostics / trip summaries / chart titles / tire names / dates; 97 new+fixed BG strings, 29 stale keys removed, 10 re-enabled; `scripts/check-localization.py` + CI step + `LocalizationCatalogTests` | 97 tests, Release build, BG simulator screenshots (Drive/Battery/Charging) |
 | 2026-11-27 | Claude (deepseek-flash) | `agent/lead/open-source-license` | MIT licence + README licence/open-source badges; repo went public → enabled the `main protection` ruleset (required checks + PR, no force push/deletion) and updated the CI/HANDOFF notes for free public-repo minutes; secret scan of working tree and full history is clean | ruleset active, PR #17 still mergeable, CI green |

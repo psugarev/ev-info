@@ -120,9 +120,13 @@ data-dense automotive dashboard rather than a marketing page.
   (237 keys, 204 translated).
 - Settings → App → Language (English / Български).
 - `@AppStorage("appLanguage")` drives `.environment(\.locale, …)` at the root.
-- Catalog keys cover tabs, dashboard, battery, cells, tires, trips, logs, settings
-  and diagnostics. Dynamic values (BLE statuses, diagnostic details, geocoded
-  trip summaries) are still English and are the next localization pass.
+- Dynamic strings built outside SwiftUI — BLE statuses, diagnostic names/details,
+  trip summaries, chart titles, tire names — go through `AppLocalization`
+  (`Sources/App/Localization.swift`), which opens the selected language's `.lproj`
+  and formats dates/numbers with its locale.
+- `scripts/check-localization.py` (CI step) fails if a referenced key has no
+  Bulgarian value and if any key stays `extractionState: stale`;
+  `Tests/LocalizationCatalogTests.swift` enforces the same in `swift test`.
 
 ## Deliberately deferred
 
