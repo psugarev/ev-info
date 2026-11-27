@@ -4,6 +4,9 @@ Current state of **EV Info** (`com.evinfo.app`, repo folder `IoniqDrive2`) for a
 AI agent or human picking the work up. Keep this file current: update it at the
 end of every session (see "Session log" at the bottom).
 
+**Repo:** https://github.com/psugarev/ev-info (private, default branch `main`).
+Clone, then follow "Build & test" below.
+
 ## What the app is
 
 Read-only SwiftUI / SwiftData / CoreBluetooth / CoreLocation telemetry app for a
@@ -91,4 +94,5 @@ Release + Debug builds succeed, simulator run seen for disclaimer and Drive/demo
 | Date | Agent | Branch / commit | Summary | Verified |
 |---|---|---|---|---|
 | 2026-11-26 | (earlier agent) | pre-repo | Initial audit `APP_STORE_AUDIT.md`; privacy manifest, Info.plist purpose strings, iPhone-only, export names | Release build, 71 tests |
-| 2026-11-27 | Claude (Sonnet 5.5) | initial import | Implemented audit blockers + P0/high items (see §2b of the audit); added 13 tests, HANDOFF.md | 84 tests, Release + Debug build, simulator spot-check |
+| 2026-11-27 | Claude (Sonnet 5.5) | `main` @ 42ab1db | Implemented audit blockers + P0/high items (see §2b of the audit); added 13 tests, HANDOFF.md | 84 tests, Release + Debug build, simulator spot-check |
+| 2026-11-27 | Claude (Sonnet 5.5) | `agent/claude/handoff-repo-link` | Created private repo `psugarev/ev-info`, initial import, recorded repo URL; installed `gh` via Homebrew | docs only |
