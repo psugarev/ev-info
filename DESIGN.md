@@ -53,10 +53,18 @@ data-dense automotive dashboard rather than a marketing page.
   sheet, an info card explaining pack → modules → cells, and collapsible
   groups (Health, HV Pack, 12 V battery & DC-DC, Diagnostics, More). Cell
   voltages are not duplicated here; charging and costs have their own tabs.
-- **Cells:** an "About the BMS" info card, a read/max/min/delta summary, a
-  sorted cell-spread chart (weakest → strongest, coloured by deviation from the
-  strongest cell) with a legend and the three weakest cells, then the 192-cell
-  grid.
+- **Cells:** the amber "What am I looking at?" banner (opens the Battery
+  explained sheet), a read/max/min/pack-Δ summary, a **weakest-cells card**
+  (three lowest cells with module, voltage and −mV from the strongest, tappable
+  for detail), then **six labelled module blocks** of 32 cells. Each block head
+  shows its read count (`32/32`), min/max/Δ and a balance chip
+  (`BALANCED` ≤ 10 mV, `WATCH` 10–30 mV, `DRIFT` > 30 mV); the strongest cell
+  in a block is ringed cyan and the weakest red. Tiles print three decimals,
+  tint by deviation from the strongest cell, and open a **cell detail sheet**
+  (voltage, module, Δ to strongest, module min/max/spread, threshold legend).
+  The block order follows the six BMS cell DIDs — the physical module
+  boundaries are not exposed over OBD and the screen says so. A sorted
+  spread chart with per-band counts closes the screen.
 - **Tires:** 2×2 cards, bar display (no psi switch yet), temperature, tire-size picker and a
   cold-pressure check against 2.5 bar (36 psi) with a ±0.2 bar tolerance.
 - **Trips:** part of Drive (recent trips + All trips → list/detail with local
@@ -79,9 +87,12 @@ data-dense automotive dashboard rather than a marketing page.
 - Charts are downsampled to ≤ 320 points (`displayPoints`) so a week of
   one-minute snapshots stays smooth; the underlying list is capped at 20 000
   rows.
-- **Cells spread chart**: 192 `BarMark`s sorted by voltage, coloured by the
-  same ≤10 / 10–30 / >30 mV bands as the grid, with a legend, weakest-cell
-  chips and a y-domain padded to the observed min/max.
+- **Cells spread chart**: 192 narrow `BarMark`s (fixed 1.2 pt width so the bars
+  stay separated) sorted from weakest to strongest, coloured by the same
+  ≤10 / 10–30 / >30 mV bands as the tiles, with per-band counts in the legend
+  and a y-domain padded to the observed min/max. Grouping and thresholds live
+  in `Sources/Telemetry/CellAnalysis.swift` and are covered by
+  `Tests/CellAnalysisTests.swift`.
 
 ## Gauges
 

@@ -54,8 +54,10 @@ tab also offers a **Use demo data** button.
   queue with timeout resync, ISO-TP multi-frame reassembly.
 - Hyundai BMS decoding: SOC, pack voltage/current, temperatures, cell min/max,
   12 V battery, SoH, remaining energy, lifetime AC/DC charge counters, LDC.
-- Cell voltages from six BMS DIDs (up to 192 cells) with a colour grid, sorted
-  spread chart, deviation legend and weakest-cell ranking.
+- Cell voltages from six BMS DIDs (up to 192 cells): six labelled module
+  blocks with their own min/max/spread and balance chip, strongest/weakest
+  highlight, weakest-cell ranking, tap-to-detail sheet and a sorted spread
+  chart with per-band counts.
 - VIN, odometer, tire pressures and temperatures (shown in bar).
 - Raw frames are preserved so future decoders can re-read old trips.
 
