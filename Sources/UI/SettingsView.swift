@@ -60,6 +60,9 @@ struct SettingsView: View {
                 Text("Български").tag("bg")
             }
             .pickerStyle(.segmented)
+            .onChange(of: appLanguage) { _, _ in
+                ble.refreshLocalizedText()
+            }
         }
     }
 

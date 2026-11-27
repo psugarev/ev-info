@@ -19,7 +19,20 @@ final class BLETransport: NSObject, ObservableObject {
 
     @Published private(set) var state: CBManagerState = .unknown
     @Published private(set) var connected = false
-    @Published private(set) var statusMessage = "Not connected"
+    @Published private(set) var statusMessage = AppLocalization.string("Not connected")
+
+    /// Rebuilds the current status in the selected language; called after the
+    /// Settings language switch changes.
+    var statusSource: () -> String = { AppLocalization.string("Not connected") }
+
+    func refreshLocalizedText() {
+        statusMessage = statusSource()
+    }
+
+    private func setStatus(_ text: @escaping () -> String) {
+        statusSource = text
+        statusMessage = text()
+    }
     @Published private(set) var discoveredAdapters: [DiscoveredAdapter] = []
 
     /// True while user-enabled demo mode shows a fake connection; stops the
@@ -110,19 +123,21 @@ final class BLETransport: NSObject, ObservableObject {
             // First use: creating the manager triggers the system permission
             // prompt; the scan starts once Bluetooth reports poweredOn.
             scanWhenReady = true
-            statusMessage = "Starting Bluetooth…"
+            setStatus { AppLocalization.string("Starting Bluetooth…") }
             _ = central
             return
         }
         guard central.state == .poweredOn else {
-            statusMessage = state == .unauthorized ? "Bluetooth permission denied" : "Bluetooth not ready"
+            setStatus { self.state == .unauthorized
+                ? AppLocalization.string("Bluetooth permission denied")
+                : AppLocalization.string("Bluetooth not ready") }
             return
         }
         central.stopScan()
         discoveredAdapters.removeAll()
         discoveredPeripherals.removeAll()
         lastSeen.removeAll()
-        statusMessage = "Scanning for OBD2 adapters…"
+        setStatus { AppLocalization.string("Scanning for OBD2 adapters…") }
 
         // No service filter: some adapter firmware does not advertise its UART
         // service. Relevance is checked in didDiscover and the characteristic is
@@ -135,9 +150,9 @@ final class BLETransport: NSObject, ObservableObject {
             guard let self else { return }
             self.central.stopScan()
             if self.discoveredAdapters.isEmpty {
-                self.statusMessage = "No OBD2 adapter nearby — move closer and rescan"
+                setStatus { AppLocalization.string("No OBD2 adapter nearby — move closer and rescan") }
             } else {
-                self.statusMessage = "Scan complete — select your OBD2 adapter"
+                setStatus { AppLocalization.string("Scan complete — select your OBD2 adapter") }
             }
         }
 
@@ -149,13 +164,13 @@ final class BLETransport: NSObject, ObservableObject {
 
     func connect(to adapterID: UUID) {
         guard let peripheral = discoveredPeripherals[adapterID] else {
-            statusMessage = "Adapter is no longer available — scan again"
+            setStatus { AppLocalization.string("Adapter is no longer available — scan again") }
             return
         }
         self.peripheral = peripheral
         central.stopScan()
         scanTimer?.invalidate()
-        statusMessage = "Connecting to \(peripheral.name ?? "adapter")…"
+        setStatus { AppLocalization.format("Connecting to %@…", peripheral.name ?? "adapter") }
         central.connect(peripheral, options: nil)
     }
 
@@ -184,21 +199,21 @@ extension BLETransport: CBCentralManagerDelegate {
         state = central.state
         switch central.state {
         case .poweredOn:
-            statusMessage = "Ready to scan"
+            setStatus { AppLocalization.string("Ready to scan") }
             if reconnectToLastAdapter() { break }
             if scanWhenReady {
                 scanWhenReady = false
                 scan()
             }
         case .poweredOff:
-            statusMessage = "Bluetooth off"
+            setStatus { AppLocalization.string("Bluetooth off") }
             connected = false
         case .unauthorized:
-            statusMessage = "Bluetooth permission denied"
+            setStatus { AppLocalization.string("Bluetooth permission denied") }
         case .unsupported:
-            statusMessage = "BLE unsupported"
+            setStatus { AppLocalization.string("BLE unsupported") }
         default:
-            statusMessage = "Bluetooth unavailable"
+            setStatus { AppLocalization.string("Bluetooth unavailable") }
         }
     }
 
@@ -235,13 +250,13 @@ extension BLETransport: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         connected = false
         reconnectAttempts = 0
-        statusMessage = "Connected — discovering services…"
+        setStatus { AppLocalization.string("Connected — discovering services…") }
         peripheral.delegate = self
         peripheral.discoverServices(nil)
     }
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        statusMessage = "Connection failed: \(error?.localizedDescription ?? "unknown")"
+        setStatus { AppLocalization.format("Connection failed: %@", error?.localizedDescription ?? "unknown") }
         scheduleReconnect()
     }
 
@@ -250,7 +265,7 @@ extension BLETransport: CBCentralManagerDelegate {
         txCharacteristic = nil
         rxCharacteristic = nil
         pendingProfile = nil
-        statusMessage = "Disconnected"
+        setStatus { AppLocalization.string("Disconnected") }
         if error != nil {
             scheduleReconnect()
         }
@@ -266,7 +281,7 @@ extension BLETransport: CBCentralManagerDelegate {
         discoveredPeripherals[id] = known
         peripheral = known
         reconnectAttempts = 0
-        statusMessage = "Connecting to \(known.name ?? "adapter")…"
+        setStatus { AppLocalization.format("Connecting to %@…", known.name ?? "adapter") }
         central.connect(known, options: nil)
         return true
     }
@@ -298,12 +313,12 @@ extension BLETransport: CBCentralManagerDelegate {
 
     private func scheduleReconnect() {
         guard reconnectAttempts < maxReconnectAttempts else {
-            statusMessage = "Could not connect — tap to retry"
+            setStatus { AppLocalization.string("Could not connect — tap to retry") }
             return
         }
         reconnectAttempts += 1
         let delay = Double(reconnectAttempts) * 2.0
-        statusMessage = "Reconnecting in \(Int(delay))s… (attempt \(reconnectAttempts))"
+        setStatus { AppLocalization.format("Reconnecting in %@s… (attempt %@)", "\(Int(delay))", "\(self.reconnectAttempts)") }
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
             if let p = self?.peripheral {
                 self?.central.connect(p)
@@ -320,14 +335,14 @@ extension BLETransport: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard error == nil, let services = peripheral.services else {
-            statusMessage = "Service discovery failed"
+            setStatus { AppLocalization.string("Service discovery failed") }
             return
         }
         let uartServices = services.filter { service in
             uartProfiles.contains { $0.service == service.uuid }
         }
         guard !uartServices.isEmpty else {
-            statusMessage = "vLinker UART service not found — no OBD commands sent"
+            setStatus { AppLocalization.string("vLinker UART service not found — no OBD commands sent") }
             return
         }
         for service in uartServices {
@@ -337,21 +352,21 @@ extension BLETransport: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard error == nil, let characteristics = service.characteristics else {
-            statusMessage = "Characteristic discovery failed"
+            setStatus { AppLocalization.string("Characteristic discovery failed") }
             return
         }
         guard let profile = uartProfiles.first(where: { $0.service == service.uuid }),
               let notify = characteristics.first(where: { $0.uuid == profile.notify }),
               let write = characteristics.first(where: { $0.uuid == profile.write }) else {
-            statusMessage = "vLinker UART characteristic not found — no OBD commands sent"
+            setStatus { AppLocalization.string("vLinker UART characteristic not found — no OBD commands sent") }
             return
         }
         guard write.properties.contains(.write) || write.properties.contains(.writeWithoutResponse) else {
-            statusMessage = "Adapter UART cannot accept writes"
+            setStatus { AppLocalization.string("Adapter UART cannot accept writes") }
             return
         }
         guard notify.properties.contains(.notify) || notify.properties.contains(.indicate) else {
-            statusMessage = "Adapter UART cannot send responses — no OBD commands sent"
+            setStatus { AppLocalization.string("Adapter UART cannot send responses — no OBD commands sent") }
             return
         }
         txCharacteristic = write
@@ -367,12 +382,12 @@ extension BLETransport: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         if let error {
-            statusMessage = "Notification error: \(error.localizedDescription)"
+            setStatus { AppLocalization.format("Notification error: %@", error.localizedDescription) }
         } else if characteristic == rxCharacteristic {
             // OBDSession starts only after response notifications are enabled.
             connected = true
             lastAdapterID = peripheral.identifier
-            statusMessage = "Ready — \(pendingProfile?.name ?? "BLE UART")"
+            setStatus { AppLocalization.format("Ready — %@", self.pendingProfile?.name ?? "BLE UART") }
         }
     }
 
@@ -411,10 +426,10 @@ extension BLETransport {
         isDemo = enabled
         if enabled {
             connected = true
-            statusMessage = "Demo data"
+            setStatus { AppLocalization.string("Demo data") }
         } else {
             connected = false
-            statusMessage = "Not connected"
+            setStatus { AppLocalization.string("Not connected") }
         }
     }
 }

@@ -9,7 +9,7 @@ struct TirePressureView: View {
     @AppStorage("tireSize") private var tireSize = "235/55 R19"
 
     private let labels = ["FL", "FR", "RL", "RR"]
-    private let names = ["Front left", "Front right", "Rear left", "Rear right"]
+    private let names: [LocalizedStringKey] = ["Front left", "Front right", "Rear left", "Rear right"]
 
     private var recommendation: Double {
         tireSize == "255/45 R20" ? 2.5 : 2.5

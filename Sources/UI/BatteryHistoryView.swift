@@ -497,10 +497,12 @@ struct BatteryHistoryView: View {
     }
 
     private var chartSubtitle: String {
+        let locale = AppLocalization.locale
         if let point = selectedPoint {
-            return point.date.formatted(.dateTime.day().month(.abbreviated).hour().minute())
+            return point.date.formatted(.dateTime.day().month(.abbreviated).hour().minute().locale(locale))
         }
-        return "Updated \(referenceDate.formatted(.dateTime.day().month(.abbreviated).hour().minute()))"
+        let stamp = referenceDate.formatted(.dateTime.day().month(.abbreviated).hour().minute().locale(locale))
+        return AppLocalization.format("Updated %@", stamp)
     }
 
     private var areaGradient: LinearGradient {
@@ -512,15 +514,16 @@ struct BatteryHistoryView: View {
     }
 
     private var axisDateFormat: Date.FormatStyle {
+        let locale = AppLocalization.locale
         switch range {
         case .hour, .sixHours:
-            return .dateTime.hour().minute()
+            return .dateTime.hour().minute().locale(locale)
         case .day:
-            return .dateTime.hour().minute()
+            return .dateTime.hour().minute().locale(locale)
         case .week:
-            return .dateTime.weekday(.abbreviated).hour()
+            return .dateTime.weekday(.abbreviated).hour().locale(locale)
         case .all:
-            return .dateTime.day().month(.abbreviated)
+            return .dateTime.day().month(.abbreviated).locale(locale)
         }
     }
 
@@ -621,10 +624,10 @@ private enum BatteryMetric: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .soc: return "SOC"
-        case .voltage: return "Voltage"
-        case .current: return "Current"
-        case .power: return "Power"
+        case .soc: return AppLocalization.string("SOC")
+        case .voltage: return AppLocalization.string("Voltage")
+        case .current: return AppLocalization.string("Current")
+        case .power: return AppLocalization.string("Power")
         }
     }
 

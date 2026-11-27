@@ -2,10 +2,46 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {},
-    "—" : {},
-    "%" : {},
+    "—" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "—"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "—"
+          }
+        }
+      }
+    },
+    "%" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%"
+          }
+        }
+      }
+    },
     "%@ %@" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -16,6 +52,12 @@
     },
     "%@ history, %@" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ история, %2$@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -24,9 +66,30 @@
         }
       }
     },
-    "%lld" : {},
+    "%lld" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
     "%lld · −%lld mV" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld · −%2$lld mV"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -35,10 +98,46 @@
         }
       }
     },
-    "%lld of 4 tires are within ±0.2 bar of the recommended 2.5 bar (36 psi)." : {},
-    "%lld percent" : {},
+    "%lld of 4 tires are within ±0.2 bar of the recommended 2.5 bar (36 psi)." : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld от 4 гуми са в рамките на ±0.2 bar от препоръчаните 2.5 bar (36 psi)."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld of 4 tires are within ±0.2 bar of the recommended 2.5 bar (36 psi)."
+          }
+        }
+      }
+    },
+    "%lld percent" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld процента"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld percent"
+          }
+        }
+      }
+    },
     "%lld stop%@" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld спиране%2$@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -47,24 +146,82 @@
         }
       }
     },
-    "%lld trips" : {},
-    "> 30 mV" : {},
-    "≤ 10 mV" : {},
-    "0" : {},
-    "10–30 mV" : {},
-    "12 V / LDC" : {
-      "extractionState" : "stale",
+    "%lld trips" : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "12V / LDC"
+            "value" : "%lld пътувания"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "12 V / LDC"
+            "value" : "%lld trips"
+          }
+        }
+      }
+    },
+    "> 30 mV" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "> 30 mV"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "> 30 mV"
+          }
+        }
+      }
+    },
+    "≤ 10 mV" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≤ 10 mV"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≤ 10 mV"
+          }
+        }
+      }
+    },
+    "0" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
+          }
+        }
+      }
+    },
+    "10–30 mV" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10–30 mV"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10–30 mV"
           }
         }
       }
@@ -165,8 +322,38 @@
         }
       }
     },
-    "235/55 R19" : {},
-    "255/45 R20" : {},
+    "235/55 R19" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "235/55 R19"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "235/55 R19"
+          }
+        }
+      }
+    },
+    "255/45 R20" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "255/45 R20"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "255/45 R20"
+          }
+        }
+      }
+    },
     "A snapshot is stored every minute while the BMS is connected." : {
       "localizations" : {
         "bg" : {
@@ -263,23 +450,6 @@
         }
       }
     },
-    "Aggregate measurements for the complete high-voltage traction battery — not for a single module or the 12 V battery." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обобщени измервания за цялата високоволтова тягова батерия — не за отделен модул или 12V батерия."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aggregate measurements for the complete high-voltage traction battery — not for a single module or the 12 V battery."
-          }
-        }
-      }
-    },
     "All trips" : {
       "localizations" : {
         "bg" : {
@@ -308,57 +478,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "App"
-          }
-        }
-      }
-    },
-    "Auxiliary battery SOC" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SOC на 12V батерия"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auxiliary battery SOC"
-          }
-        }
-      }
-    },
-    "Auxiliary current" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ток 12V"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auxiliary current"
-          }
-        }
-      }
-    },
-    "Auxiliary voltage" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Напрежение 12V"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auxiliary voltage"
           }
         }
       }
@@ -412,7 +531,6 @@
       }
     },
     "bar" : {
-      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -456,23 +574,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "BATTERY"
-          }
-        }
-      }
-    },
-    "Battery details" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Детайли за батерията"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Battery details"
           }
         }
       }
@@ -589,42 +690,14 @@
         }
       }
     },
-    "Bulgarian" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Български"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bulgarian"
-          }
-        }
-      }
-    },
-    "Bulgarian Electricity Tariff" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Българска тарифа за ток"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bulgarian Electricity Tariff"
-          }
-        }
-      }
-    },
     "Cell %lld, %@ volts" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клетка %1$lld, %2$@ волта"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -633,9 +706,23 @@
         }
       }
     },
-    "Cell %lld, not read" : {},
+    "Cell %lld, not read" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клетка %lld, не е прочетена"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell %lld, not read"
+          }
+        }
+      }
+    },
     "Cell balance" : {
-      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -974,6 +1061,1128 @@
         }
       }
     },
+    " (%@ kWh/100 km)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@ kWh/100 km)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@ kWh/100 km)"
+          }
+        }
+      }
+    },
+    "%@ %%" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ %%"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ %%"
+          }
+        }
+      }
+    },
+    "%@ AC / %@ DC sessions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ AC / %@ DC сесии"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ AC / %@ DC sessions"
+          }
+        }
+      }
+    },
+    "%@ V" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ V"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ V"
+          }
+        }
+      }
+    },
+    "%@ h %@ min" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ч %@ мин"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ h %@ min"
+          }
+        }
+      }
+    },
+    "%@ kW (negative = charging in this app)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kW (отрицателно = зареждане в това приложение)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kW (negative = charging in this app)"
+          }
+        }
+      }
+    },
+    "%@ km in %@, average %@ km/h, maximum %@ km/h." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ км за %@, средно %@ км/ч, максимум %@ км/ч."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ km in %@, average %@ km/h, maximum %@ km/h."
+          }
+        }
+      }
+    },
+    "%@ kΩ" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kΩ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kΩ"
+          }
+        }
+      }
+    },
+    "%@ mV (max %@ V, min %@ V)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ mV (макс. %@ V, мин. %@ V)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ mV (max %@ V, min %@ V)"
+          }
+        }
+      }
+    },
+    "%@ min" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ мин"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ min"
+          }
+        }
+      }
+    },
+    "%@ stop of at least one minute." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ спиране за поне минута."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ stop of at least one minute."
+          }
+        }
+      }
+    },
+    "%@ stops of at least one minute." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ спирания за поне минута."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ stops of at least one minute."
+          }
+        }
+      }
+    },
+    "%@ °C" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ °C"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ °C"
+          }
+        }
+      }
+    },
+    ", cost €%@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ", цена €%@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ", cost €%@"
+          }
+        }
+      }
+    },
+    "Adapter UART cannot accept writes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UART на адаптера не приема запис"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adapter UART cannot accept writes"
+          }
+        }
+      }
+    },
+    "Adapter UART cannot send responses — no OBD commands sent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UART на адаптера не може да изпраща отговори — не са изпратени OBD команди"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adapter UART cannot send responses — no OBD commands sent"
+          }
+        }
+      }
+    },
+    "Adapter is no longer available — scan again" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Адаптерът вече не е наличен — сканирайте отново"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adapter is no longer available — scan again"
+          }
+        }
+      }
+    },
+    "All checks passed." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всички проверки минаха."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All checks passed."
+          }
+        }
+      }
+    },
+    "BLE unsupported" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BLE не се поддържа"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BLE unsupported"
+          }
+        }
+      }
+    },
+    "BMS data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Данни от BMS"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BMS data"
+          }
+        }
+      }
+    },
+    "Battery test" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тест на батерията"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Battery test"
+          }
+        }
+      }
+    },
+    "Bluetooth not ready" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth не е готов"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth not ready"
+          }
+        }
+      }
+    },
+    "Bluetooth off" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth е изключен"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth off"
+          }
+        }
+      }
+    },
+    "Bluetooth permission denied" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма разрешение за Bluetooth"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth permission denied"
+          }
+        }
+      }
+    },
+    "Bluetooth unavailable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth е недостъпен"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth unavailable"
+          }
+        }
+      }
+    },
+    "Characteristic discovery failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откриването на характеристики се провали"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Characteristic discovery failed"
+          }
+        }
+      }
+    },
+    "Charging state" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Състояние на зареждането"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Charging state"
+          }
+        }
+      }
+    },
+    "Charging test" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тест на зареждането"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Charging test"
+          }
+        }
+      }
+    },
+    "Connected — discovering services…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Свързано — откриване на услуги…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected — discovering services…"
+          }
+        }
+      }
+    },
+    "Connecting to %@…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Свързване с %@…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connecting to %@…"
+          }
+        }
+      }
+    },
+    "Connection failed: %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Свързването се провали: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connection failed: %@"
+          }
+        }
+      }
+    },
+    "Cost €%@." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цена €%@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cost €%@."
+          }
+        }
+      }
+    },
+    "Could not connect — tap to retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Свързването не успя — докоснете за повторен опит"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not connect — tap to retry"
+          }
+        }
+      }
+    },
+    "Demo data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Демо данни"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demo data"
+          }
+        }
+      }
+    },
+    "Disconnected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изключено"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disconnected"
+          }
+        }
+      }
+    },
+    "Isolation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изолация"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isolation"
+          }
+        }
+      }
+    },
+    "No BMS response yet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все още няма отговор от BMS"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No BMS response yet"
+          }
+        }
+      }
+    },
+    "No OBD2 adapter nearby — move closer and rescan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма OBD2 адаптер наблизо — приближете и сканирайте отново"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No OBD2 adapter nearby — move closer and rescan"
+          }
+        }
+      }
+    },
+    "No stops of a minute or more." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без спирания за минута или повече."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No stops of a minute or more."
+          }
+        }
+      }
+    },
+    "Not charging — plug in and run again" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не се зарежда — включете и пуснете отново"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not charging — plug in and run again"
+          }
+        }
+      }
+    },
+    "Not connected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не е свързано"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not connected"
+          }
+        }
+      }
+    },
+    "Not enough data — connect the adapter." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недостатъчно данни — свържете адаптера."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not enough data — connect the adapter."
+          }
+        }
+      }
+    },
+    "Not reported" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не се отчита"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not reported"
+          }
+        }
+      }
+    },
+    "Notification error: %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грешка при нотификациите: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification error: %@"
+          }
+        }
+      }
+    },
+    "One or more checks failed." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Една или повече проверки се провалиха."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One or more checks failed."
+          }
+        }
+      }
+    },
+    "Pack temperature" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Температура на пакета"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pack temperature"
+          }
+        }
+      }
+    },
+    "Passed with warnings." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мина с предупреждения."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passed with warnings."
+          }
+        }
+      }
+    },
+    "Power direction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посока на мощността"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Power direction"
+          }
+        }
+      }
+    },
+    "Ready to scan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово за сканиране"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ready to scan"
+          }
+        }
+      }
+    },
+    "Ready — %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово — %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ready — %@"
+          }
+        }
+      }
+    },
+    "Reconnecting in %@s… (attempt %@)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторно свързване след %@ s… (опит %@)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reconnecting in %@s… (attempt %@)"
+          }
+        }
+      }
+    },
+    "SOC %@ %%, %@ V" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOC %@ %%, %@ V"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOC %@ %%, %@ V"
+          }
+        }
+      }
+    },
+    "SOC %@ %%, pack %@ V" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOC %@ %%, пакет %@ V"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOC %@ %%, pack %@ V"
+          }
+        }
+      }
+    },
+    "Scan complete — select your OBD2 adapter" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сканирането завърши — изберете OBD2 адаптера"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan complete — select your OBD2 adapter"
+          }
+        }
+      }
+    },
+    "Scanning for OBD2 adapters…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сканиране за OBD2 адаптери…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scanning for OBD2 adapters…"
+          }
+        }
+      }
+    },
+    "Service discovery failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откриването на услуги се провали"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Service discovery failed"
+          }
+        }
+      }
+    },
+    "Started at %@ and ended at %@." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Започнато в %@ и завършило в %@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Started at %@ and ended at %@."
+          }
+        }
+      }
+    },
+    "Started at %@; the end position was not recorded." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Започнато в %@; крайната позиция не е записана."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Started at %@; the end position was not recorded."
+          }
+        }
+      }
+    },
+    "Starting Bluetooth…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стартиране на Bluetooth…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starting Bluetooth…"
+          }
+        }
+      }
+    },
+    "Stops of a minute or more at %@." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спирания за минута или повече: %@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stops of a minute or more at %@."
+          }
+        }
+      }
+    },
+    "Trip on %@ (%@)." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пътуване на %@ (%@)."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trip on %@ (%@)."
+          }
+        }
+      }
+    },
+    "Updated %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновено %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updated %@"
+          }
+        }
+      }
+    },
+    "Used %@ kWh" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвани %@ kWh"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Used %@ kWh"
+          }
+        }
+      }
+    },
+    "vLinker UART characteristic not found — no OBD commands sent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Характеристиката на vLinker UART не е намерена — не са изпратени OBD команди"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "vLinker UART characteristic not found — no OBD commands sent"
+          }
+        }
+      }
+    },
+    "vLinker UART service not found — no OBD commands sent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Услугата vLinker UART не е намерена — не са изпратени OBD команди"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "vLinker UART service not found — no OBD commands sent"
+          }
+        }
+      }
+    },
+    "%lld/%lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld/%lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld/%lld"
+          }
+        }
+      }
+    },
     "CELL SPREAD" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -991,20 +2200,18 @@
         }
       }
     },
-    "Cell voltage spread, %@ millivolts" : {},
-    "Cell voltages" : {
-      "extractionState" : "stale",
+    "Cell voltage spread, %@ millivolts" : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Напрежения на клетките"
+            "value" : "Разлика в напреженията на клетките, %@ mV"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cell voltages"
+            "value" : "Cell voltage spread, %@ millivolts"
           }
         }
       }
@@ -1026,7 +2233,6 @@
       }
     },
     "cells" : {
-      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -1091,7 +2297,6 @@
       }
     },
     "Charging history" : {
-      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -1107,7 +2312,22 @@
         }
       }
     },
-    "Choose the size on the car's tire placard. Recommended cold pressure is 2.5 bar (36 psi) for both Ioniq 5 sizes." : {},
+    "Choose the size on the car's tire placard. Recommended cold pressure is 2.5 bar (36 psi) for both Ioniq 5 sizes." : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете размера от табелката на автомобила. Препоръчаното студено налягане е 2.5 bar (36 psi) за двата размера на Ioniq 5."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose the size on the car's tire placard. Recommended cold pressure is 2.5 bar (36 psi) for both Ioniq 5 sizes."
+          }
+        }
+      }
+    },
     "Connect" : {
       "localizations" : {
         "bg" : {
@@ -1204,7 +2424,22 @@
         }
       }
     },
-    "Counters come from the BMS. If you have connected before, historical values appear here after the first snapshot; otherwise connect and wait for the BMS read." : {},
+    "Counters come from the BMS. If you have connected before, historical values appear here after the first snapshot; otherwise connect and wait for the BMS read." : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Броячите идват от BMS. Ако вече сте се свързвали, историческите стойности се появяват тук след първия запис; иначе се свържете и изчакайте BMS."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Counters come from the BMS. If you have connected before, historical values appear here after the first snapshot; otherwise connect and wait for the BMS read."
+          }
+        }
+      }
+    },
     "Current" : {
       "localizations" : {
         "bg" : {
@@ -1285,7 +2520,22 @@
         }
       }
     },
-    "Day starts %lld:00" : {},
+    "Day starts %lld:00" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Денят започва в %lld:00"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Day starts %lld:00"
+          }
+        }
+      }
+    },
     "Day VAT" : {
       "localizations" : {
         "bg" : {
@@ -1346,23 +2596,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "DC voltage"
-          }
-        }
-      }
-    },
-    "Delta" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разлика"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delta"
           }
         }
       }
@@ -1639,10 +2872,39 @@
         }
       }
     },
-    "FL" : {},
-    "FR" : {},
+    "FL" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ПЛ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FL"
+          }
+        }
+      }
+    },
+    "FR" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ПР"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FR"
+          }
+        }
+      }
+    },
     "Front left" : {
-      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -1659,7 +2921,6 @@
       }
     },
     "Front right" : {
-      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -1676,7 +2937,6 @@
       }
     },
     "GPS" : {
-      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -1756,23 +3016,6 @@
         }
       }
     },
-    "HV Pack" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HV пакет"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HV Pack"
-          }
-        }
-      }
-    },
     "Inlet temperature" : {
       "localizations" : {
         "bg" : {
@@ -1785,23 +3028,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inlet temperature"
-          }
-        }
-      }
-    },
-    "IoniqDrive 2" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "IoniqDrive 2"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "IoniqDrive 2"
           }
         }
       }
@@ -1822,7 +3048,22 @@
         }
       }
     },
-    "kW" : {},
+    "kW" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kW"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kW"
+          }
+        }
+      }
+    },
     "Language" : {
       "localizations" : {
         "bg" : {
@@ -1839,20 +3080,18 @@
         }
       }
     },
-    "Last known values from %@. These are stored every minute while the BMS is connected." : {},
-    "Latest" : {
-      "extractionState" : "stale",
+    "Last known values from %@. These are stored every minute while the BMS is connected." : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Последни"
+            "value" : "Последни известни стойности от %@. Записват се всяка минута, докато BMS е свързан."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latest"
+            "value" : "Last known values from %@. These are stored every minute while the BMS is connected."
           }
         }
       }
@@ -1934,23 +3173,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "LIFETIME"
-          }
-        }
-      }
-    },
-    "Lifetime counters reported by the BMS. They do not reset per trip." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Общи броячи, отчетени от BMS. Не се нулират при всяко пътуване."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lifetime counters reported by the BMS. They do not reset per trip."
           }
         }
       }
@@ -2051,23 +3273,6 @@
         }
       }
     },
-    "Max cell voltage" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Макс. напрежение клетка"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Max cell voltage"
-          }
-        }
-      }
-    },
     "Max temperature" : {
       "localizations" : {
         "bg" : {
@@ -2100,7 +3305,22 @@
         }
       }
     },
-    "Metric" : {},
+    "Metric" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показател"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metric"
+          }
+        }
+      }
+    },
     "MIN" : {
       "localizations" : {
         "bg" : {
@@ -2113,23 +3333,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MIN"
-          }
-        }
-      }
-    },
-    "Min cell voltage" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мин. напрежение клетка"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Min cell voltage"
           }
         }
       }
@@ -2278,23 +3481,6 @@
         }
       }
     },
-    "NO SIGNAL" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "НЯМА СИГНАЛ"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NO SIGNAL"
-          }
-        }
-      }
-    },
     "No telemetry logged yet." : {
       "localizations" : {
         "bg" : {
@@ -2391,23 +3577,6 @@
         }
       }
     },
-    "OBD Adapter" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OBD адаптер"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OBD Adapter"
-          }
-        }
-      }
-    },
     "OBD frames will appear here during a trip." : {
       "localizations" : {
         "bg" : {
@@ -2440,23 +3609,6 @@
         }
       }
     },
-    "ODOMETER" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ОДОМЕТЪР"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ODOMETER"
-          }
-        }
-      }
-    },
     "OK" : {
       "localizations" : {
         "bg" : {
@@ -2469,23 +3621,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
-          }
-        }
-      }
-    },
-    "Pack" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пакет"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pack"
           }
         }
       }
@@ -2522,24 +3657,22 @@
         }
       }
     },
-    "Pack, modules, cells" : {
-      "extractionState" : "stale",
+    "Plug in an AC or DC charger and run the charging test to validate the charging path." : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Пакет, модули, клетки"
+            "value" : "Включете AC или DC зарядно и пуснете теста за зареждане, за да проверите пътя на зареждане."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pack, modules, cells"
+            "value" : "Plug in an AC or DC charger and run the charging test to validate the charging path."
           }
         }
       }
     },
-    "Plug in an AC or DC charger and run the charging test to validate the charging path." : {},
     "Power" : {
       "localizations" : {
         "bg" : {
@@ -2605,7 +3738,6 @@
       }
     },
     "psi" : {
-      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -2621,7 +3753,22 @@
         }
       }
     },
-    "Rank" : {},
+    "Rank" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ранг"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rank"
+          }
+        }
+      }
+    },
     "Raw OBD Log" : {
       "localizations" : {
         "bg" : {
@@ -2671,7 +3818,6 @@
       }
     },
     "Rear left" : {
-      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -2688,7 +3834,6 @@
       }
     },
     "Rear right" : {
-      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -2768,23 +3913,6 @@
         }
       }
     },
-    "Rescan for Adapter" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Търси отново"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rescan for Adapter"
-          }
-        }
-      }
-    },
     "Rescan for OBD2 adapter" : {
       "localizations" : {
         "bg" : {
@@ -2801,9 +3929,54 @@
         }
       }
     },
-    "RL" : {},
-    "RR" : {},
-    "Run a battery or charging test from the Battery screen." : {},
+    "RL" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ЗЛ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RL"
+          }
+        }
+      }
+    },
+    "RR" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ЗР"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RR"
+          }
+        }
+      }
+    },
+    "Run a battery or charging test from the Battery screen." : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пуснете тест за батерията или зареждането от екрана Батерия."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run a battery or charging test from the Battery screen."
+          }
+        }
+      }
+    },
     "Run battery test" : {
       "localizations" : {
         "bg" : {
@@ -2884,24 +4057,22 @@
         }
       }
     },
-    "Scan, then select your vLinker adapter from the nearby BLE devices." : {
-      "extractionState" : "stale",
+    "Selected" : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сканирай и избери vLinker адаптера от наличните BLE устройства."
+            "value" : "Избрано"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scan, then select your vLinker adapter from the nearby BLE devices."
+            "value" : "Selected"
           }
         }
       }
     },
-    "Selected" : {},
     "Settings" : {
       "localizations" : {
         "bg" : {
@@ -3016,20 +4187,18 @@
         }
       }
     },
-    "Signal %lld dBm" : {},
-    "Snapshots" : {
-      "extractionState" : "stale",
+    "Signal %lld dBm" : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Записи"
+            "value" : "Сигнал %lld dBm"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Snapshots"
+            "value" : "Signal %lld dBm"
           }
         }
       }
@@ -3099,7 +4268,22 @@
         }
       }
     },
-    "SORTED LOW → HIGH" : {},
+    "SORTED LOW → HIGH" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "СОРТИРАНИ ОТ НАЙ-НИСКО"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SORTED LOW → HIGH"
+          }
+        }
+      }
+    },
     "Start" : {
       "localizations" : {
         "bg" : {
@@ -3132,8 +4316,38 @@
         }
       }
     },
-    "Start a trip to see it here." : {},
-    "Start trip" : {},
+    "Start a trip to see it here." : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стартирайте пътуване, за да го видите тук."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start a trip to see it here."
+          }
+        }
+      }
+    },
+    "Start trip" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стартирай пътуване"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start trip"
+          }
+        }
+      }
+    },
     "START TRIP" : {
       "localizations" : {
         "bg" : {
@@ -3199,7 +4413,22 @@
         }
       }
     },
-    "Stop trip" : {},
+    "Stop trip" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спри пътуването"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop trip"
+          }
+        }
+      }
+    },
     "STOP TRIP" : {
       "localizations" : {
         "bg" : {
@@ -3376,23 +4605,6 @@
         }
       }
     },
-    "The traction battery is the whole 800 V pack. It is built from modules, and each module contains cells. The HV Pack section shows aggregate measurements for the whole pack; the Cells tab shows the individual cell voltages." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тяговата батерия е целият 800 V пакет. Изградена е от модули, а всеки модул съдържа клетки. Секцията HV Pack показва обобщените измервания за целия пакет, а табът Cells — напреженията на отделните клетки."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The traction battery is the whole 800 V pack. It is built from modules, and each module contains cells. The HV Pack section shows aggregate measurements for the whole pack; the Cells tab shows the individual cell voltages."
-          }
-        }
-      }
-    },
     "This is a separate lead-acid/AGM auxiliary battery that powers the car's electronics. The LDC (low-voltage DC-DC converter) charges it from the HV pack." : {
       "localizations" : {
         "bg" : {
@@ -3425,8 +4637,38 @@
         }
       }
     },
-    "Time" : {},
-    "Tire size" : {},
+    "Time" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Час"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time"
+          }
+        }
+      }
+    },
+    "Tire size" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер на гумите"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tire size"
+          }
+        }
+      }
+    },
     "TIRE SIZE" : {
       "localizations" : {
         "bg" : {
@@ -3475,37 +4717,18 @@
         }
       }
     },
-    "TPMS values are measured hot. Check cold pressures against the recommendation; a ±0.2 bar difference is treated as acceptable here." : {},
-    "TPMS values come from the vehicle. If a sensor is missing, the tile shows “—”. Pressures are cold-fill values; they rise while driving." : {
-      "extractionState" : "stale",
+    "TPMS values are measured hot. Check cold pressures against the recommendation; a ±0.2 bar difference is treated as acceptable here." : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Стойностите идват от TPMS на колата. Ако няма сензор, плочката показва „—“."
+            "value" : "Стойностите от TPMS се мерят при загряла гума. Проверявайте студеното налягане спрямо препоръката; разлика ±0.2 bar се приема за допустима тук."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "TPMS values come from the vehicle. If a sensor is missing, the tile shows “—”. Pressures are cold-fill values; they rise while driving."
-          }
-        }
-      }
-    },
-    "Trend" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тенденция"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trend"
+            "value" : "TPMS values are measured hot. Check cold pressures against the recommendation; a ±0.2 bar difference is treated as acceptable here."
           }
         }
       }
@@ -3558,37 +4781,18 @@
         }
       }
     },
-    "Trips" : {
-      "extractionState" : "stale",
+    "TRIPS" : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Пътувания"
+            "value" : "ПЪТУВАНИЯ"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trips"
-          }
-        }
-      }
-    },
-    "TRIPS" : {},
-    "Unit" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мерна единица"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unit"
+            "value" : "TRIPS"
           }
         }
       }
@@ -3673,7 +4877,22 @@
         }
       }
     },
-    "VIN %@" : {},
+    "VIN %@" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VIN %1$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VIN %@"
+          }
+        }
+      }
+    },
     "Voltage" : {
       "localizations" : {
         "bg" : {
@@ -3723,9 +4942,54 @@
         }
       }
     },
-    "Zero" : {},
-    "Δ" : {},
-    "Български" : {},
+    "Zero" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нула"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zero"
+          }
+        }
+      }
+    },
+    "Δ" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δ"
+          }
+        }
+      }
+    },
+    "Български" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Български"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Български"
+          }
+        }
+      }
+    },
     "DEMO" : {
       "localizations" : {
         "en" : {
